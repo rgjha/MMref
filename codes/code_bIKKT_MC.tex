@@ -1,0 +1,244 @@
+%\begin{footnotesize} 
+\begin{lstlisting}
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+import random
+import os
+import math
+from matplotlib.pyplot import *
+from matplotlib import pyplot as plt
+import numpy as np
+import random
+from scipy.linalg import expm
+from numpy import linalg as LA
+import time 
+import datetime 
+import sys
+startTime = time.time()
+print ("STARTED:" , datetime.datetime.now().strftime("%d %B %Y %H:%M:%S"))
+
+if len(sys.argv) < 5:
+  print("Usage:", str(sys.argv[0]), "READIN " " SAVE_or_NOT " "NCOL " "LAM")
+  sys.exit(1)
+
+READIN = int(sys.argv[1])
+SAVE = int(sys.argv[2])
+NCOL = int(sys.argv[3]) 
+LAMBDA = float(sys.argv[4])
+COUPLING = float(NCOL/(4.0*LAMBDA))
+GENS = NCOL**2 - 1
+NSCALAR = 10
+dt=5e-4
+nsteps = int(1e-2/dt)
+Niters_sim=6
+GAP=1
+xsq = np.zeros((NSCALAR),dtype=float)
+X = np.zeros((NSCALAR, NCOL, NCOL), dtype=complex)
+mom_X = np.zeros((NSCALAR, NCOL, NCOL), dtype=complex)
+f_X = np.zeros((NSCALAR, NCOL, NCOL), dtype=complex)
+X_bak = np.zeros((NSCALAR, NCOL, NCOL), dtype=complex)
+HAM, expDS, ACT, scalar = [],[],[],[]
+
+print ("IKKT matrix model simulation with only bosonic term")
+print ("NCOL=" "%3.0f " ","  " and dimensionless coupling = " " %4.2f" % (NCOL, COUPLING)) 
+print ("---------------------------------------------------------------------------------")
+
+def dagger(a):
+    return np.transpose(a).conj()
+
+def box_muller():
+    PI = 2.0*math.asin(1.0);    
+    r = random.uniform(0,1)
+    s = random.uniform(0,1)
+    p = np.sqrt(-2.0*np.log(r)) * math.sin(2.0*PI*s)
+    q = np.sqrt(-2.0*np.log(r)) * math.cos(2.0*PI*s)
+    return p,q
+
+def comm(A,B):
+    return np.dot(A,B) - np.dot(B,A)
+
+def unit_matrix():
+    matrix = np.zeros((NCOL, NCOL), dtype=complex)
+    for i in range (NCOL):
+        matrix[i][i] = complex(1.0,0.0)
+    return matrix
+
+def copy_fields(b):
+    for j in range(NSCALAR):
+        X_bak[j] = b[j]
+    return X_bak
+
+def rejected_go_back_old_fields(a):
+    for j in range(NSCALAR):
+        X[j] = a[j]
+    return X
+
+def refresh_mom():
+    for j in range (NSCALAR):
+        mom_X[j] = random_hermitian()
+    return mom_X
+
+def random_hermitian():
+    tmp = np.zeros((NCOL, NCOL), dtype=complex)
+    for i in range (NCOL):
+
+        for j in range (i+1, NCOL):
+            r1, r2 = box_muller()
+            tmp[i][j] = complex(r1, r2)/math.sqrt(2)
+            tmp[j][i] = complex(r1, -r2)/math.sqrt(2)
+
+    for i in range (NCOL):
+        r1, r2 = box_muller()
+        tmp[i][i] = complex(r1, 0.0)
+    return tmp 
+
+def kinetic_energy(mom_X):
+    s = 0.0 
+    for j in range (NSCALAR):
+        s += 0.50 * np.trace(np.dot(dagger(mom_X[j]),mom_X[j]))
+    return s.real    
+
+def action(X):
+    b_action = 0.0 
+    for i in range (NSCALAR):
+        for j in range (i+1, NSCALAR): 
+            co = np.dot(X[i],X[j]) - np.dot(X[j],X[i])
+            tr = np.trace(np.dot(co,co))
+            b_action -= COUPLING*(tr.real) 
+    return b_action
+
+def force(X):
+    tmp_X = np.zeros((NSCALAR, NCOL, NCOL), dtype=complex)
+    for i in range (NSCALAR): 
+        for j in range (NSCALAR):
+            if i == j:
+                continue 
+            else:
+                temp = comm(X[i], X[j])
+                tmp_X[i] -= comm(X[j], temp)
+        f_X[i] = 2.0*COUPLING*dagger(tmp_X[i])
+    return f_X 
+
+def leapfrog(X,mom_X, dt):
+    for j in range(NSCALAR):
+        X[j] += mom_X[j] * dt/2.0
+    f_X = force(X)
+
+    for step in range(nsteps):
+        for j in range(NSCALAR):
+            mom_X[j] -= f_X[j] * dt
+            X[j] += mom_X[j] * dt
+        f_X = force(X)
+
+    for j in range(NSCALAR):
+        mom_X[j] -= f_X[j] * dt
+        X[j] += mom_X[j] * dt/2.0
+    
+    return X, mom_X, f_X
+
+def update(X):
+    mom_X = refresh_mom()
+    KE = kinetic_energy(mom_X)
+    ba = action(X)
+    start_act =  ba + KE
+    X_bak = copy_fields(X) 
+    X, mom_X, f_X = leapfrog(X,mom_X,dt)
+    KE = kinetic_energy(mom_X)
+    ba = action(X)
+    end_act = ba + KE
+    change = end_act - start_act
+    HAM.append(abs(change))
+    expDS.append(np.exp(-1.0*change))   
+
+    if np.exp(-change) < random.uniform(0,1):
+        X = rejected_go_back_old_fields(X_bak)
+        print(("REJECT: deltaS = " "%8.7f " " startS = " "%8.7f" " endS = " "%8.7f" % (change, start_act, end_act)))
+    else:   
+        print(("ACCEPT: deltaS = " "%8.7f " "startS = " "%8.7f" " endS = " "%8.7f" % (change, start_act, end_act)))
+
+    ACT.append(ba)
+
+    tmp = 0.0 
+    for i in range (0,10):
+        val = np.trace(np.dot(X[i],X[i])).real/NCOL
+        xsq[i] = val 
+        tmp += val 
+
+
+
+    tmp /= NSCALAR 
+    scalar.append(tmp) 
+
+
+    if MDTU%GAP == 0:
+        f3.write("%4.8f  \n" %(ba/GENS))
+        f4.write("%4.8f " "%4.8f " "%4.8f " "%4.8f " "%4.8f " "%4.8f " "%4.8f " "%4.8f " "%4.8f " "%4.8f \n" %(xsq[0],xsq[1],xsq[2],xsq[3],xsq[4],xsq[5],xsq[6],xsq[7],xsq[8],xsq[9]))
+    return X
+
+
+if __name__ == '__main__':
+
+
+    if READIN ==0:
+        for i in range (NSCALAR):  
+            X[i] = random_hermitian()/(NCOL**2)  
+
+    if READIN ==1:
+        name_f = "config_IKKT/config_IKKT_N{}_l_{}_D_{}.txt".format(NCOL, LAMBDA, NSCALAR)
+        if os.path.isfile(name_f) == True: 
+            print ("Reading old configuration")
+            with open(name_f) as f2:
+                A = np.loadtxt(f2).view(complex)
+            f2.close()
+            for i in range (NSCALAR):
+                for a in range (NCOL):
+                    for b in range (NCOL):
+                        X[i][a][b] = A[(NCOL*i)+a][b] 
+        else: 
+            print ("Can't find config. file for this NCOL and LAM")
+            print ("Starting from fresh")
+            for i in range (NSCALAR):  
+                X[i] = random_hermitian()
+
+            X = X/(NCOL**2) 
+
+
+    f3 = open("action_SD.txt", "w")
+    f4 = open("extent_of_space_R2.txt", "w")
+    for MDTU in range (Niters_sim): 
+        X = update(X)
+    f3.close()
+    f4.close()
+
+    if SAVE ==1:
+        print ("Saving config.")
+        name_f = "config_IKKT/config_IKKT_N{}_l_{}_D_{}.txt".format(NCOL, LAMBDA, NSCALAR)
+        f1 = open(name_f, "w")
+        for i in range (NSCALAR):
+            np.savetxt(f1, X[i].view(float), delimiter= " ")  
+        f1.close()
+
+    ACT = [x/GENS for x in ACT]
+    
+    print("<S> = ", np.mean(ACT), "+/-", (np.std(ACT)/np.sqrt(np.size(ACT) - 1.0)))
+    print("<exp(-deltaH)> = ", np.mean(expDS), "+/-", np.std(expDS)/np.sqrt(np.size(expDS) - 1.0))
+    print ("COMPLETED:" , datetime.datetime.now().strftime("%d %B %Y %H:%M:%S")) 
+    endTime = time.time() 
+
+    plt.rc('text', usetex=True)
+    plt.rc('font', family='serif')
+    MDTU = np.linspace(0, Niters_sim, Niters_sim, endpoint=True)
+    plt.ylabel(r'$\langle R^2 \rangle$')
+    plt.xlabel('Time units')
+    plot(MDTU, scalar, 'teal') 
+    plt.grid(which='major', axis='y', linestyle='--')
+    plt.show()
+    plt.ylabel(r'$\langle S/(N^2-1) \rangle$')
+    plt.xlabel('Time units')
+    plot(MDTU, ACT, 'teal') 
+    plt.grid(which='major', axis='y', linestyle='--')
+    plt.savefig('IKKT_plot_S.pdf') 
+    plt.show()
+    print ("Running time:", round(endTime - startTime, 2),  "seconds")
+\end{lstlisting}
+%\end{footnotesize} 

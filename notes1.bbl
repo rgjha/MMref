@@ -1,0 +1,230 @@
+\providecommand{\href}[2]{#2}\begingroup\raggedright\begin{thebibliography}{10}
+
+\bibitem{Wigner1951OnTS}
+E.~Wigner, ``On the statistical distribution of the widths and spacings of
+  nuclear resonance levels,''
+\newblock 1951.
+
+\bibitem{MEHTA1960395}
+M.~Mehta, ``On the statistical properties of the level-spacings in nuclear
+  spectra,''
+  \href{http://dx.doi.org/https://doi.org/10.1016/0029-5582(60)90413-2}{{\em
+  Nuclear Physics} {\bfseries 18} (1960) 395--419}.
+  \url{https://www.sciencedirect.com/science/article/pii/0029558260904132}.
+
+\bibitem{GAUDIN1961447}
+M.~Gaudin, ``Sur la loi limite de l'espacement des valeurs propres d'une
+  matrice ale´atoire,''
+  \href{http://dx.doi.org/https://doi.org/10.1016/0029-5582(61)90176-6}{{\em
+  Nuclear Physics} {\bfseries 25} (1961) 447--458}.
+  \url{https://www.sciencedirect.com/science/article/pii/0029558261901766}.
+
+\bibitem{Meh2004}
+M.~L. Mehta, {\em Random Matrices}.
+\newblock 3rd~ed., 2004.
+
+\bibitem{Akemann:2011csh}
+G.~Akemann, J.~Baik, and P.~Di~Francesco, {\em {The Oxford Handbook of Random
+  Matrix Theory}}.
+\newblock Oxford Handbooks in Mathematics. Oxford University Press, 9, 2011.
+
+\bibitem{PhysRevLett.48.1086}
+R.~U. Haq, A.~Pandey, and O.~Bohigas, ``Fluctuation properties of nuclear
+  energy levels: Do theory and experiment agree?,''
+  \href{http://dx.doi.org/10.1103/PhysRevLett.48.1086}{{\em Phys. Rev. Lett.}
+  {\bfseries 48} (Apr, 1982) 1086--1089}.
+  \url{https://link.aps.org/doi/10.1103/PhysRevLett.48.1086}.
+
+\bibitem{DiFrancesco:1993cyw}
+P.~Di~Francesco, P.~H. Ginsparg, and J.~Zinn-Justin, ``{2-D Gravity and random
+  matrices},'' \href{http://dx.doi.org/10.1016/0370-1573(94)00084-G}{{\em Phys.
+  Rept.} {\bfseries 254} (1995) 1--133},
+  \href{http://arxiv.org/abs/hep-th/9306153}{{\ttfamily arXiv:hep-th/9306153}}.
+
+\bibitem{Eynard:2015aea}
+B.~Eynard, T.~Kimura, and S.~Ribault, ``{Random matrices},''
+  \href{http://arxiv.org/abs/1510.04430}{{\ttfamily arXiv:1510.04430
+  [math-ph]}}.
+
+\bibitem{tHooft:1973alw}
+G.~'t~Hooft, ``{A Planar Diagram Theory for Strong Interactions},''
+  \href{http://dx.doi.org/10.1016/0550-3213(74)90154-0}{{\em Nucl. Phys. B}
+  {\bfseries 72} (1974) 461}.
+
+\bibitem{Brezin:1994eb}
+E.~Brezin and S.~R. Wadia, eds., {\em {The Large N expansion in quantum field
+  theory and statistical physics: From spin systems to two-dimensional
+  gravity}}.
+\newblock 1994.
+
+\bibitem{Goldschmidt:1979hq}
+Y.~Y. Goldschmidt, ``{1/$N$ Expansion in Two-dimensional Lattice Gauge
+  Theory},'' \href{http://dx.doi.org/10.1063/1.524600}{{\em J. Math. Phys.}
+  {\bfseries 21} (1980) 1842}.
+
+\bibitem{Marino:2004eq}
+M.~Marino, ``{Les Houches lectures on matrix models and topological strings},''
+\newblock 10, 2004.
+\newblock \href{http://arxiv.org/abs/hep-th/0410165}{{\ttfamily
+  arXiv:hep-th/0410165}}.
+
+\bibitem{Brezin:1977sv}
+E.~Brezin, C.~Itzykson, G.~Parisi, and J.~B. Zuber, ``{Planar Diagrams},''
+  \href{http://dx.doi.org/10.1007/BF01614153}{{\em Commun. Math. Phys.}
+  {\bfseries 59} (1978) 35}.
+
+\bibitem{Balantekin:2000vn}
+A.~B. Balantekin, ``{Character expansions, Itzykson-Zuber integrals, and the
+  QCD partition function},''
+  \href{http://dx.doi.org/10.1103/PhysRevD.62.085017}{{\em Phys. Rev. D}
+  {\bfseries 62} (2000) 085017},
+  \href{http://arxiv.org/abs/hep-th/0007161}{{\ttfamily arXiv:hep-th/0007161}}.
+
+\bibitem{Chadha:1980ri}
+S.~Chadha, G.~Mahoux, and M.~L. Mehta, ``{A Method of Integration Over Matrix
+  Variables. 2.},'' \href{http://dx.doi.org/10.1088/0305-4470/14/3/008}{{\em J.
+  Phys. A} {\bfseries 14} (1981) 579}.
+
+\bibitem{Anderson:2016rcw}
+P.~D. Anderson and M.~Kruczenski, ``{Loop Equations and bootstrap methods in
+  the lattice},'' \href{http://dx.doi.org/10.1016/j.nuclphysb.2017.06.009}{{\em
+  Nucl. Phys. B} {\bfseries 921} (2017) 702--726},
+  \href{http://arxiv.org/abs/1612.08140}{{\ttfamily arXiv:1612.08140
+  [hep-th]}}.
+
+\bibitem{Lin:2020mme}
+H.~W. Lin, ``{Bootstraps to strings: solving random matrix models with
+  positivite},'' \href{http://dx.doi.org/10.1007/JHEP06(2020)090}{{\em JHEP}
+  {\bfseries 06} (2020) 090}, \href{http://arxiv.org/abs/2002.08387}{{\ttfamily
+  arXiv:2002.08387 [hep-th]}}.
+
+\bibitem{Han:2020bkb}
+X.~Han, S.~A. Hartnoll, and J.~Kruthoff, ``{Bootstrapping Matrix Quantum
+  Mechanics},'' \href{http://dx.doi.org/10.1103/PhysRevLett.125.041601}{{\em
+  Phys. Rev. Lett.} {\bfseries 125} no.~4, (2020) 041601},
+  \href{http://arxiv.org/abs/2004.10212}{{\ttfamily arXiv:2004.10212
+  [hep-th]}}.
+
+\bibitem{Kazakov:2021lel}
+V.~Kazakov and Z.~Zheng, ``{Analytic and Numerical Bootstrap for One-Matrix
+  Model and ''Unsolvable'' Two-Matrix Model},''
+  \href{http://arxiv.org/abs/2108.04830}{{\ttfamily arXiv:2108.04830
+  [hep-th]}}.
+
+\bibitem{Hanada:2018fnp}
+M.~Hanada, ``{Markov Chain Monte Carlo for Dummies},''
+  \href{http://arxiv.org/abs/1808.08490}{{\ttfamily arXiv:1808.08490
+  [hep-th]}}.
+
+\bibitem{Kazakov:1998ji}
+V.~A. Kazakov, I.~K. Kostov, and N.~A. Nekrasov, ``{D particles, matrix
+  integrals and KP hierarchy},''
+  \href{http://dx.doi.org/10.1016/S0550-3213(99)00393-4}{{\em Nucl. Phys. B}
+  {\bfseries 557} (1999) 413--442},
+  \href{http://arxiv.org/abs/hep-th/9810035}{{\ttfamily arXiv:hep-th/9810035}}.
+
+\bibitem{Staudacher:1989fy}
+M.~Staudacher, ``{The Yang-lee Edge Singularity on a Dynamical Planar Random
+  Surface},'' \href{http://dx.doi.org/10.1016/0550-3213(90)90432-D}{{\em Nucl.
+  Phys. B} {\bfseries 336} (1990) 349}.
+
+\bibitem{Kazakov:1988ch}
+V.~A. Kazakov and A.~A. Migdal, ``{Recent Progress in the Theory of Noncritical
+  Strings},'' \href{http://dx.doi.org/10.1016/0550-3213(88)90146-0}{{\em Nucl.
+  Phys. B} {\bfseries 311} (1988) 171}.
+
+\bibitem{Klebanov:1991qa}
+I.~R. Klebanov, ``{String theory in two-dimensions},''
+  \href{http://arxiv.org/abs/hep-th/9108019}{{\ttfamily arXiv:hep-th/9108019}}.
+
+\bibitem{Banks:1996vh}
+T.~Banks, W.~Fischler, S.~H. Shenker, and L.~Susskind, ``{M theory as a matrix
+  model: A Conjecture},''
+  \href{http://dx.doi.org/10.1103/PhysRevD.55.5112}{{\em Phys. Rev. D}
+  {\bfseries 55} (1997) 5112--5128},
+  \href{http://arxiv.org/abs/hep-th/9610043}{{\ttfamily arXiv:hep-th/9610043}}.
+
+\bibitem{Ishibashi:1996xs}
+N.~Ishibashi, H.~Kawai, Y.~Kitazawa, and A.~Tsuchiya, ``{A Large N reduced
+  model as superstring},''
+  \href{http://dx.doi.org/10.1016/S0550-3213(97)00290-3}{{\em Nucl. Phys. B}
+  {\bfseries 498} (1997) 467--491},
+  \href{http://arxiv.org/abs/hep-th/9612115}{{\ttfamily arXiv:hep-th/9612115}}.
+
+\bibitem{Hotta:1998en}
+T.~Hotta, J.~Nishimura, and A.~Tsuchiya, ``{Dynamical aspects of large N
+  reduced models},''
+  \href{http://dx.doi.org/10.1016/S0550-3213(99)00056-5}{{\em Nucl. Phys. B}
+  {\bfseries 545} (1999) 543--575},
+  \href{http://arxiv.org/abs/hep-th/9811220}{{\ttfamily arXiv:hep-th/9811220}}.
+
+\bibitem{Klinkhamer:2021wrv}
+F.~R. Klinkhamer, ``{A first look at the bosonic master-field equation of the
+  IIB matrix model},'' \href{http://arxiv.org/abs/2105.05831}{{\ttfamily
+  arXiv:2105.05831 [hep-th]}}.
+
+\bibitem{Berenstein:2002jq}
+D.~E. Berenstein, J.~M. Maldacena, and H.~S. Nastase, ``{Strings in flat space
+  and pp waves from $\mathcal N = 4$ super-Yang--Mills},''
+  \href{http://dx.doi.org/10.1088/1126-6708/2002/04/013}{{\em JHEP} {\bfseries
+  0204} (2002) 013}, \href{http://arxiv.org/abs/hep-th/0202021}{{\ttfamily
+  hep-th/0202021}}.
+
+\bibitem{Furuuchi:2003sy}
+K.~Furuuchi, E.~Schreiber, and G.~W. Semenoff, ``{Five-brane thermodynamics
+  from the matrix model},''
+  \href{http://arxiv.org/abs/hep-th/0310286}{{\ttfamily arXiv:hep-th/0310286}}.
+
+\bibitem{Mandal:2009vz}
+G.~Mandal, M.~Mahato, and T.~Morita, ``{Phases of one dimensional large N gauge
+  theory in a 1/D expansion},''
+  \href{http://dx.doi.org/10.1007/JHEP02(2010)034}{{\em JHEP} {\bfseries 02}
+  (2010) 034}, \href{http://arxiv.org/abs/0910.4526}{{\ttfamily arXiv:0910.4526
+  [hep-th]}}.
+
+\bibitem{Bergner:2019rca}
+G.~Bergner, N.~Bodendorfer, M.~Hanada, E.~Rinaldi, A.~Sch\"afer, and P.~Vranas,
+  ``{Thermal phase transition in Yang-Mills matrix model},''
+  \href{http://dx.doi.org/10.1007/JHEP01(2020)053}{{\em JHEP} {\bfseries 01}
+  (2020) 053}, \href{http://arxiv.org/abs/1909.04592}{{\ttfamily
+  arXiv:1909.04592 [hep-th]}}.
+
+\bibitem{Filev:2015hia}
+V.~G. Filev and D.~O'Connor, ``{The BFSS model on the lattice},''
+  \href{http://dx.doi.org/10.1007/JHEP05(2016)167}{{\em JHEP} {\bfseries 05}
+  (2016) 167}, \href{http://arxiv.org/abs/1506.01366}{{\ttfamily
+  arXiv:1506.01366 [hep-th]}}.
+
+\bibitem{Kawahara:2007ib}
+N.~Kawahara, J.~Nishimura, and S.~Takeuchi, ``{High temperature expansion in
+  supersymmetric matrix quantum mechanics},''
+  \href{http://dx.doi.org/10.1088/1126-6708/2007/12/103}{{\em JHEP} {\bfseries
+  12} (2007) 103}, \href{http://arxiv.org/abs/0710.2188}{{\ttfamily
+  arXiv:0710.2188 [hep-th]}}.
+
+\bibitem{DiFrancesco:1992cn}
+P.~Di~Francesco and C.~Itzykson, ``{A Generating function for fatgraphs},''
+  {\em Ann. Inst. H. Poincare Phys. Theor.} {\bfseries 59} (1993) 117--140,
+  \href{http://arxiv.org/abs/hep-th/9212108}{{\ttfamily arXiv:hep-th/9212108}}.
+
+\bibitem{Kazakov:1995ae}
+V.~A. Kazakov, M.~Staudacher, and T.~Wynter, ``{Character expansion methods for
+  matrix models of dually weighted graphs},''
+  \href{http://dx.doi.org/10.1007/BF02101902}{{\em Commun. Math. Phys.}
+  {\bfseries 177} (1996) 451--468},
+  \href{http://arxiv.org/abs/hep-th/9502132}{{\ttfamily arXiv:hep-th/9502132}}.
+
+\bibitem{Ambjorn:2001br}
+J.~Ambjorn, J.~Jurkiewicz, R.~Loll, and G.~Vernizzi, ``{Lorentzian 3-D gravity
+  with wormholes via matrix models},''
+  \href{http://dx.doi.org/10.1088/1126-6708/2001/09/022}{{\em JHEP} {\bfseries
+  09} (2001) 022}, \href{http://arxiv.org/abs/hep-th/0106082}{{\ttfamily
+  arXiv:hep-th/0106082}}.
+
+\bibitem{Kazakov:2000aq}
+V.~A. Kazakov, ``{Solvable matrix models},''
+\newblock 2, 2000.
+\newblock \href{http://arxiv.org/abs/hep-th/0003064}{{\ttfamily
+  arXiv:hep-th/0003064}}.
+
+\end{thebibliography}\endgroup

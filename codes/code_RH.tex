@@ -1,0 +1,15 @@
+\begin{lstlisting}
+def random_hermitian():
+
+    tmp = np.zeros((NCOL, NCOL), dtype=complex)
+
+    for i in range (NCOL):
+        for j in range (i+1, NCOL):
+
+            r1, r2 = box_muller()
+            tmp[i][i] = complex(r1, 0.0)
+            tmp[i][j] = complex(r1, r2)/math.sqrt(2)
+            tmp[j][i] = complex(r1, -r2)/math.sqrt(2)
+
+    return tmp 
+\end{lstlisting}
