@@ -636,7 +636,7 @@ Once we find the resolvent, we are done and we know $\rho(z)$.
 	\end{equation} 
 \end{mdframed} 
 
-\subsection{Cubic potential}
+%\subsection{Cubic potential}
 
 We can also consider one-matrix model with cubic interaction instead of quartic as above. There is well-known instability associated with cubic potential. The model is given by:
 \begin{equation}
@@ -822,6 +822,29 @@ In this case, solving the model just means finding the bounds on $t_{2}$ since a
 Following this work, a two matrix quantum mechanics 
 model (in 0+1-dimensions) was solved using similar techniques. 
 The results obtained were shown to be consistent with MC results. 
+In this work, the Hamiltonian considered was given by:
+\begin{equation}
+H = \mbox{Tr} \Big( P^2 + X^2 + \frac{g}{N} X^4 \Big)
+\end{equation}
+and corresponding to the trial operators up to length (L) = 2, 
+they considered $ \mathbb{I}, X, X^{2}$ and $P$. The bootstrap matrix
+of size $2^L \times 2^L$ which should be positive definite is constructed as:
+
+\begin{equation}
+	\mathcal{M} = 
+	\begin{pmatrix}
+		\langle \mbox{Tr}\mathbb{I} \rangle & \langle \mbox{Tr} X^2 \rangle & 0 & 0 \\
+		\langle \mbox{Tr} X^2 \rangle & \langle \mbox{Tr} X^4 \rangle  & 0 & 0 \\ 
+		0 & 0 & \langle \mbox{Tr} X^2 \rangle & \langle \mbox{Tr} XP \rangle \\
+		0 & 0  & \langle \mbox{Tr} PX \rangle & \langle \mbox{Tr} P^2 \rangle
+	\end{pmatrix}  \succeq 0
+\end{equation}
+They considered bootstrap matrices up to $L=4$ and observed
+convergence to the expected result. 
+For the case of two-matrix quantum mechanics, the convergence
+was found to be slow but consistent with results expected using 
+Monte Carlo results and bounds from Born-Oppenheimer wavefunction. 
+
 Another two-matrix integral model given by the action 
 (\ref{eq:GHM1}) was recently solved \cite{Kazakov:2021lel}. 
 In this work, authors used relaxation bootstrap methods for 
@@ -831,65 +854,48 @@ to be bounded between $ 0.421783612 \le t_2 \le 0.421784687$ while $\mathrm{Tr}X
 between $0.333341358 \le t_4 \le 0.333342131$.
 This model in more detail 
 and its corresponding solution using MC methods will be discussed in 
-\TODO{SECTIO ---} 
+\TODO{SECTIO ---}
 
 
 
-\subsection{Hamiltonian Monte Carlo (HMC) method}
-Metropolis-Hastings algorithm and HMC are two frequently used methods which can generate a Markov chain and lead to unique stationary distribution. We will here focus on the latter since that has now become the state-of-the-art in various numerical computations. 
-This method was introduced in 1987 by Duane, Kennedy, Pendleton, and Roweth who put together the Markov chain Monte Carlo (MCMC) and Molecular dynamics methods. A nice review is \cite{Hanada:2018fnp}. 
+\subsection{Monte Carlo method}
 
-\subsection{Autocorrealation and errors} 
-
-It is well-known that in any given Markov chain, the new states (i.e., configurations) can be highly correlated to previous ones. In order to ascertain that the measurement of an observable $\mathcal{O}$ is not affected by correlated configurations, it is essential for proper statistical analysis to know the extent to whicht they are
-correlated. In this regard, it is important to measure
-the autocorrelation time $ \tau_{\rm{auto}}$ which measures the time it takes for two measurements to be considered independent of each other. So, if we generate $L$ configurations, then actually only $L/\tau_{\rm{auto}}$ are useful for computing averages.
-%$\tau$ is often given by Kubo formula which is 
-We define autocorrelation function of observable $\mathcal{O}$ as:
- 
- \begin{equation}
- 	C(t) = \frac{\langle \mathcal{O}(t_0) \mathcal{O}(t_0 + t) \rangle - \langle \mathcal{O}(t_0)\rangle \langle \mathcal{O}(t_0 + t) \rangle}{\langle \mathcal{O}^2(t_0)\rangle - \langle \mathcal{O}(t_0)\rangle^{2}}
- \end{equation}
-The behaviour of $C(t)$ is $\sim \exp(-t/\tau_{\rm{auto}})$ as $ t \to \infty$. This is called exponential autocorrelation time. We can also compute something which is called `integrated autocorrelation time' defined as:
-\begin{equation}
-	\tau_{\rm{auto}}^{\rm{int.}} = \frac{\sum_{t=1}^{\infty} \langle \mathcal{O}(t_0) \mathcal{O}(t_0 + t) \rangle - \langle \mathcal{O} \rangle^2 }{\langle \mathcal{O}^2\rangle - \langle \mathcal{O}\rangle^{2}}
-\end{equation}
-We can write this in terms of sum over autocorrelation function as: $\tau_{\rm{auto}}^{\rm{int.}} = 1 + \sum_{t=1}^{N} C(t)$. In general, $ \tau_{\rm{auto}}$ increases with system size, close to critical point. Once can express the statistical error in the average of $\mathcal{O}$ denoted by $\delta \mathcal{O}$ is given in terms of variance and integrated autocorrelation time as:
-
-\begin{equation}
-	\delta \mathcal{O} = \frac{\sigma}{\sqrt{N}} \sqrt{2 \tau_{\rm{auto}}^{\rm{int.}}}
-\end{equation}
-where we have usual definitions i.e., 
-$\sigma = \sqrt{\langle \mathcal{O}^2\rangle - \langle \mathcal{O}\rangle^{2}}$ and $N$ is the number of measurements. 
+The numerical method which is state-of-the-art in classical computations 
+of matrix models and quantum field theories in general is the Monte Carlo approach.
+For higher-dimensional models, one starts with the lattice formulation which reduces the 
+path-integral introduced by Feynman into many ordinary integrals. But even for a simple
+gauge theory like $\mathbb{Z}_{2}$ in four dimensions this is not practical to evaluate. 
+The fact that we need to do so many integrals suggests that may be some statistical 
+interpretation and this is where the basic idea of Monte Carlo comes in. It selects the 
+configuration which dominates the path integral and then ignores the rest of the available
+phase space.In that way one constructs a chain of configurations which can lead to the 
+required distribution. Metropolis-Hastings algorithm and Hamiltonian/Hybrid Monte Carlo (HMC) 
+are two frequently used methods which 
+can generate a Markov chain and lead to unique stationary distribution. 
+We will here focus on the latter since that has now become the state-of-the-art in 
+various numerical computations. This method was introduced in 1987 by 
+Duane, Kennedy, Pendleton, and Roweth who put together the ideas from
+Markov chain Monte Carlo (MCMC)\footnote{MCMC originated in the seminal paper of Metropolis et al
+\TODO{cite}, where it was used to simulate the state distribution for a system of ideal molecules.} 
+and molecular dynamics (MD) methods. For a detailed review about HMC and its extension to
+rational HMC which is required for fermions, the interested readers can 
+consult the Refs. \cite{Hanada:2018fnp}. The two basic parts of HMC are: 
+a) Use of integrator to evolve and propose a new configuration, b) accept or reject
+the proposed configuration.  
 
 
+\subsubsection{Leapfrog integrator and Metropolis step}
 
-
-\subsection{One-matrix model: Confirming exact results} 
-
-\subsection{Matrix model closed chain solution} 
-
-\subsection{Three-matrix Yang Mills matrix model}
-
-\TODO{Read Badis review} 
-\TODO{Add Chern-Simon term}
-
-
-
-
+The leapfrog method is used to numerically integrating differential equations. This is a second-order method in the sense that energy non-conservation depends on square of step-size used. This method is `symplectic', i.e., it preserves the area of the phase space. 
 \begin{figure}[htbp] 
 \centering 
 \includegraphics[width=0.75\textwidth]{figs/PSP.pdf}
 \caption{\label{fig:F1}A representation of conservation of phase space area. This is also referred to as `Liouville theorem. it asserts that under evolution of the system, it may change the shape of the shaded region but not the volume since probability has to be conserved. }
 \end{figure}
-
-\subsection{Leapfrog method}
-
-The leapfrog method is used to discretize the Hamiltons's equation. This is a second-order method in the sense that energy non-conservation depends on square of step-size used. This method is `symplectic', i.e., it preserves the area of the phase space. 
 We can intuitively understand this as follows: 
 Consider a rectangular region of area $dA$ as shown below in Fig. (\ref{fig:F2}). The four corners at time $t$ are denoted by $(x, p), (x + dx, p), (x, p + dp), (x + dx, p + dp)$. At some later time $t^{\prime}$, this will change to form corners of some quadrilateral 
 as shown with area $dA^{\prime}$. 
-The Liouville's theorem states that the areas are equal, i.e., $dA = dA^{\prime}$. 
+The Liouville's theorem\footnote{This statement of Liouville theorem is closely related to detailed balance condition which says that in equilibrium there is balance between any two pairs of states i.e., equal probability.} states that the areas are equal, i.e., $dA = dA^{\prime}$. 
 Using this idea we can easily prove an important equality used to check various lattice computations employing symplectic algorithms. The basic steps of the algorithm are as follows:
 
 \begin{itemize}
@@ -902,43 +908,28 @@ Using this idea we can easily prove an important equality used to check various 
 	
 \end{itemize} 
 
-This statement of Liouville theorem (closely related to detailed balance condition which says that in equilibrium
-there is balance between any two pairs of states, equal probability.)
 
 % Page 296 of https://www.google.ca/books/edition/Molecular_Dynamics_On_Parallel_Computers/AWnVCgAAQBAJ?hl=en&gbpv=1&dq=detailed+balance+liouville+theorem&pg=PA296&printsec=frontcover
-
 % Goodstein - States of Matter book
-
-
-%\begin{figure}[htbp] 
-%\centering 
-%\includegraphics[width=0.75\textwidth]{LF.pdf}
-%\caption{\label{fig:F2}The leapfrog algorithm.}
-%\end{figure}
-
-%\begin{comment}
-
-
-
-%\end{comment}
-
-
-    %\begin{comment}
-   
-    
-    %\end{comment} 
-    
     \begin{mdframed}[backgroundcolor=blue!3] 
     \textsc{} 
-    $\bullet$ Exercise: Show that if a symplectic integrator is used, then $ \langle e^{-\Delta H} \rangle = 1$ within errors. 
+    $\bullet$ Exercise: Show that if a symplectic integrator is used, then $ \langle e^{-\Delta H} \rangle = 1$. Check this this also holds in any given HMC simulation within errors. 
     \end{mdframed} 
+    
+%Because it is time-reversible, and because it is symplectic, leapfrog integration 
+%is used in Hamiltonian Monte Carlo.
 
+In the last step of HMC, a Metropolis test is carried out to accept or reject the proposed
+configuration. Suppose we start from the configuration $X$ of a one matrix model 
+which is a $N \times N$ matrix and carry out the leapfrog part with some parameters and obtain a new configuration 
+$X^{\star}$. The test then computes: \texttt{$\text{min.}(1, e^{-\Delta H})$} and generates 
+a random number between $r \in [0,1]$. The new configuration is rejected 
+if \texttt{$\text{min.}(1, e^{-\Delta H}) < r$} otherwise accepted. 
 
+\subsubsection{Random number generator}  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 We will now discuss how to generate momentum matrices at the start of the leapfrog method taken from a Gaussian distribution. Suppose we have two numbers $U$ and $V$ taken from uniform distribution i.e., (0,1)  and we want two random numbers with probability density function $p(X)$ and $p(Y)$ given by:
-
-
 \begin{equation}
 	p(X) = \frac{1}{\sqrt{2\pi}} e^{-X^2/2} 
 \end{equation}
@@ -976,24 +967,14 @@ This then immediately means,
 
 The code to implement this is given below: 
 
-
 \vspace{10mm} 
 \noindent $\ddagger$ Sample code of random number generator
 \begin{mdframed}[backgroundcolor=cyan!1] 
 \input{codes/sample_RNG.tex}
 \end{mdframed} 
 
-
-\begin{mdframed}[backgroundcolor=blue!3] 
-	\textsc{} 
-	$\bullet$ Exercise: Construct a random hermitian matrix with $N = 200$ and find the eigenvalue distribution. How does it look like?
-\end{mdframed} 
-
-
-
-
-
-We can check that it indeed generates a Gaussian distribution as shown in Fig.\ref{fig:RN}. 
+It is easy to check that it indeed generates a 
+sGaussian distribution as shown in Fig.\ref{fig:RN}. 
 
 
 \begin{figure}[htbp] 
@@ -1005,15 +986,47 @@ We can check that it indeed generates a Gaussian distribution as shown in Fig.\r
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\subsubsection{Autocorrelation and errors} 
 
-\begin{itemize} 
-\item Compute the autocorrelation time for the time-series in \texttt{action.txt}
-using either \texttt{acor} or \texttt{emcee}. 
-\href{https://github.com/rgjha/TensorCodes/blob/master/2d_trg.py}
-{here}. 
-\item Explore the different ratios $r = g/\kappa$ in the 3 MM problem and think about the symmetry. 
-\item 
-\end{itemize} 
+It is well-known that in any given Markov chain, the new states (i.e., configurations) can be highly correlated to previous ones. In order to ascertain that the measurement of an observable $\mathcal{O}$ is not affected by correlated configurations, it is essential for proper statistical analysis to know the extent to whicht they are
+correlated. In this regard, it is important to measure
+the autocorrelation time $ \tau_{\rm{auto}}$ which measures the time it takes for two measurements to be considered independent of each other. So, if we generate $L$ configurations, then actually only $L/\tau_{\rm{auto}}$ are useful for computing averages.
+%$\tau$ is often given by Kubo formula which is 
+We define autocorrelation function of observable $\mathcal{O}$ as:
+ 
+ \begin{equation}
+ 	C(t) = \frac{\langle \mathcal{O}(t_0) \mathcal{O}(t_0 + t) \rangle - \langle \mathcal{O}(t_0)\rangle \langle \mathcal{O}(t_0 + t) \rangle}{\langle \mathcal{O}^2(t_0)\rangle - \langle \mathcal{O}(t_0)\rangle^{2}}
+ \end{equation}
+The behaviour of $C(t)$ is $\sim \exp(-t/\tau_{\rm{auto}})$ as $ t \to \infty$. This is called exponential autocorrelation time. We can also compute something which is called `integrated autocorrelation time' defined as:
+\begin{equation}
+	\tau_{\rm{auto}}^{\rm{int.}} = \frac{\sum_{t=1}^{\infty} \langle \mathcal{O}(t_0) \mathcal{O}(t_0 + t) \rangle - \langle \mathcal{O} \rangle^2 }{\langle \mathcal{O}^2\rangle - \langle \mathcal{O}\rangle^{2}}
+\end{equation}
+We can write this in terms of sum over autocorrelation function as: $\tau_{\rm{auto}}^{\rm{int.}} = 1 + \sum_{t=1}^{N} C(t)$. In general, $ \tau_{\rm{auto}}$ increases with system size, close to critical point. Once can express the statistical error in the average of $\mathcal{O}$ denoted by $\delta \mathcal{O}$ is given in terms of variance and integrated autocorrelation time as:
+
+\begin{equation}
+	\delta \mathcal{O} = \frac{\sigma}{\sqrt{N}} \sqrt{2 \tau_{\rm{auto}}^{\rm{int.}}}
+\end{equation}
+where we have usual definitions i.e., 
+$\sigma = \sqrt{\langle \mathcal{O}^2\rangle - \langle \mathcal{O}\rangle^{2}}$ and $N$ is the number of measurements. 
+
+
+
+
+\subsection{One-matrix model: Confirming exact results} 
+\subsection{Matrix model closed chain solution} 
+\subsection{Three-matrix Yang Mills matrix model}
+
+\TODO{Read Badis review} 
+\TODO{Add Chern-Simon term}
+
+%\begin{itemize} 
+%\item Compute the autocorrelation time for the time-series in \texttt{action.txt}
+%using either \texttt{acor} or \texttt{emcee}. 
+%\href{https://github.com/rgjha/TensorCodes/blob/master/2d_trg.py}
+%{here}. 
+%\item Explore the different ratios $r = g/\kappa$ in the 3 MM problem and think about the symmetry. 
+%\item 
+%\end{itemize} 
 
 
 \subsection{Hoppe's matrix model}
