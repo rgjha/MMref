@@ -1,0 +1,27 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Matrix models - Analytical results}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{One-plaquette model - Orthogonal Polynomials}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{One-matrix model with cubic and quartic potentials - Saddle point analysis}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Open p-matrix chain model}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.4}{Matrix with external field}{section.2}% 6
+\BOOKMARK [1][-]{section.3}{Numerical solutions}{}% 7
+\BOOKMARK [2][-]{subsection.3.1}{Numerical bootstrap}{section.3}% 8
+\BOOKMARK [2][-]{subsection.3.2}{Monte Carlo method}{section.3}% 9
+\BOOKMARK [3][-]{subsubsection.3.2.1}{Random number generator}{subsection.3.2}% 10
+\BOOKMARK [3][-]{subsubsection.3.2.2}{Leapfrog integrator and Metropolis step}{subsection.3.2}% 11
+\BOOKMARK [3][-]{subsubsection.3.2.3}{Autocorrelation and jackknife errors}{subsection.3.2}% 12
+\BOOKMARK [2][-]{subsection.3.3}{One-matrix model with quartic \046 cubic potentials: Confirming exact results}{section.3}% 13
+\BOOKMARK [2][-]{subsection.3.4}{Hoppe-type matrix models}{section.3}% 14
+\BOOKMARK [2][-]{subsection.3.5}{Extension of Hoppe's model to D matrices}{section.3}% 15
+\BOOKMARK [2][-]{subsection.3.6}{Closed matrix chain models}{section.3}% 16
+\BOOKMARK [2][-]{subsection.3.7}{p=3 closed chain}{section.3}% 17
+\BOOKMARK [2][-]{subsection.3.8}{p=4 closed chain}{section.3}% 18
+\BOOKMARK [2][-]{subsection.3.9}{Three and more matrix models: Yang-Mills matrix models}{section.3}% 19
+\BOOKMARK [1][-]{section.4}{Summary}{}% 20
+\BOOKMARK [1][-]{appendix.A}{Orthogonal polynomials}{}% 21
+\BOOKMARK [1][-]{appendix.B}{Mathematica code for solution of one-matrix model}{}% 22
+\BOOKMARK [1][-]{appendix.C}{Brief explanation and comments on running the Python code}{}% 23
+\BOOKMARK [1][-]{appendix.D}{Python code for solution of one-matrix model.}{}% 24
+\BOOKMARK [1][-]{appendix.E}{YM matrix model for any D: Python code}{}% 25
+\BOOKMARK [1][-]{appendix.F}{Computing error using jackknife for the data files from Monte Carlo}{}% 26
+\BOOKMARK [1][-]{appendix.G}{Solutions to selected Exercises}{}% 27
