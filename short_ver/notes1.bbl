@@ -72,6 +72,11 @@ S.~Chadha, G.~Mahoux, and M.~L. Mehta, ``{A Method of Integration Over Matrix
   Variables. 2.},'' \href{http://dx.doi.org/10.1088/0305-4470/14/3/008}{{\em J.
   Phys. A} {\bfseries 14} (1981) 579}.
 
+\bibitem{Brezin:1980rk}
+E.~Brezin and D.~J. Gross, ``{The External Field Problem in the Large N Limit
+  of QCD},'' \href{http://dx.doi.org/10.1016/0370-2693(80)90562-6}{{\em Phys.
+  Lett. B} {\bfseries 97} (1980) 120--124}.
+
 \bibitem{Anderson:2016rcw}
 P.~D. Anderson and M.~Kruczenski, ``{Loop Equations and bootstrap methods in
   the lattice},'' \href{http://dx.doi.org/10.1016/j.nuclphysb.2017.06.009}{{\em
@@ -108,12 +113,23 @@ M.~Staudacher, ``{The Yang-lee Edge Singularity on a Dynamical Planar Random
   Surface},'' \href{http://dx.doi.org/10.1016/0550-3213(90)90432-D}{{\em Nucl.
   Phys. B} {\bfseries 336} (1990) 349}.
 
+\bibitem{Hoppe:1982en}
+J.~Hoppe, ``{Quantum Theory Of A Massless Relativistic Surface And A Two
+  Dimensional Bound State Problem},''.
+
 \bibitem{Kazakov:1998ji}
 V.~A. Kazakov, I.~K. Kostov, and N.~A. Nekrasov, ``{D particles, matrix
   integrals and KP hierarchy},''
   \href{http://dx.doi.org/10.1016/S0550-3213(99)00393-4}{{\em Nucl. Phys. B}
   {\bfseries 557} (1999) 413--442},
   \href{http://arxiv.org/abs/hep-th/9810035}{{\ttfamily arXiv:hep-th/9810035}}.
+
+\bibitem{Berenstein:2008eg}
+D.~E. Berenstein, M.~Hanada, and S.~A. Hartnoll, ``{Multi-matrix models and
+  emergent geometry},''
+  \href{http://dx.doi.org/10.1088/1126-6708/2009/02/010}{{\em JHEP} {\bfseries
+  02} (2009) 010}, \href{http://arxiv.org/abs/0805.4658}{{\ttfamily
+  arXiv:0805.4658 [hep-th]}}.
 
 \bibitem{Krauth:1998yu}
 W.~Krauth and M.~Staudacher, ``{Finite Yang-Mills integrals},''
