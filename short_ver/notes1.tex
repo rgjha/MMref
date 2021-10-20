@@ -497,9 +497,8 @@ The \MA  code to solve this model is given in the Appendix for the convenience o
 	\textsc{} 
 	$\bullet$ Exercise 4: Derive the loop equations (aka Schwinger-Dyson equations) given below: \\ 
 	\begin{equation}
-		\label{eq:LE} 
+		\label{eq:LE1} 
 		\Big< \mbox{Tr} M^{k} V^{\prime}(M) \Big> = \sum_{l=0}^{k-1} \langle \mbox{Tr} M^{l} \rangle  \langle \mbox{Tr} M^{k-l-1} \rangle
-		\nonumber
 	\end{equation} 
 \end{mdframed} 
 
@@ -546,7 +545,7 @@ is quite effective but is not a panacea.
 The newly introduced numerical bootstrap method has already been used to solve several matrix models \cite{Anderson:2016rcw,Lin:2020mme,Han:2020bkb,Kazakov:2021lel} but the extension to matrix models with more than two matrices i.e., 3-matrix commutator type models or IKKT models seems difficult at the moment. This is related to the fact that with more matrices, the loop equations which become highly non-linear are difficult to handle.
 In these notes, we will mostly focus on MC methods since as of this writing bootstrap methods have not been able to access or constrain matrix models with more than two matrices. However, we want to explain the bootstrap solution for the case of one matrix model as first shown by \cite{Lin:2020mme} for the interested reader. For detailed exposition, we refer the reader to the references above. We hope that this `yet' small section on bootstrap methods would be extended in later versions of these notes as more results accumulate in coming years. 
 
-\subsection{Matrix bootstrap}
+\subsection{Matrix bootstrap method}
 
 The basic idea of bootstrapping matrix models depends on the 
 positivity (positive-definiteness) of the bootstrap matrix which we refer in what follows 
@@ -633,13 +632,10 @@ required distribution. Metropolis-Hastings algorithm and Hamiltonian/Hybrid Mont
 are two frequently used methods which 
 can generate a Markov chain and lead to unique stationary distribution. 
 We will here focus on the latter since that has now become the state-of-the-art in 
-various numerical computations. This method was introduced in 1987 by 
-Duane, Kennedy, Pendleton, and Roweth who put together the ideas from
+various numerical computations. This method was introduced in 1987 by Duane, Kennedy, Pendleton, and Roweth \cite{Duane:1987de} who put together the ideas from
 Markov chain Monte Carlo (MCMC)\footnote{MCMC originated in the seminal paper of Metropolis et al
 \TODO{cite}, where it was used to simulate the state distribution for a system of ideal molecules.} 
-and molecular dynamics (MD) methods. For a detailed review about HMC and its extension to
-rational HMC which is required for fermions, the interested readers can 
-consult the Refs. \cite{Hanada:2018fnp}. The two basic parts of HMC are: 
+and molecular dynamics (MD) methods. For a detailed review about HMC and its extension to rational HMC which is required for fermions, the interested readers can consult the Refs. \cite{Hanada:2018fnp,Joseph:2019zer}. The two basic parts of HMC are: 
 a) Use of integrator to evolve and propose a new configuration, b) accept or reject
 the proposed configuration. But before we discuss HMC, it is important to see how we generate random momentum matrices at start of each trajectory (time unit) since this is necessary to ensure that we converge to the correct answer using Monte Carlo methods. 
 
@@ -686,16 +682,16 @@ Gaussian distribution with desired properties as shown in Fig.~\ref{fig:RN}.
 \begin{figure}[htbp] 
 	\centering 
 	\includegraphics[width=0.75\textwidth]{figs/testRN.pdf}
-	\caption{\label{fig:RN}In the limit of large sample size (here 1 million), 
-		it tends to Gaussian with mean zero and $\sigma=1$.}
+	\caption{\label{fig:RN}In the limit of large sample size (here 1 million), it tends to Gaussian with mean zero and $\sigma=1$. For exammple, if this was not sure the the MC results would often converge to the incorrect answer.}
 \end{figure}
 
 
 
 \subsubsection{Leapfrog integrator and Metropolis step}
 
-The leapfrog method is used to numerically integrate differential equations. This is a second-order method and the energy non-conservation depends on square of step-size used. This method is `symplectic', i.e., it preserves the area of the phase space. 
-We can intuitively understand this as follows: 
+The leapfrog method is used to numerically integrate differential equations. This is a second-order method and the energy non-conservation depends on square of step-size used. This integrator is `symplectic', i.e., it preserves the 
+area of the phase space. 
+We can understand this as follows: 
 Consider a rectangular region of area $dA$ as shown below in Fig. (\ref{fig:F2}). The four corners at time $t$ are denoted by $(x, p), (x + dx, p), (x, p + dp), (x + dx, p + dp)$. At some later time $t^{\prime}$, this will change to form corners of some quadrilateral 
 as shown with area $dA^{\prime}$. It is then the statement of Liouville's theorem\footnote{Liouville theorem is closely related to detailed balance condition which says that in equilibrium there is balance between any two pairs of states i.e., equal probability.} that the areas are equal, i.e., $dA = dA^{\prime}$. 
 \begin{figure}[htbp] 
@@ -715,17 +711,11 @@ Using this idea we can easily prove an important equality used to check various 
 	
 \end{itemize} 
 
-
-% Page 296 of https://www.google.ca/books/edition/Molecular_Dynamics_On_Parallel_Computers/AWnVCgAAQBAJ?hl=en&gbpv=1&dq=detailed+balance+liouville+theorem&pg=PA296&printsec=frontcover
-% Goodstein - States of Matter book
     \begin{mdframed}[backgroundcolor=blue!3] 
     \textsc{} 
-    $\bullet$ Exercise 6: Show that a consequence of Liouville theorem is that $ \langle e^{-\Delta H(\bullet)} \rangle = 1$, where $\bullet$ denotes the some field and its conjugate momenta. Check this also holds in any given HMC simulation within errors if a symplectic integrator is used and we ignore proper data for thermalization cut.
+    $\bullet$ Exercise 6: Show that a consequence of Liouville theorem is that $ \langle e^{-\Delta H(\boldsymbol{\cdot})} \rangle = 1$, where $\boldsymbol{\cdot}$ denotes the some field and its conjugate momenta. Check this also holds in any given HMC simulation within errors if a symplectic integrator is used and we ignore proper data for thermalization cut.
     \end{mdframed} 
     
-%Because it is time-reversible, and because it is symplectic, leapfrog integration 
-%is used in Hamiltonian Monte Carlo.
-
 In the last step of HMC, a Metropolis test is carried out to accept or reject the proposed
 configuration. Suppose we start from the configuration $X$ of a one matrix model 
 which is a $N \times N$ matrix and carry out the leapfrog part with some parameters and obtain a new configuration 
@@ -812,16 +802,14 @@ and then if we integrate out the matrix $M$ to get:
 	Z = \int \mathcal{D}X \exp N \mbox{Tr}\Bigg(-\frac{X^2}{2} + \frac{gX^4}{4} + g^2 \zeta  \frac{X^6}{2}   \Bigg)
 \end{equation}
 Note that if we set $\zeta=0$, this reduces to the familiar 1MM problem we solved in previous section. 
-
 % ax^2 + bx + c -> a(x-h)^2 + k 
 % where h = -b/2a and k = c - (b^2/4a)  
-
 \begin{mdframed}[backgroundcolor=blue!3]  
 	$\bullet$ Exercise 8: Check that (\ref{eq:Stau1}) follows from (\ref{eq:Stau0}) and modify the potential for the 1MM \PY code to study this model. 
 \end{mdframed} 
 % P 706 book
 
-%%% %%% %%% %%% %%% %%% %%% %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{\label{subsec:Hoppe}Hoppe-type matrix models}
 % Page 71 of his 1982 thesis. 
 This model was first introduced by Hoppe \cite{Hoppe:1982en} and solved later by 
@@ -854,32 +842,28 @@ and is given by:
 Z = \int \mathcal{D}X \mathcal{D}Y \exp \Big[-N ~ \mbox{Tr} (X^2 + Y^2 - h^2 [X,Y]^2 + gX^4 + gY^4) \Big].	
 \end{equation} 
 
+\begin{figure}[htbp] 
+	\centering 
+	\includegraphics[width=0.75\textwidth]{figs/plot_2MM_sym1.pdf}
+	\caption{\label{fig:2MM_match}The matrix model defined by \ref{eq:GHM1} is not solvable and was 
+		recently studied using bootstrap methods. We show the MC by solid lines and those obtained using bootstrap by dashed lines. We get about three digits of accuracy with 1000 time units by running for 1.7 hours on the laptop. The results are with $g=h=1$ and $N=300$. For larger $N$ say, $N=800$, the same run will take about 17 hours.}
+\end{figure}
+
+
 The action in (\ref{eq:GHM1}) has $\mathbb{Z}_{2}^{\otimes 3}$ symmetry 
-(i.e., $A \to B$, $A \to -A$, and $B \to -B$). For $h = 0$, it can be reduced to a
+(i.e., $X \to Y$, $X \to -X$, and $Y \to -Y$). For $h = 0$, it can be reduced to a
 matrix model which can be solved via saddle-point analysis or through the reduction 
 to a Kadomtsev-Petviashvili (KP) type equation. 
 For $g = 0$ it reduces to two decoupled one-matrix models 
 and for $g = \infty$, we have [X, Y] = 0 and it becomes an eigenvalue problem. 
-
-
 We considered this model using MC methods and show in Fig. \ref{fig:2MM_match} that the results 
 obtained are consistent with those obtained in \cite{Kazakov:2021lel}. The MC 
 results were obtained for $N = 300$ in about \texttt{2000} seconds on a 2.4 GHz i5 A1989 Mac Pro. 
 We show the eigenvalue distribution for this model in left panel of \label{fig:2MM_match1}. 
 Though we don't give this specific code in the appendix of the 
-paper, it can be downloaded/found at: 
-%\newline 
+paper, it can be found at: 
 \begin{center} \texttt{\href{https://github.com/rgjha/MMMC}{https://github.com/rgjha/MMMC}} \end{center}
-%\newline 
 
-
-
-\begin{figure}[htbp] 
-	\centering 
-	\includegraphics[width=0.75\textwidth]{figs/plot_2MM_sym1.pdf}
-	\caption{\label{fig:2MM_match}The matrix model defined by \ref{eq:GHM1} is not solvable and was 
-	recently studied using bootstrap methods. We show the MC by solid lines and those obtained using bootstrap by dashed lines. We get about three digits of accuracy with 1000 time units by running for 1.7 hours on the laptop. The results are with $g=h=1$ and $N=300$. For larger $N$ say, $N=800$, the same run will take about 17 hours.}
-\end{figure}
 
 
 We now consider the case where $g=0$ and $h = h_{c}=-0.04965775$, the bootstrap results were not 
@@ -893,7 +877,7 @@ We show the eigenvalue distribution for this case in the right panel of \label{f
 	\centering 
 	\includegraphics[width=0.95\textwidth]{figs/plot_2MM_evd_both.pdf}
 	\caption{\label{fig:2MM_match1}Left: The eigenvalue distribution of two matrices for $g=h=1$ with $N=300$.
-	Right: The distribution for $g = 0, h = -0.04965775$ with $N=300$.}
+	Right: The parabola-like distribution for $g = 0, h = -0.04965775$ with $N=300$.}
 \end{figure}
 
 
@@ -903,7 +887,7 @@ It is interesting to consider the same matrix model by flipping the sigs of the 
 Z = \int \mathcal{D}X \mathcal{D}Y \exp \Big[-N ~ \mbox{Tr} (-X^2  -Y^2 - h^2 [X,Y]^2 + gX^4 + gY^4) \Big]	
 \end{equation} 
 
-This corresponds to breaking the $\mathbb{Z}_{2}^{\otimes 3}$ symmetry and just keeping the $A \to B$ part. 
+This corresponds to breaking the $\mathbb{Z}_{2}^{\otimes 3}$ symmetry and just keeping the $X \to Y$ part. 
 
 
 \begin{figure}[htbp] 
@@ -911,6 +895,13 @@ This corresponds to breaking the $\mathbb{Z}_{2}^{\otimes 3}$ symmetry and just 
 	\includegraphics[width=0.75\textwidth]{figs/2MM_symb_t2_t4.pdf}
 	\caption{\label{fig:2MM_t2t4}We show $t_{2}$ and $t_{4}$ obtained from MC. We have rescaled $t_{2}$ to
 	table viewing on same plot. The values we obtain for this specific stream of run is: $N=300$ is $t_{2} = 29.73(3)$ and $t_{4} = 903(3)$. This took about 3.5 hours on a laptop since it thermalizes late and we need to run bit longer.}
+\end{figure}
+
+\begin{figure}[htbp] 
+	\centering 
+	\includegraphics[width=0.75\textwidth]{figs/2MM_symb_ms.pdf}
+	\caption{\label{fig:2MM_comp1}We show that the MC results from different streams (different starts) give different results for moments. This is consistent with the region obtained in \cite{Kazakov:2021lel} that one will obtain an entire line of solutions. We have shown data from five different MC runs by coloured circles. The three points near $t_{1} \sim 0$ were obtained by starting from a trivial vacuum i.e., ($X,Y = 0$) while the two points with $t_{1} = \pm 3.88(2)$ and $t_{2}=29.41(4)$ were obtained by starting from $X,Y = \mathbb{I}$. 
+		The figure is used after taking permission from authors of Ref.~\cite{Kazakov:2021lel}.}
 \end{figure}
 
 This results in the $\mathbb{Z}_{2}$ 
@@ -938,15 +929,12 @@ This is shown in Fig. \ref{fig:2MM_comp1}\footnote{We thank Zechuang Zhang and V
 
 We also show the eigenvalue distribution of the matrices $X, Y$. 
 
-\begin{figure}[htbp] 
-	\centering 
-	\includegraphics[width=0.75\textwidth]{figs/2MM_symb_ms.pdf}
-	\caption{\label{fig:2MM_comp1}We show that the MC results from different streams (different starts) give different results for moments. This is consistent with the region obtained in \cite{Kazakov:2021lel} that one will obtain an entire line of solutions. We have shown data from five different MC runs by coloured circles. The three points near $t_{1} \sim 0$ were obtained by starting from a trivial vacuum i.e., ($X,Y = 0$) while the two points with $t_{1} = \pm 3.88(2)$ and $t_{2}=29.41(4)$ were obtained by starting from $X,Y = \mathbb{I}$. 
-The figure is used after taking permission from authors of Ref.~\cite{Kazakov:2021lel}.}
-%, and $t4=901(3)
 
-\end{figure}
-%%% %%% %%% %%% %%% %%% %%% %%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{\label{subsec:ext_Hoppe}Extension of Hoppe's model to $D$ matrices}
 
 
@@ -995,7 +983,7 @@ The results are collected in Table \ref{table:D_YMM_data}.
 \end{mdframed}
 
 
-%%% %%% %%% %%% %%% %%% %%% %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{\label{subsection:Mchain}Closed and open chain models with $p = 3, 4$}
 
 The matrix chain is a complicated $p$ matrix model which was first 
@@ -1006,7 +994,7 @@ model is \emph{not solvable} with $p \ge 4$.
 	\centering 
 	\includegraphics[width=0.75\textwidth]{figs/3MM_open.pdf}
 	\caption{\label{fig:3MM_open}We see that two matrices have common $t_{2} = 0.798(3)$ and the third has 
-	$t_{2} = 1.037(3)$. This is for $g=1$ for $N=300$. We have computed errors after discarding first 1000 time units and 
+	$t_{2} = 1.037(3)$. This is for $g=1$ with $N=300$ for the three matrix open case. We have computed errors after discarding first 1000 time units and 
 	using jackknife blocking.}
 \end{figure}
 
@@ -1016,11 +1004,7 @@ It would be good if this four matrix model can
 also be \textit{bootstrapped} in coming years. 
 The general $p$ MC code to solve these models 
 (well-tested for $p = 3,4$) is available at: 
-
-%\newline 
 \begin{center} \texttt{\href{https://github.com/rgjha/MMMC}{https://github.com/rgjha/MMMC}} \end{center}
-%\newline 
-
 \begin{equation}
 	\label{eq:Mehta1} 
 	Z_{p}(g,c,\kappa) = \int \mathcal{D}M_{1} \cdots  \mathcal{D}M_{p} \exp \mbox{Tr} \Bigg(\sum_{i=1}^{p} -M_{i}^2  - g M_{i}^{4} + c \sum_{i=1}^{p-1} M_{i}M_{i+1} 
@@ -1034,8 +1018,7 @@ The general $p$ MC code to solve these models
 	\caption{\label{fig:3MM_closed}We find that for three matrix closed model we find $t_{2} = 1.603(5)$ and $t_{4} = 3.193(5)$. 
 	This is for $g=1, c=\kappa=1.35$ for $N=300$. We have computed errors after discarding first 1000 time units and 
 	using jackknife blocking. Note that for this set of parameters it seems like $t_{2} = t_{4}/2$. We found that 
-	for $g=2, c=\kappa=1.35$, $t_{2} = 0.775(2)$ and $t_{4} = 0.887(3)$. It is straightforward to understand the behaviour
-	as a function of $g$ at fixed $c, \kappa$.}
+	for $g=2, c=\kappa=1.35$, $t_{2} = 0.775(2)$ and $t_{4} = 0.887(3)$. It is straightforward to understand the behaviour as a function of $g$ at fixed $c, \kappa$ if that is of interest to the reader by using the codes we give.}
 \end{figure}
 
 \TODO{It is easy to get the sign of $\mathcal{O}(1/N)$ corrections using Monte Carlo. 
@@ -1051,6 +1034,13 @@ The results are collected in Table \ref{table:4mchain_data}. Note that setting $
 %We obtain for $g=2, c=\ kappa=1.35$, $t_{2} = 0.741(2)$ and $t_{4} = 0.825(3)
 %We obtain for $g=1, c=\kappa=1.35$, $t_{2} = 1.577(2)$ and $t_{4} = 3.093(3)$
 
+
+\begin{figure}[htbp] 
+	\centering 
+	\includegraphics[width=0.75\textwidth]{figs/4MM_g1_g2.pdf}
+\caption{\label{fig:4MM_closed1} We show the expectation value for $N=300, c=\kappa=1.35$ with two different $g$. This specific run does not start from a \texttt{trivial} start. See Appendix~\ref{sec:BEOC} for details. The data is given in Table~\ref{table:4mchain_data}}
+\end{figure}
+
 \begin{table}[h!]
 	\centering
 	\begin{tabular}{||c c c||} 
@@ -1059,19 +1049,12 @@ The results are collected in Table \ref{table:4mchain_data}. Note that setting $
 		\hline\hline
 		1 & $ 0.741(2)$ & $0.825(3) $  \\ 
 		2 & $ 1.577(2) $ & $3.093(3)$
-		 \\ [1ex] 
+		\\ [1ex] 
 		\hline 
 	\end{tabular}
-\caption{The obtained results for $g=1,2$ four matrix closed chain with $N=300, c=\kappa=1.35$.}
-\label{table:4mchain_data}
+	\caption{The obtained results for $g=1,2$ four matrix closed chain with $N=300, c=\kappa=1.35$.}
+	\label{table:4mchain_data}
 \end{table}
-
-
-\begin{figure}[htbp] 
-	\centering 
-	\includegraphics[width=0.75\textwidth]{figs/4MM_g1_g2.pdf}
-	\caption{\label{fig:4MM_closed1} We show the expectation value for $N=300, c=\kappa=1.35$ with two different $g$. As the attentive reader will note, this is not a \texttt{fresh} start. See Appendix D for details. }
-\end{figure}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1088,8 +1071,7 @@ The MC code to solve this model is
 available at:
 \begin{center} \texttt{\href{https://github.com/rgjha/MMMC}{https://github.com/rgjha/MMMC}} \end{center}
 This is just a general version of the well-known bosonic part of IKKT model
-where $D=10$. But, this model can be studied for any $D$ and has 
-interesting features, see Ref. \cite{Hotta:1998en}. 
+where $D=10$. But, this model can be studied for general $D$ and has interesting features, see Ref. \cite{Hotta:1998en}. 
 Shortly after the BFSS matrix model\footnote{This matrix model was proposed in Ref.~\cite{Banks:1996vh} by
 Banks, Fischler, Shenker, and Susskind. This proposal related the 
 uncompactified eleven dimensional $M$-theory in the light cone frame and the 
@@ -1099,7 +1081,9 @@ mass deformation (BMN matrix model) and higher-dimensional systems which describ
 \cite{Catterall:2017lub,Jha:2017zad,Catterall:2020nmn}
 is available at \texttt{\href{https://github.com/daschaich/susy}{https://github.com/daschaich/susy}}, while the
 highly efficient parallelized code over number of colours for only BFSS and BMN is available at
-\texttt{\href{https://sites.google.com/site/hanadamasanori/home/mmmm}{https://sites.google.com/site/hanadamasanori/home/mmmm}}. The full discussion of these models is outside the purpose of this article. 
+\texttt{\href{https://sites.google.com/site/hanadamasanori/home/mmmm}
+{https://sites.google.com/site/hanadamasanori/home/mmmm}}.
+The full discussion of these models is outside the purpose of this article. 
 }
 was proposed as a description of M-theory, the authors of 
 \cite{Ishibashi:1996xs} proposed a reduction of quantum mechanical model down to zero 
@@ -1119,7 +1103,12 @@ where $X_{\mu}$ and $\psi$ are $N \times N$ Hermitian matrices. The gauge field 
 but is dimensional reduction of $\mathcal{N}=1$ SYM theory in ten dimensions. 
 It is expected that in this model both space and time should be dynamically generated as a result of the dynamics of the large matrices. The space-time should be constructed only from the matrices. IKKT model has no free parameters since $\lambda$ can be absorbed in the field redefinitions. 
 
-In the original model, since it is a ten-dimensional reduction we have, $\mu, \nu = 1 \cdots 10$. It is opossible to consider other models where $\mu, \nu = 1 \cdots D$ where $D=4,6$. One might worry whether because of the integral measure being over non-compact $X$, it is divergent. The convergence issues of these models for $D=4,6,10$ was studied by \TODO{-----}. In what follows in these notes, we will ignore the fermionic term and only focus on the commutator/bosonic term. One of the observables (also known as `size' or i.e., extent of scalars) which we compute in these models is:
+In the original model, since it is a ten-dimensional reduction we have, $\mu, \nu = 1 \cdots 10$. It is opossible to consider other models where $\mu, \nu = 1 \cdots D$ where $D=4,6$. One might worry whether because of the integral measure being over non-compact $X$, it is divergent. The convergence issues of the partition function of 
+these models for $D=4,6,10$ was studied by Refs.~\cite{Krauth:1998yu,Krauth:1999qw} and 
+refer the reader to those for additional details.  
+In what follows in these notes, we will ignore the fermionic 
+term and only focus on the commutator/bosonic term. 
+One of the observables (also known as `size' or i.e., extent of scalars) which we compute in these models is:
 
 It is known that $\langle R^2 \rangle$ should behaves as $\sqrt{\lambda}$ in the large $N$ limit 
 from \TODO{Nishimura '98} but we have not found any previous study which fixes the coefficient. 
@@ -1136,10 +1125,15 @@ then we find:
 \label{eq:SD_IKKT1} 
 	\frac{\langle S \rangle}{N^2 - 1} = \frac{D}{4} 
 \end{equation}
+\begin{figure}[htbp] 
+	\centering 
+	\includegraphics[width=0.75\textwidth]{figs/act_allD_YM.pdf}
+	\caption{\label{fig:IKKT_2}The average action (normalized) for the $D=10$ bosonic sector of IKKT model.}
+\end{figure}
 This is an exact result and is used to check the simulations. We show in Fig. \ref{fig:IKKT_2} that for $D=3,5,10$ we get the correct result and 
-hence the \PY code above can be fully trusted. The timings for generating 500 time units/trajectories 
-with $N=300$ is about \texttt{50000, 2300, 2000} seconds for $D = 10, 5, 3$ respectively on 2.4 GHz i5 A1989 Mac Pro. 
-The results are collected in the table below. 
+hence the \PY code above can be fully trusted. The timings for generating 500 time units or trajectories 
+with $N=300$ is about \texttt{50000,2300,2000} seconds for $D = 10, 5, 3$ respectively on 2.4 GHz i5 A1989 Mac Pro. 
+The results are collected in Table~\ref{table:D_IKKT_data}. 
 \begin{table}[h!]
 	\centering
 	\begin{tabular}{||c c c||} 
@@ -1157,12 +1151,6 @@ The results are collected in the table below.
 \end{table}
 
 
-\begin{figure}[htbp] 
-	\centering 
-	\includegraphics[width=0.75\textwidth]{figs/act_allD_YM.pdf}
-	\caption{\label{fig:IKKT_2}The average action (normalized) for the $D=10$ bosonic sector of IKKT model.}
-\end{figure}
-
 
 \begin{mdframed}[backgroundcolor=blue!3] 
 	\textsc{} 
@@ -1170,7 +1158,6 @@ The results are collected in the table below.
 	$\mathcal{O}(\epsilon^{2})$
 \end{mdframed}
 
-\vspace{10mm} 
 
 \begin{mdframed}[backgroundcolor=blue!3] 
 	\textsc{} 
@@ -1339,7 +1326,7 @@ One is usually interested in computing the quantity (the subscript `pc' denotes 
 \section{Mathematica code for solution of one-matrix model}
 We now give the details to solve the one matrix model in \textsc{Mathematica}. For this we consider the potential:
 \[ V(Y) = \frac{Y^2}{2} + \frac{gY^4}{4} \] 
-As we have shown in the text, for this case, the higher moments of trace of $Y$ are related and hence we will just calculate $\mbox{Tr}Y^2$ in the planar limit (normalized by $N$). We give the code below for $g=1$. The reader is encouraged to try and change $g$ and see how the results change.
+As we have shown in the text, for this case, the higher moments of trace of $Y$ are related and hence we will just calculate $\mbox{Tr}~Y^2$ in the planar limit (normalized by $N$). We give the code below for $g=1$. The reader is encouraged to try and change $g$ and see how the results change.
 
 \begin{mdframed}[backgroundcolor=magenta!3] 
 	\begin{footnotesize} 
@@ -1356,7 +1343,7 @@ As we have shown in the text, for this case, the higher moments of trace of $Y$ 
 \end{mdframed}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Brief explanation and comments on 
+\section{\label{sec:BEOC}Brief explanation and comments on 
 running the \PY code}
 We provide codes which can deal with several different types of 
 Hermitian matrix models with real action. The codes we give 
@@ -1369,7 +1356,7 @@ other is the $\texttt{def force(X)}$. The first involves (mostly)
 trace of product of matrices and the second is the derivative of those matrix traces. 
 These codes in \PY is rather terse
 and are all under $\texttt{300}$ lines each
-while about $\sim 85\%$ of them are common things like:
+while about $\sim 85\%$ of them are common parts like:
 leapfrog integrator, Metropolis step, saving/reading configuration file, 
 and plotting the data. We have tried no optimization to make it efficient and the
 only motivation is that someone who has never ran a MC code can do
@@ -1395,10 +1382,8 @@ with both negative and positive signs. However, this might not be true from the 
 be monitored after sufficient thermalization. After thermalization, we should have 
 $\langle e^{-\Delta H} \rangle = 1$ within errors. You can see why this is true in the section on 
 solution to the selected exercises. 
-\item We usually start a run by setting all matrices to zero (also referred sometimes as `fresh'). 
-Then as the evolution progresses, we store a new configuration by rewriting older one
-every 10 time units. The configuration file stores $N \times N$
-matrices over which we do the matrix integral in binary format as \texttt{numpy array}. 
+\item We usually start a run by setting all matrices to zero (also referred here as \texttt{fresh} or \texttt{trivial} start). Then as the evolution progresses, we store a new configuration by rewriting older one
+every 10 time units. The configuration file stores $N \times N$ matrices over which we do the matrix integral in binary format as \texttt{numpy array}. 
 The size of this file can vary from few MB unto 50 MB or more depending on 
 $\texttt{NMAT}$ and $\texttt{NC}$. If you are not doing the run for the first time, 
 it is better if you read in the configuration file as this will be more efficient.  
@@ -1414,7 +1399,7 @@ have enough computer time and want to do a systematic study, you should increase
 \item Note that Monte Carlo is a sampling method and hence we will always have errors for the expectation values. The errors must be carefully computed using either jackknife binning or some other method. 
 \end{itemize} 
 
-The list of code we make available is summarized below:\footnote{($\star$ denotes that is in given also in the appendix)}
+The list of code we make available is summarized below:\footnote{$\star$ denotes that is in given also in the appendix}
 \begin{enumerate}
 \item One matrix model: \texttt{\href{https://github.com/rgjha/MMMC}{https://github.com/rgjha/MMMC}}  ${\star}$
 \item Two matrix Hoppe-type models: \texttt{\href{https://github.com/rgjha/MMMC}{https://github.com/rgjha/MMMC}}  
@@ -1430,23 +1415,17 @@ that there might still be minor bugs in them. If you encounter a problem or
 have questions, please contact the author. 
 %(which is real and bounded i.e., where the MC methods can be applied), 
 
-\section{\PY code for solution of one-matrix model.}
-We now solve the 1MM using the Monte Carlo method which is the 
-standard in lattice field theory literature. By executing the code given below
+\section{\label{sec:1MMPYC}\PY code for solution of one-matrix model}
+We provide the code in this section to study the 1MM using the Monte Carlo method. By running the code given below
 on a modern laptop, we get the result shown in 
-Fig. \ref{fig:1MM_res}. We can readily extend this code (by changing $\texttt{NMAT}$) 
-to study matrix models where the integration is over several different matrices. 
-As we will discuss later, for the case of IKKT model, there are `ten' matrices 
-involved and hence this code will be adjusted accordingly to study that model for given $\lambda$ and $N$. 
+Fig. \ref{fig:1MM_res}. We can readily extend this code (by changing $\texttt{NMAT}$) to study matrix models where the integration is over several different matrices. 
 To run this code using Mac/Linux system (assuming you have \PY installed) just type in terminal: 
-$\texttt{python 1MM\_MC.py 0 1 300 200}$. The code takes four arguments. The first two are binary arguments
+$\texttt{python 1MM\_MC.py 0 1 300 200}$. The code takes four input arguments. The first two are binary arguments
 related to whether we are reading any old configuration file and whether we want to save the one which will be 
 generated. $\texttt{0 1}$ means that we are not reading any configuration but we want to save it for later use. 
 The third argument is the size of the matrices to consider, in an ideal world, planar limit is $ N \to \infty$ but here
-we have $\texttt{N = 300}$. The last argument is for 
-how many trajectories of Markov chain Monte Carlo we want to run the simulation.
-To converge to the correct answer $\texttt{500}$ should be enough. This should take about \texttt{1300} seconds
-on a standard modern laptop.
+we have $\texttt{N = 300}$. The last argument is the 
+number of trajectories of Markov chain Monte Carlo we want to run the simulation. To converge to the correct answer $\texttt{500}$ should be enough but to accurately get to third or four decimal place of accuracy, more than $\texttt{5000}$ may be needed. It takes about 30-35 minutes to run 500 time units with $\texttt{N = 300}$ on a modern laptop. 
 
 
 \begin{footnotesize} 
@@ -1456,12 +1435,10 @@ on a standard modern laptop.
 \end{footnotesize} 
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{YM matrix model for any $D$: \PY code}
+\section{\label{sec:YMC}YM matrix model with $D$ matrices: \PY code}
 
-We now provide the Monte Carlo code using which we can study the bosonic
-part of any $D$ matrix YM matrix model and especially $D=10$ which is the bosonic sector of IKKT model.
-More details about the model and its relation to the non-perturbative formulations of string theory can be found in Ref. \TODO{---}. 
-The reader will note that most of the code is similar to the one matrix model. 
+In this section, We provide the Monte Carlo code which can be used to study the bosonic part of any $D$ matrix YM matrix model and especially $D=10$ which is the bosonic sector of the well-known IKKT model. More details about the model and its relation to the non-perturbative formulations of string theory can be found in Ref.~\cite{Hotta:1998en}.
+It is left for the reader to compare the differences with the one matrix model code given in Sec.~\ref{sec:1MMPYC}. 
 
 \begin{footnotesize} 
 	\begin{mdframed}[backgroundcolor=mauve!3] 
@@ -1470,18 +1447,10 @@ The reader will note that most of the code is similar to the one matrix model.
 \end{footnotesize}
 
 
-\section{Computing error using jackknife for the data files from Monte Carlo}
+\section{Computing error using Jackknife method for the data files output from Monte Carlo}
 
-We give a simple code for computing statistical errors in \PY. 
-The interested reader can find more details in Ref. \cite{2012arXiv1210.3781Y}. 
-The code can be used as follows from a terminal:
-$\texttt{python jk\_error.py t2.txt 1000 25 0}$. 
-This just means that we ask the code to take out first $\texttt{1000}$
-time units data for thermalization cut and we set
-the size of block to be $\texttt{25}$. The last argument tells the code
-which column to consider for averaging with $\texttt{0}$ 
-meaning the first column. To ensure that we have used reasonable
-thermalization cut, one can check for different cuts and see if the results 
+We give a simple code for computing statistical errors in \PY. The interested reader can find more details in Ref.~\cite{2012arXiv1210.3781Y}. The code can be used as follows from a terminal: \\ 
+$\texttt{python jk\_error.py t2.txt 1000 25 0}$. This means that we ask the code to take out first $\texttt{1000}$ time units data for thermalization cut and we set the size of block to be $\texttt{25}$. The last argument tells the program which column to consider for averaging with $\texttt{0}$ meaning the first column. To ensure that we have used reasonable thermalization cut, one can check for different cuts and see if the results 
 are same within errors. One can do the same for the block size. 
 
 \begin{footnotesize} 
@@ -1505,15 +1474,12 @@ We now show that $\det(V) = \prod_{i<j} (\lambda_i - \lambda_j)$ where $V$ is:
 		1 & \lambda_N & \lambda_{N}^{2} & \cdots & \lambda_{N}^{N-1} 
 	\end{pmatrix} = \lambda_{i}^{j-1} 
 \end{equation*}
-
 We first note that the determinant is unchanged
 if we make the change to all columns except the first given by:
-
 \begin{equation}
-	\lambda_{i}^{j-1} \to \lambda_{i}^{j-1} - \lambda_{1} \lambda_{i}^{j-2}
+	\lambda_{i}^{j-1} \to \lambda_{i}^{j-1} - \lambda_{1} \lambda_{i}^{j-2},
 \end{equation}
 then we have, 
-
 \begin{equation}
 	\det(V^{\prime}) = 
 	\begin{vmatrix}
@@ -1521,10 +1487,9 @@ then we have,
 		1 & \lambda_2 - \lambda_1 & \lambda_2(\lambda_2 - \lambda_1) & \cdots & \lambda_2^{N-2}(\lambda_2 - \lambda_1) \\ 
 		\vdots  & \vdots  & \ddots & \vdots  \\
 		1 & \lambda_N - \lambda_1 & \lambda_N(\lambda_N - \lambda_1) & \cdots & \lambda_N^{N-2}(\lambda_N - \lambda_1) \\
-	\end{vmatrix}
+	\end{vmatrix}.
 \end{equation}
 By using Laplace Expansion formula for determinants, along the first row we find that $\det(V^{\prime}) = \det(V^{\prime\prime})$ where $V^{\prime\prime}$ is:
-
 \begin{equation}
 	\det(V^{\prime\prime}) = 
 	\begin{vmatrix}
@@ -1533,9 +1498,7 @@ By using Laplace Expansion formula for determinants, along the first row we find
 		\lambda_N - \lambda_1 &  & \cdots &  \lambda_N^{N-2}(\lambda_N - \lambda_1) \\
 	\end{vmatrix}
 \end{equation}
-
 Taking the factors common in each row, we get:
-
 \begin{equation}
 	\det(V) = \det(V^{\prime\prime}) = 
 	(\lambda_2 - \lambda_1) \cdots (\lambda_N - \lambda_1)
@@ -1545,7 +1508,7 @@ Taking the factors common in each row, we get:
 		1 &  & \cdots &  \lambda_N^{N-2} \\
 	\end{vmatrix}
 \end{equation}
-If we iterate this with this smaller matrix and carry on, we will see that we will get:
+If we iterate this with this smaller matrix, it is easy to see that we obtain:
 \begin{equation}
 	\det(V) = \prod_{i<j} (\lambda_j - \lambda_i).
 \end{equation}
@@ -1559,6 +1522,7 @@ To define a Vandermonde matrix and compute determinant, we can execute following
 
 
 \noindent $\bigstar$ Solution to Exercise \TODO{...} and additional comments: 
+\\ \\ 
 The basic idea of the loop equations of matrix models is to capture the invariance of the model under field redefinitions. This is also sometimes known as `Schwinger-Dyson (SD) equations'. One of the exercises in the main text was to derive these equations. Here, we will sketch a proof for the interested reader. We start by noting that the integral of the total derivative vanish and hence:
 
 \begin{equation}
@@ -1625,7 +1589,7 @@ $n$. \footnote{Please see \texttt{https://www.wolfram.com/language/11/random-mat
 \end{mdframed}
 
 \noindent $\bigstar$ Solution to Exercise \TODO{XXX}:
-\\ \\ Consider (\ref{eq:LE}) with $k=1$, 
+\\ \\ Considering (\ref{eq:LE1}) with $k=1$ and quartic potential, we get: 
     \begin{equation}
     \Big< \mathrm{Tr}\Big(M^{2} + g M^{4}\Big) \Big> = 1 
     \end{equation}
@@ -1641,13 +1605,11 @@ $n$. \footnote{Please see \texttt{https://www.wolfram.com/language/11/random-mat
      \end{equation} 
 
 \noindent $\bigstar$ Solution to Exercise 5:
-\\ \\  We now show that $ \langle e^{-\Delta H} \rangle = 1$ 
-The Hamiltonian of the system is defined as:
+\\ \\ We now show that $ \langle e^{-\Delta H} \rangle = 1$ whe phase-space are is preserved under evolution. The Hamiltonian of the system is defined as:
 \begin{equation}
-	H(P,X) = \frac{1}{2}P^2  + S(X)
+	H(P,X) = \frac{1}{2}P^2  + S(X), 
 \end{equation} 
-Areas of phase space is preserved i.e., $dP dX = dP^{\prime} dX^{\prime}$
-and hence we have:
+where $X$ will be set of $n$-matrices depending o which $n$ matrix model we consider. If we assume that the area of phase space is preserved under evolution i.e., $dP dX = dP^{\prime} dX^{\prime}$, we then have:
 \begin{align}
 	\label{eq:ps1} 
 	Z &= \int dP^{\prime} dX^{\prime} e^{-H^{\prime} \nonumber }  \\
@@ -1659,10 +1621,8 @@ Dividing (\ref{eq:ps1}) by $Z$ we get,
 \end{equation}
 
 \noindent $\bigstar$ Solution to Exercise XX:
-\\ \\  
-
-We need to modify the potential and the corresponding forces as 
-discussed in Appendix ??. In addition to the \verb"def potential(X)" 
+\\  
+We need to modify the potential and the corresponding forces as discussed in Appendix~\ref{sec:BEOC}. In addition to the \verb"def potential(X)" 
 and \verb"def force(X)"given in Appendix E, we add the following lines 
 
 \begin{footnotesize} 

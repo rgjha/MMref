@@ -103,9 +103,22 @@ V.~Kazakov and Z.~Zheng, ``{Analytic and Numerical Bootstrap for One-Matrix
   \href{http://arxiv.org/abs/2108.04830}{{\ttfamily arXiv:2108.04830
   [hep-th]}}.
 
+\bibitem{Duane:1987de}
+S.~Duane, A.~D. Kennedy, B.~J. Pendleton, and D.~Roweth, ``{Hybrid Monte
+  Carlo},'' \href{http://dx.doi.org/10.1016/0370-2693(87)91197-X}{{\em Phys.
+  Lett. B} {\bfseries 195} (1987) 216--222}.
+
 \bibitem{Hanada:2018fnp}
 M.~Hanada, ``{Markov Chain Monte Carlo for Dummies},''
   \href{http://arxiv.org/abs/1808.08490}{{\ttfamily arXiv:1808.08490
+  [hep-th]}}.
+
+\bibitem{Joseph:2019zer}
+A.~Joseph, \href{http://dx.doi.org/10.1007/978-3-030-46044-0}{``{Markov Chain
+  Monte Carlo Methods in Quantum Field Theories: A Modern Primer},''}
+  SpringerBriefs in Physics.
+\newblock Springer, 12, 2019.
+\newblock \href{http://arxiv.org/abs/1912.10997}{{\ttfamily arXiv:1912.10997
   [hep-th]}}.
 
 \bibitem{Staudacher:1989fy}
@@ -115,7 +128,8 @@ M.~Staudacher, ``{The Yang-lee Edge Singularity on a Dynamical Planar Random
 
 \bibitem{Hoppe:1982en}
 J.~Hoppe, ``{Quantum Theory Of A Massless Relativistic Surface And A Two
-  Dimensional Bound State Problem},''.
+  Dimensional Bound State Problem, Ph.D. Thesis, Massachusetts Institute of
+  Technology (1982)},''.
 
 \bibitem{Kazakov:1998ji}
 V.~A. Kazakov, I.~K. Kostov, and N.~A. Nekrasov, ``{D particles, matrix
