@@ -108,6 +108,12 @@ S.~Duane, A.~D. Kennedy, B.~J. Pendleton, and D.~Roweth, ``{Hybrid Monte
   Carlo},'' \href{http://dx.doi.org/10.1016/0370-2693(87)91197-X}{{\em Phys.
   Lett. B} {\bfseries 195} (1987) 216--222}.
 
+\bibitem{Metropolis:1953am}
+N.~Metropolis, A.~W. Rosenbluth, M.~N. Rosenbluth, A.~H. Teller, and E.~Teller,
+  ``{Equation of state calculations by fast computing machines},''
+  \href{http://dx.doi.org/10.1063/1.1699114}{{\em J. Chem. Phys.} {\bfseries
+  21} (1953) 1087--1092}.
+
 \bibitem{Hanada:2018fnp}
 M.~Hanada, ``{Markov Chain Monte Carlo for Dummies},''
   \href{http://arxiv.org/abs/1808.08490}{{\ttfamily arXiv:1808.08490
@@ -171,6 +177,31 @@ T.~Banks, W.~Fischler, S.~H. Shenker, and L.~Susskind, ``{M theory as a matrix
   {\bfseries 55} (1997) 5112--5128},
   \href{http://arxiv.org/abs/hep-th/9610043}{{\ttfamily arXiv:hep-th/9610043}}.
 
+\bibitem{Catterall:2007fp}
+S.~Catterall and T.~Wiseman, ``{Towards lattice simulation of the gauge theory
+  duals to black holes and hot strings},''
+  \href{http://dx.doi.org/10.1088/1126-6708/2007/12/104}{{\em JHEP} {\bfseries
+  0712} (2007) 104}, \href{http://arxiv.org/abs/0706.3518}{{\ttfamily
+  arXiv:0706.3518}}.
+
+\bibitem{Hanada:2008ez}
+M.~Hanada, Y.~Hyakutake, J.~Nishimura, and S.~Takeuchi, ``{Higher Derivative
+  Corrections to Black Hole Thermodynamics from Supersymmetric Matrix Quantum
+  Mechanics},'' \href{http://dx.doi.org/10.1103/PhysRevLett.102.191602}{{\em
+  Phys. Rev. Lett.} {\bfseries 102} (2009) 191602},
+  \href{http://arxiv.org/abs/0811.3102}{{\ttfamily arXiv:0811.3102}}.
+
+\bibitem{Filev:2015hia}
+V.~G. Filev and D.~O'Connor, ``{The BFSS model on the lattice},''
+  \href{http://dx.doi.org/10.1007/JHEP05(2016)167}{{\em JHEP} {\bfseries 05}
+  (2016) 167}, \href{http://arxiv.org/abs/1506.01366}{{\ttfamily
+  arXiv:1506.01366 [hep-th]}}.
+
+\bibitem{Berkowitz:2016tyy}
+E.~Berkowitz, E.~Rinaldi, M.~Hanada, G.~Ishiki, S.~Shimasaki, and P.~Vranas,
+  ``{Supergravity from D0-brane Quantum Mechanics},''
+  \href{http://arxiv.org/abs/1606.04948}{{\ttfamily arXiv:1606.04948}}.
+
 \bibitem{Catterall:2017lub}
 S.~Catterall, R.~G. Jha, D.~Schaich, and T.~Wiseman, ``{Testing holography
   using lattice super-Yang-Mills theory on a 2-torus},''
@@ -206,6 +237,23 @@ N.~Ishibashi, H.~Kawai, Y.~Kitazawa, and A.~Tsuchiya, ``{A Large N reduced
 F.~R. Klinkhamer, ``{A first look at the bosonic master-field equation of the
   IIB matrix model},'' \href{http://arxiv.org/abs/2105.05831}{{\ttfamily
   arXiv:2105.05831 [hep-th]}}.
+
+\bibitem{Bessis:1980ss}
+D.~Bessis, C.~Itzykson, and J.~B. Zuber, ``{Quantum field theory techniques in
+  graphical enumeration},''
+  \href{http://dx.doi.org/10.1016/0196-8858(80)90008-1}{{\em Adv. Appl. Math.}
+  {\bfseries 1} (1980) 109--157}.
+
+\bibitem{Kazakov:1986hu}
+V.~A. Kazakov, ``{Ising model on a dynamical planar random lattice: Exact
+  solution},'' \href{http://dx.doi.org/10.1016/0375-9601(86)90433-0}{{\em Phys.
+  Lett. A} {\bfseries 119} (1986) 140--144}.
+
+\bibitem{Boulatov:1986sb}
+D.~V. Boulatov and V.~A. Kazakov, ``{The Ising Model on Random Planar Lattice:
+  The Structure of Phase Transition and the Exact Critical Exponents},''
+  \href{http://dx.doi.org/10.1016/0370-2693(87)90312-1}{{\em Phys. Lett. B}
+  {\bfseries 186} (1987) 379}.
 
 \bibitem{2012arXiv1210.3781Y}
 P.~{Young}, ``{Everything you wanted to know about Data Analysis and Fitting
