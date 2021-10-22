@@ -1,9 +1,9 @@
+% v1: November 2021
 \documentclass[11pt]{article}
 \pdfoutput=1
 \usepackage{mathStyle}
 %\usepackage{jhepmod}
 \usepackage{fancyhdr}
-%\usepackage[us,12hr]{datetime}
 \usepackage{amsmath,amssymb,amsthm,latexsym,bbm,calc,wasysym,mathtools,empheq, yfonts,upgreek}
 \usepackage[english]{babel}
 \usepackage{relsize}
@@ -12,9 +12,8 @@
 \definecolor{rindou1}{rgb}{0.4431,0.2862,0.7960}
 \definecolor{rindou2}{rgb}{0.078,0.1215,0.4392}
 \definecolor{BrickRed}{rgb}{0.8, 0.25, 0.33}
-\definecolor{mycolor}{rgb}{0.322, 0.435, 0.938}
-\usepackage{esint} % Ffor saddle integral 
-%\use-package[usenames,dvipsnames]{xcolor}
+\definecolor{mycolor}{rgb}{0.322, 0.565, 0.988}
+\usepackage{esint} 
 \pdfoutput=1
 \usepackage[T1]{fontenc}
 \usepackage{slashed}
@@ -42,10 +41,8 @@ innerrightmargin=4pt,innertopmargin=2pt,innerbottommargin=4pt]{mybox}
 \newcommand{\TODO}[1]{\textcolor{red}{{\bf #1}}}
 \newcommand{\Tr}[1]{\ensuremath{\text{Tr}\left[ #1 \right]} }
 \renewcommand{\baselinestretch}{1.17}	
-\newcommand{\MA}{\textsc{Mathematica }} 
-\newcommand{\PY}{\textsc{Python }}
-%\usepackage[legalpaper, portrait, margin=2in]{geometry}
-%\usepackage{geometry}
+\newcommand{\MA}{\textsc{Mathematica}} 
+\newcommand{\PY}{\textsc{Python}}
 \newcommand\tab[1][1cm]{\hspace*{#1}}
 
 %%% For watermark %%%%%
@@ -86,12 +83,12 @@ innerrightmargin=4pt,innertopmargin=2pt,innerbottommargin=4pt]{mybox}
 
 \lstset{frame=none,
   language=Python,
+  numbers=left,
   aboveskip=1mm,
   belowskip=1mm,
   showstringspaces=false,
   columns=flexible,
   basicstyle={\scriptsize\ttfamily},
-  %basicstyle={\ttfamily},
   numbers=none,
   numberstyle=\tiny\color{gray},
   keywordstyle=\color{BrickRed},
@@ -104,11 +101,11 @@ innerrightmargin=4pt,innertopmargin=2pt,innerbottommargin=4pt]{mybox}
 
 \lstset{frame=none,
   language=Python,
+  numbers=left,
   aboveskip=1mm,
   belowskip=1mm,
   showstringspaces=false,
   columns=flexible,
-  %basicstyle={\scriptsize\sffamily},
   basicstyle={\ttfamily\scriptsize},
   numbers=none,
   numberstyle=\tiny\color{gray},
@@ -120,11 +117,7 @@ innerrightmargin=4pt,innertopmargin=2pt,innerbottommargin=4pt]{mybox}
   tabsize=3
 }
 
-
-
-
 \usepackage{soul}
-
 \hypersetup{%
 	colorlinks,
 	citecolor=magenta,
@@ -142,34 +135,37 @@ innerrightmargin=4pt,innertopmargin=2pt,innerbottommargin=4pt]{mybox}
 \title{\textsc{Introduction to Monte Carlo methods for matrix models}}
 \author[a]{Raghav G.~Jha}
 \affiliation{Perimeter Institute for Theoretical Physics, Waterloo, Ontario N2L 2Y5, Canada}
-%\emailAdd{rjha1@perimeterinstitute.ca}
+% rjha1@perimeterinstitute.ca
+% A postdoc should never use his institutional ID :-) 
 \emailAdd{raghav.govind.jha@gmail.com}
-%\vspace{20mm}
-
 %------------------------
 
 
 \abstract{\\~\\ {\textsc{Abstract:} 
-\begin{large} Matrix models play an important role in Physics ranging from nuclear 
+The models involving matrices play an important role in 
+Physics ranging from nuclear 
 physics where they were first introduced 
-to study of random surfaces, conformal field theories, 
+to the study of random surfaces, conformal field theories, 
 integrable systems, two-dimensional quantum gravity, 
 and non-perturbative descriptions of M-theory. In these notes, 
 we consider a wide variety of multi-matrix models and study them 
 using Monte Carlo methods in the large $N$ limit. The agreement with 
 exact analytical results and recent bootstrap results are shown
-and expectations for some unsolved models are provided
-to assist future bootstrapping. In order to encourage this exchange, 
-we provide codes in \PY for convenience of the reader and explain how 
+and results for some unsolved models are provided
+to assist future bootstrapping. In order to encourage this exchange,
+we provide programs in \PY~for convenience of the reader and explain how 
 it can be modified to study other potentials. We hope these notes will be useful 
 for further numerical/analytical investigations of matrix models for those
 who are not familiar with Monte Carlo methods.
-The codes we present were tested on a laptop and took
+The programs we present were tested on a laptop and took
 between few minutes to several hours to finish depending on the model
 and precision required. 
-\end{large} 
+%\vspace{40mm} \\ \\ 
+%\noindent v1: 05/11/2021
 }}
+
 %\toccontinuoustrue 
+
 \begin{document}
 \date{}
 \maketitle
@@ -229,7 +225,7 @@ is closely related to that of GOE distribution, see Fig.~\ref{fig:data_exp1}.
 Dyson's and Mehta's work made it more precise and improved further 
 compared to what is shown in Fig.~\ref{fig:data_exp1} as explained in 
 \cite{PhysRevLett.48.1086}. We mention $c_{\beta}$ and  $a_{\beta}$ in Table (\ref{table:c_and_a}). 
-We show the three distributions using \MA in Fig. \ref{fig:ensem1}.  
+We show the three distributions using \MA~ in Fig. \ref{fig:ensem1}.  
 
 \begin{figure}[htbp] 
 	\centering 
@@ -279,40 +275,41 @@ might be the eigenvalues of some unknown Hermitian `operator'. It is another thi
 no one yet knows such an operator! We refer the reader to the excellent books 
 \cite{Meh2004, Akemann:2011csh} for introductions to the field of random matrix theory. 
 
-As far as Physics and quantum field theories are concerned, the major development
-with the matrix degrees of freedom and matrix models came 
-with the work of 't~Hooft in 1974. By then, it was almost clear that the correct theory of 
+The major development in the study of quantum field theories with matrix degrees of freedom
+started with the work of 't~Hooft in 1974 on large $N$ limit of gauge theories. 
+By then, it was almost clear that the correct theory of 
 strong interactions was QCD where we have matrix degrees of freedom for gauge fields
 based on $SU(3)$ gauge group. `t Hooft proposed to consider a general $SU(N)$ 
-symmetry since he showed that in such a limit only planar diagrams survive and calculations becomes
-more tractable. In fact, this large $N$ limit was later understood to be closely related to some
-description of string theory. This work brought together the idea of random matrix models
+symmetry with large $N$ and he showed that in such a limit only planar diagrams 
+survive and calculations becomes more tractable. In fact, this large $N$ limit was later 
+understood to be closely related to some description of string theory. This work brought together the idea of random matrix models
 in the asymptotic limit (large matrices) to the mainstream Physics and is extremely fruitful till date. 
 This also enabled us to study several interesting features of quantum gravity 
 from a field theoretic point of view through the famous AdS/CFT conjecture.
-
-There are some excellent reviews about random matrix theory, matrix integrals/models and their formal aspects 
-which we leave out for this version of the article. We refer the reader to two excellent reviews written more than two decades 
+There are some excellent reviews about random matrix theory, matrix integrals/models, large $N$ limit 
+and their formal aspects. We refer the reader to two excellent reviews written more than two decades 
 apart \cite{DiFrancesco:1993cyw,Eynard:2015aea} for detailed discussions. 
-The goal of these notes is to introduce the numerical solutions of matrix models using 
-Monte Carlo (MC) methods and use it to solve many models where no other analytical/numerical 
-treatment is possible. The motivation for this is from the recent progress in numerical bootstrap program to 
-solve matrix models and we hope that these notes with the $\PY$ codes will supplement
+
+The goal of this article is to introduce the numerical solutions of matrix models using 
+Monte Carlo (MC) methods and implement it to solve several multi-matrix 
+models where no other analytical/numerical treatment is possible. 
+The motivation for this work is partly from the recent progress in numerical bootstrap program to 
+solve matrix models and we hope that these notes with the \PY~ codes will supplement
 those explorations and serve as a cross-check of the results. All the codes in these notes can be accessed at:  
 \begin{center} \texttt{\href{https://github.com/rgjha/MMMC}{https://github.com/rgjha/MMMC}} \end{center}
-
-The plan of the article is as follows. In Sec.~\ref{sec:MMAres}, we mention saddle-point solution 
-to one matrix model and give a brief discussion about the orthogonal polynomials and how it can be used to 
-solve a unitary matrix model with some details about Ising model on random graph added in the appendix. 
-Then in Sec.~\ref{sec:NSOL}, we start briefly by discussing the numerical bootstrap methods 
-and then concentrate for bulk of remaining section on
-explaining the basics of MC method and use it to solve various models. 
-We end the notes with a hope on how the close association between MC 
+The plan of the article is as follows. In Sec.~\ref{sec:MMAres}, we mention saddle-point one-cut solution 
+of one matrix Hermitian model and provide a brief explanation about an alternative and equally effective
+method of orthogonal polynomials and show how it can be used to 
+solve a unitary matrix model. We provide some additional details about Ising model on random graph 
+which was also solved using this method in Appendix~\ref{sec:Ortho_pol1}. 
+Then in Sec.~\ref{sec:NSOL}, we start by discussing the recent 
+numerical bootstrap results for matrix models and then focus for bulk of the 
+remaining section on explaining the basics of MC method and use it to solve different models. 
+We hope on how the close association between MC 
 and bootstrap can serve as a useful guide to solve matrix models. 
 
 
 \section{\label{sec:MMAres}Matrix models - Analytical results} 
-
 \subsection{One-plaquette model - Orthogonal Polynomials} 
 In these matrix models, one often needs to evaluate integrals of the form:
 \begin{equation}
@@ -408,13 +405,8 @@ Using (\ref{eq:sad_sol2}) in (\ref{eq:sad_sol1}) along with the famous Gaussian 
 	\end{equation*}	
 \end{mdframed} 
 
-
 The one matrix hermitian model using saddle point method was famously solved by Brezin-Itzykson-Parisi-Zuber (BIPZ) \cite{Brezin:1977sv}. This solution is standard and can be found in any standard review or textbooks \cite{DiFrancesco:1993cyw, Marino:2004eq}. We will briefly sketch the solution for sake of completeness. This model is solved using the method of resolvent as described below:
 
-%Consider a potential $V(M)$, 
-%\begin{equation}
-%V(M) = -\frac{y^2}{2} + \frac{gy^4}{4} + g^2 \zeta  %\frac{y^6}{6} 
-%\end{equation}
 \begin{align}
 	Z &= \int dM \exp\Big[-\frac{N}{g} \mbox{Tr} V(M)\Big] \\
 	& = \int \prod d\lambda_{i} \Delta^2(\lambda)  e^{-\frac{N}{g} \sum V(\lambda_i)} 
@@ -465,7 +457,7 @@ if the cut was instead $ C= [b,a]$. For the case of 1MM with quartic potential i
 \label{eq:exact1MM} 
 t_{2} = \frac{(12 g+1)^{3/2}-18 g-1}{54 g^2}. 
 \end{equation}
-The \MA  code to solve this model is given in the Appendix for the convenience of the reader. 
+The \MA~  code to solve this model is given in the Appendix for the convenience of the reader. 
 
 
 \begin{mdframed}[backgroundcolor=blue!3] 
@@ -552,7 +544,7 @@ model simple to bootstrap since there is no growth of words (combination of matr
 since all non-zero $t_{n}$ can be related to $t_{2}$. 
 \begin{mdframed}[backgroundcolor=blue!3] 
 	\textsc{} 
-	$\bullet$ Exercise 5: Use loop equations and show that for the 1MM with quartic potential, it is possible to write $t_{4}, t_{6}, t_{8}$ in terms of $t_{2}$. Also check this either using \MA or \PY [see Appendix for details]. 
+	$\bullet$ Exercise 5: Use loop equations and show that for the 1MM with quartic potential, it is possible to write $t_{4}, t_{6}, t_{8}$ in terms of $t_{2}$. Also check this either using \MA~ or \PY~ [see Appendix for details]. 
 Repeat this exercise for cubic potential where higher moments can be written in terms of $t_1$.  
 \end{mdframed} 
 If we consider positive constraints that can be derived from $\langle \mbox{Tr}(\Phi^{\dagger}\Phi) \rangle \ge 0 $
@@ -683,7 +675,7 @@ This implies,
 	X &= R \cos \Theta = \sqrt{-2 \log(V)} \cos(2 \pi U), \\
 	Y &= R \sin \Theta = \sqrt{-2 \log(V)} \sin(2 \pi U).
 \end{align}
-The code to implement this in \PY is given below: 
+The code to implement this in \PY~ is given below: 
 \begin{mdframed}[backgroundcolor=mauve!3] 
 \input{codes/sample_RNG.tex}
 \end{mdframed} 
@@ -751,8 +743,8 @@ We start off with the quartic potential given by:
 	V(M) = \frac{M^2}{2} + \frac{gM^4}{4}.  
 \end{equation}
 As we already mentioned in the section before, this has an exact solution and moments, $t_{n}$ 
-can be obtained using the \MA code given in the appendix. We show that the exact result and the 
-Monte Carlo results agree for $g=1$ in Fig. \ref{fig:1MM_res}. The \PY code which was used for this 
+can be obtained using the \MA~ code given in the appendix. We show that the exact result and the 
+Monte Carlo results agree for $g=1$ in Fig. \ref{fig:1MM_res}. The \PY~ code which was used for this 
 can be found in the Appendix~\ref{sec:1MMPYC}. In the appendix, we also 
 discuss how to run the code on your laptop and estimated time to completion. The most recent version of this 
 code\footnote{Please email author for any bug report or additional requests} is available at:
@@ -770,7 +762,7 @@ Though this method can be exactly solved, we encourage the reader to attempt Exe
 	\includegraphics[width=0.75\textwidth]{figs/mm_plot.pdf}
 	\caption{\label{fig:1MM_res}The computed value of $\mbox{Tr}(X^2)$ with MC methods for quartic potential
 		one matrix model is consistent with that obtained using analytical saddle-point methods (shown by dashed lines). 
-		These results are with $N = 300$ and $g = 1$ and took about 25 minutes on laptop.}
+		These results are with $N = 300$ and $g = 1$ and took about 40 minutes on a laptop.}
 \end{figure}
 
 
@@ -796,7 +788,7 @@ Note that if we set $\zeta=0$, this reduces to the 1MM problem but since the sig
 % ax^2 + bx + c -> a(x-h)^2 + k 
 % where h = -b/2a and k = c - (b^2/4a)  
 \begin{mdframed}[backgroundcolor=blue!3]  
-	$\bullet$ Exercise 8: Check that (\ref{eq:Stau1}) follows from (\ref{eq:Stau0}) and modify the potential for the 1MM \PY code to study this model. 
+	$\bullet$ Exercise 8: Check that (\ref{eq:Stau1}) follows from (\ref{eq:Stau0}) and modify the potential for the 1MM \PY~ code to study this model. 
 \end{mdframed} 
 % P 706 book
 
@@ -870,7 +862,7 @@ We show the eigenvalue distribution for this case in the right panel of Fig.~\re
 \begin{figure}[h] 
 	\centering 
 	\includegraphics[width=0.75\textwidth]{figs/2MM_symb_ms.pdf}
-	\caption{\label{fig:2MM_comp1}We show that the MC results from different streams (different starts) give different results for moments. This is consistent with the region obtained in \cite{Kazakov:2021lel} that one will obtain an entire line of solutions. We have shown data from five different MC runs by coloured circles. The three points near $t_{1} \sim 0$ were obtained by starting from a trivial vacuum i.e., ($X,Y = 0$) while the two points with $t_{1} = \pm 3.88(2)$ and $t_{2}=29.41(4)$ were obtained by starting from $X,Y = \mathbb{I}$. 
+	\caption{\label{fig:2MM_comp1}We show that the MC results from different streams (different starts) give different results for moments. This is consistent with the region obtained in \cite{Kazakov:2021lel} that one will obtain an entire line of solutions. We have shown data from five different MC runs by coloured circles. The three points near $t_{1} \sim 0$ were obtained by starting from a trivial start i.e., ($X,Y = 0$) while the two points with $t_{1} = \pm 3.88(2)$ and $t_{2}=29.41(4)$ were obtained by starting from $X,Y = \mathbb{I}$. 
 The figure is used after taking permission from authors of Ref.~\cite{Kazakov:2021lel}.}
 \end{figure}
 
@@ -935,8 +927,10 @@ The results are collected in Table \ref{table:D_YMM_data}.
 \caption{The results obtained for $D = 3,5$ YM matrix models with mass terms are given for $\lambda=4, h=1$ with $N=300$.}
 \label{table:D_YMM_data}
 \end{table}
-
-
+Note that it is easy to get the sign of $\mathcal{O}(1/N)$ corrections using Monte Carlo. 
+The simplest way is to do another set of simulation at $N = 100$ and see how $t_{2}$ and 
+$t_{4}$ change. It is an interesting open problem to understand how one can apply 
+bootstrap methods away from the planar limit where factorization does not hold any more. 
 \begin{mdframed}[backgroundcolor=blue!3] 
 	\textsc{} 
 	$\bullet$ Exercise 9: Study the model defined by (\ref{eq:HoppeD}) for $d=3$ by modifying the code given in the appendix for studying Yang-Mills type model defined by (\ref{eq:CTmodel}). Check that you obtain results consistent
@@ -948,30 +942,28 @@ The results are collected in Table \ref{table:D_YMM_data}.
 \subsection{\label{subsection:Mchain}Closed and open chain models with $p = 3, 4$}
 
 The matrix chain is a complicated $p$ matrix model which was first 
-considered in \cite{Chadha:1980ri}. When the chain is connected, the 
-model is \emph{not solvable} with $p \ge 4$. 
-
-\begin{figure}[htbp] 
-	\centering 
-	\includegraphics[width=0.75\textwidth]{figs/3MM_open.pdf}
-	\caption{\label{fig:3MM_open}We see that two matrices have common $t_{2} = 0.798(3)$ and the third has 
-	$t_{2} = 1.037(3)$. This is for $g=1$ with $N=300$ for the three matrix open case. We have computed errors after discarding first 1000 time units and 
-	using jackknife blocking.}
-\end{figure}
-
-We use Monte Carlo methods to study this with $p = 3,4$ with 
-$N = 300$ which is close to the desired planar limit. 
-It would be good if this four matrix model can 
-also be \textit{bootstrapped} in coming years. 
-The general $p$ MC code to solve these models 
-(well-tested for $p = 3,4$) is available at: 
-\begin{center} \texttt{\href{https://github.com/rgjha/MMMC}{https://github.com/rgjha/MMMC}} \end{center}
+considered in \cite{Chadha:1980ri}. This model was also studied in context 
+of $q$-state Potts model in Refs.~\cite{KAZAKOV198893, KOSTOV1989295, Daul:1994qy}.
+The partition function is given by: 
 \begin{equation}
 	\label{eq:Mehta1} 
 	Z_{p}(g,c,\kappa) = \int \mathcal{D}M_{1} \cdots  \mathcal{D}M_{p} \exp \mbox{Tr} \Bigg(\sum_{i=1}^{p} -M_{i}^2  - g M_{i}^{4} + c \sum_{i=1}^{p-1} M_{i}M_{i+1} 
 	+ \kappa M_{p}M_{1} \Bigg)
 \end{equation}
-
+Though some exact results are available for $p=3$, not much has been explicitly done 
+for $p > 3$. When the chain is connected, the 
+model is \emph{not solvable} with $p \ge 4$. 
+\begin{figure}[htbp] 
+	\centering 
+	\includegraphics[width=0.75\textwidth]{figs/3MM_open.pdf}
+	\caption{\label{fig:3MM_open}We see that two matrices have common $t_{2} = 0.798(3)$ and the third has 
+	$t_{2} = 1.037(3)$. This is for $g=1$ with $N=300$ for the three matrix open case. We have computed errors after discarding first 1000 time units and using jackknife blocking.}
+\end{figure}
+We use Monte Carlo methods to study the open and closed cases of the model with $p = 3,4$ with 
+$N = 300$. It would be good if this four matrix model can be \textit{bootstrapped} in coming years. 
+The general $p$ matrix MC code to solve these models 
+(well-tested for $p = 3,4$) is available at: 
+\begin{center} \texttt{\href{https://github.com/rgjha/MMMC/3\_4\ _MC.py}{https://github.com/rgjha/MMMC/3\_4\_MC.py}} \end{center}
 
 \begin{figure}[htbp] 
 	\centering 
@@ -982,24 +974,16 @@ The general $p$ MC code to solve these models
 	for $g=2, c=\kappa=1.35$, $t_{2} = 0.775(2)$ and $t_{4} = 0.887(3)$. It is straightforward to understand the behaviour as a function of $g$ at fixed $c, \kappa$ if that is of interest to the reader by using the codes we give.}
 \end{figure}
 
-\TODO{It is easy to get the sign of $\mathcal{O}(1/N)$ corrections using Monte Carlo. 
-The simplest way is to do another set of simulation at $N = 100$ and see how $t_{2}$ and 
-$t_{4}$ change. For this model, the numerics suggest that the sign is negative
-i.e., $t_{2} \sim 1.603(1 - \frac{A}{N^2})$} where $A$ is some constant. 
-
-
-We can study a slightly complicated model with four matrices with periodic (closed) condition as defined in \ref{eq:Mehta1}.
-This code can be obtained by simply changing $\texttt{NMAT=3}$ to  $\texttt{NMAT=4}$. 
-The results are collected in Table \ref{table:4mchain_data}. Note that setting $\kappa=0$ will reduce to open chain.        
-
-%We obtain for $g=2, c=\ kappa=1.35$, $t_{2} = 0.741(2)$ and $t_{4} = 0.825(3)
-%We obtain for $g=1, c=\kappa=1.35$, $t_{2} = 1.577(2)$ and $t_{4} = 3.093(3)$
-
-
+In order to study the model with four matrices and periodic (closed) boundary condition 
+as defined in \ref{eq:Mehta1}, we can simply modify the code for $p=3$ by changing 
+$\texttt{NMAT=3}$ to  $\texttt{NMAT=4}$. Note that setting $\kappa=0$ 
+will reduce to open chain case. The broken symmetry 
+cases correspond to $ c \neq \kappa$. The results for $p=4$ closed symmetric case is 
+given in Table \ref{table:4mchain_data}. 
 \begin{figure}[htbp] 
 	\centering 
 	\includegraphics[width=0.75\textwidth]{figs/4MM_g1_g2.pdf}
-\caption{\label{fig:4MM_closed1} We show the expectation value for $N=300, c=\kappa=1.35$ with two different $g$. This specific run does not start from a \texttt{trivial} start. See Appendix~\ref{sec:BEOC} for details. The data is given in Table~\ref{table:4mchain_data}}
+\caption{\label{fig:4MM_closed1} We show the expectation value for $N=300, c=\kappa=1.35$ with two different $g$. These runs have not started from a \texttt{trivial} start. See Appendix~\ref{sec:BEOC} for details. The data is given in Table~\ref{table:4mchain_data}}
 \end{figure}
 
 \begin{table}[h!]
@@ -1008,8 +992,8 @@ The results are collected in Table \ref{table:4mchain_data}. Note that setting $
 		\hline
 		$g$ & $ t_2 $ & $t_4 $ \\ [0.5ex] 
 		\hline\hline
-		1 & $ 0.741(2)$ & $0.825(3) $  \\ 
-		2 & $ 1.577(2) $ & $3.093(3)$
+		1 & $ 1.577(2) $ & $3.093(3)$ \\
+		2 & $ 0.741(2)$ & $0.825(3) $  
 		\\ [1ex] 
 		\hline 
 	\end{tabular}
@@ -1067,7 +1051,7 @@ IKKT model has no free parameters since $\lambda$ can be absorbed in the
 field redefinitions. 
 
 In the original model, since it is a ten-dimensional reduction we have, $\mu, \nu = 1 \cdots 10$. 
-It is opossible to consider other models where $\mu, \nu = 1 \cdots D$ where $D=4,6$. 
+It is possible to consider other models where $\mu, \nu = 1 \cdots D$ where $D=4,6$. 
 One might worry whether because of the integral measure being over non-compact $X$, 
 it is divergent. The convergence issues of the partition function of 
 these models for $D=4,6,10$ was studied by Refs.~\cite{Krauth:1998yu,Krauth:1999qw} and 
@@ -1078,7 +1062,9 @@ One of the observables (also known as `size' or i.e., extent of scalars)
 which we compute in these models is already defined in \ref{eq:R2R4}. 
 It is known that $\langle R^2 \rangle$ behaves as $\sqrt{\lambda}$ in the large $N$ limit 
 as discussed in Ref.~\cite{Hotta:1998en} but we have not found any previous study
-which gives the coefficient. Our numerical results suggests 
+which computes the coefficient. In supersymmetric matrix models like BFSS/BMN, this 
+extent of scalars has a dual interpretation in terms of the radius of 
+the dual black hole topology.  Our numerical results suggests 
 that $ \langle R^2 \rangle = 0.361(2) \sqrt{\lambda}$ 
 and $ \langle R^4 \rangle = 0.266(3) \lambda$ with $N = 300$ for a wide range of couplings i.e., 
 $\lambda \in [1,100]$. We also note that we see the $\sqrt{\lambda}$ and $\lambda$ behaviour for 
@@ -1100,12 +1086,12 @@ then we find:
 \begin{mdframed}[backgroundcolor=blue!3] 
 	\textsc{} 
 	$\bullet$ Exercise 10: Derive (\ref{eq:SD_IKKT1}) by doing the change: $X_{\mu} \mapsto e^{\epsilon}X_{\mu}$ and ignoring 
-	$\mathcal{O}(\epsilon^{2}) terms.$
+	$\mathcal{O}(\epsilon^{2})$ terms.
 \end{mdframed}
 
 This is an exact result and is used to check the reliability of the simulations. 
 We show in Fig. \ref{fig:IKKT_2} that for $D=3,5,10$ we get the correct result and 
-hence the \PY code above can be fully trusted. The timings for generating 500 time units or trajectories 
+hence the \PY~ code above can be fully trusted. The timings for generating 500 time units or trajectories 
 with $N=300$ is about \texttt{50000,2300,2000} seconds for $D = 10, 5, 3$ respectively on 2.4 GHz i5 A1989 Mac Pro. 
 The results are collected in Table~\ref{table:D_IKKT_data}. 
 \begin{table}[h!]
@@ -1126,25 +1112,27 @@ The results are collected in Table~\ref{table:D_IKKT_data}.
 
 \begin{mdframed}[backgroundcolor=blue!3] 
 	\textsc{} 
-	$\bullet$ Exercise 11: Carry out the MC computation for the bosonic Yang-Mills type matrix model with $D=6$. After sufficient thermalization cut, check that the results for average action is consistent with exact result obtained using Schwinger-Dyson equations within errors. Refer to appendix for the $\textsc{Python}$ code and to perform jackknife error analysis with sufficiently large block size. Compute the ratio $\langle R^4 \rangle / \langle R^2 \rangle$ for fixed $\lambda=1$. 
+	$\bullet$ Exercise 11: Carry out the MC computation for the bosonic Yang-Mills type matrix model with $D=6$. After sufficient thermalization cut, check that the results for average action is consistent with exact result obtained using Schwinger-Dyson equations within errors. Refer to appendix for the \PY~ code and to perform jackknife error analysis with sufficiently large block size. Compute the ratio $\langle R^4 \rangle / \langle R^2 \rangle$ for fixed $\lambda=1$. 
 \end{mdframed} 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 \section{Summary}
-In these notes, we have considered several interesting multi-matrix models and 
-described Monte Carlo method to solve them. We obtained some new 
-results and confirmed results from well-known analytical solutions and recent 
+In these notes, we have considered several interesting multi-matrix models starting
+from the simplest one matrix Hermitian matrix model and then considering two/three 
+matrices and other multi-matrix models. We described the Monte Carlo method 
+to solve them. We obtained some new results and confirmed known 
+results from analytical methods and recently developed 
 bootstrap program. We hope this will encourage interested readers 
 to carry out these numerical computations using the codes provided in the article 
-and will eventually lead to new ways of solving matrix models and to 
-bootstrap the models not yet explored. 
+and will eventually lead to new ways of solving matrix models and 
+to bootstrap the models not yet explored. 
 %%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection*{Acknowledgements}
 The author is indebted to Pedro Vieira
 for discussions and for encouragement. We thank Vladimir Kazakov 
-and Zhechuag Zhang for email correspondence and for allowing us to use a 
+and Zhechuag Zhang for email correspondence and for permission to use a 
 figure from their paper. The author is supported by a postdoctoral fellowship 
 at the Perimeter Institute for Theoretical Physics. Research at Perimeter Institute is supported 
 in part by the Government of Canada through the Department of Innovation, Science and 
@@ -1156,12 +1144,13 @@ Department of Science \& Technology, Government of India's KVPY
 European Union for Erasmus Mundus scholarship during 2010-2011, 
 and the Department of Physics at Syracuse University for 
 assistantship during 2013-2019. 
+% Though I would also like to thank Sci Hub in acknowledgements, some might not like it! 
 %%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Appendices now %%%%
-\newpage
+%\newpage
 \appendix
 \begin{center} \Large{\textsc{Appendices}}\end{center}
-\section{Orthogonal polynomials}
+\section{\label{sec:Ortho_pol1}Orthogonal polynomials}
 One of the methods we discussed for the solution of 
 large $N$ limit of matrix models was the saddle point approximation. 
 However, this method is not useful 
@@ -1194,20 +1183,15 @@ where $f_{k} := a_{k}/a_{k-1}$.
 Hence, solving the matrix model is now equivalent to solving for the 
 normalization appearing in \ref{eq:ortho_nn}. As we have shown in Sec.~\ref{}, 
 this method was used to solve the unitary 
-matrix model.
-
-In fact, this method was also used to study the Ising Model on a random graph as two-matrix model 
+matrix model. In fact, this method was also used to study the Ising Model on a random graph as two-matrix model 
 \cite{Kazakov:1986hu}
 and the partition function is given by:
 \begin{equation}
 	\label{eq:Kaz1} 
 	Z = \int \mathcal{D}A \mathcal{D}B \exp N \mbox{Tr} \Bigg(-A^2 -B^2 + 2c AB -g \frac{A^3}{3} - g\frac{B^3}{3}  \Bigg)
 \end{equation}
-
 Note that this has $\mathbb{Z}_{2}$ symmetry because of 
-Z being invaiant under $A \mapsto B$
-
-
+Z being invariant under $A \mapsto B$
 
 \begin{equation}
 	\label{eq:RIsing1} 
@@ -1283,8 +1267,8 @@ One is usually interested in computing the quantity (the subscript `pc' denotes 
 
 
 
-\section{Mathematica code for solution of one-matrix model}
-We now give the details to solve the one matrix model in \textsc{Mathematica}. For this we consider the potential:
+\section{\MA~code for solution of one-matrix model}
+We now give the details to solve the one matrix model in \MA~. For this we consider the potential:
 \[ V(Y) = \frac{Y^2}{2} + \frac{gY^4}{4} \] 
 As we have shown in the text, for this case, the higher moments of trace of $Y$ are related and hence we will just calculate $\mbox{Tr}~Y^2$ in the planar limit (normalized by $N$). We give the code below for $g=1$. The reader is encouraged to try and change $g$ and see how the results change.
 
@@ -1304,7 +1288,7 @@ As we have shown in the text, for this case, the higher moments of trace of $Y$ 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\label{sec:BEOC}Brief explanation and comments on 
-running the \PY code}
+running the \PY~ code}
 We provide codes which can deal with several different types of 
 Hermitian matrix models with real action. The codes we give 
 in this appendix and some which are not here are all located at:  
@@ -1314,7 +1298,7 @@ In general, only two routines need modifications.
 One is $\texttt{def potential(X)}$ and 
 other is the $\texttt{def force(X)}$. The first involves (mostly) 
 trace of product of matrices and the second is the derivative of those matrix traces. 
-These codes in \PY is rather terse
+These codes in \PY~is rather terse
 and are all under $\texttt{300}$ lines each
 while about $\sim 85\%$ of them are common parts like:
 leapfrog integrator, Metropolis step, saving/reading configuration file, 
@@ -1349,7 +1333,7 @@ $\texttt{NMAT}$ and $\texttt{NC}$. If you are not doing the run for the first ti
 it is better if you read in the configuration file as this will be more efficient.  
 Note that this can only be done if $\texttt{NMAT}$ and $\texttt{NC}$ are the same or else
 it will throw some error. This can be modified easily to suit user's requirements. 
-\item The code produces output files such as $\texttt{t2*.txt}$ and $\texttt{t4*.txt}$
+\item The code produces output files with name starting with $\texttt{t2*.txt}$ and $\texttt{t4*.txt}$
 which are moments of the matrices. The number of columns in these files will be equal to 
 number of different matrices you considered in the potential i.e., $\texttt{NMAT}$. 
 If you consider a ten matrix model (maximum we have used in these notes),
@@ -1374,17 +1358,22 @@ that there might still be minor bugs in them. If you encounter a problem or
 have questions, please contact the author. 
 %(which is real and bounded i.e., where the MC methods can be applied), 
 
-\section{\label{sec:1MMPYC}\PY code for solution of one-matrix model}
+\section{\label{sec:1MMPYC}\PY~code for solution of one-matrix model}
 We provide the code in this section to study the 1MM using the Monte Carlo method. By running the code given below
 on a modern laptop, we get the result shown in 
 Fig. \ref{fig:1MM_res}. We can readily extend this code (by changing $\texttt{NMAT}$) to study matrix models where the integration is over several different matrices. 
-To run this code using Mac/Linux system (assuming you have \PY installed) just type in terminal: 
+To run this code using Mac/Linux system (assuming you have \PY~installed) just type in terminal: 
 $\texttt{python 1MM\_MC.py 0 1 300 200}$. The code takes four input arguments. The first two are binary arguments
 related to whether we are reading any old configuration file and whether we want to save the one which will be 
 generated. $\texttt{0 1}$ means that we are not reading any configuration but we want to save it for later use. 
 The third argument is the size of the matrices to consider, in an ideal world, planar limit is $ N \to \infty$ but here
 we have $\texttt{N = 300}$. The last argument is the 
-number of trajectories of Markov chain Monte Carlo we want to run the simulation. To converge to the correct answer $\texttt{500}$ should be enough but to accurately get to third or four decimal place of accuracy, more than $\texttt{5000}$ may be needed. It takes about 30-35 minutes to run 500 time units with $\texttt{N = 300}$ on a modern laptop. 
+number of trajectories we want to run the simulation. 
+To converge to the correct answer $\texttt{500}$ should be enough but to accurately 
+get to third or four decimal place of accuracy, 
+more than $\texttt{5000}$ may be needed. 
+It takes about 35-40 minutes to run 500 time units 
+with $\texttt{N = 300}$ on a modern laptop. 
 
 
 \begin{footnotesize} 
@@ -1473,7 +1462,7 @@ If we iterate this with this smaller matrix, it is easy to see that we obtain:
 \begin{equation}
 	\det(V) = \prod_{i<j} (\lambda_j - \lambda_i).
 \end{equation}
-To define a Vandermonde matrix and compute determinant, we can execute following command in \MA:
+To define a Vandermonde matrix and compute determinant, we can execute following command in \MA~:
 \begin{mdframed}[backgroundcolor=magenta!2]
 	\begin{footnotesize} 
 		\verb"V = Table[Subscript[\[Alpha], i]^j, {i, 1, 5}, {j, 0, 4}];"\\ 
@@ -1535,7 +1524,7 @@ If we demand that $Z$ remains invariant, the term in the paranthesis should vani
 
 
 
-\noindent $\bigstar$ Executing following command in \MA will check that Wigner distribution is 
+\noindent $\bigstar$ Executing following command in \MA~ will check that Wigner distribution is 
 observed. The deviation from the semi-circle distribution cane be seen for small 
 $n$. \footnote{Please see \texttt{https://www.wolfram.com/language/11/random-matrices} for more}.  
 
@@ -1601,7 +1590,6 @@ and \verb"def force(X)"given in Appendix E, we add the following lines
 
 \end{mdframed}
 \end{footnotesize}
-%\newpage 
 \bibliographystyle{utphys}
 \bibliography{notes1}
 \end{document}
