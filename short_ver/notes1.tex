@@ -317,7 +317,9 @@ Z = \int \exp\Bigg[  -\mathrm{Tr} \sum V(M_{i})  -  \mathrm{Tr} \sum c_{ij}M_{i}
 \end{equation}
 where $M^{i}$ are $N \times N$ complex Hermitian matrices. 
 In study of zero-dimensional gauge theories, we encounter these types of matrix models where the integral is over the Haar measure. These models often have interesting features in the large $N$ limit.
-For ex:, in QCD, the gauge fields are elements of SU(3) and hence they are well-described in some cases by unitary matrix models. A general model is given by:
+For ex:, in QCD, the gauge fields are elements of SU(3) group and 
+hence they are well-described in some cases by unitary matrix models. 
+A general model is given by:
 \begin{equation}
 	Z = \int \exp\Bigg[  -\mbox{Tr} \sum V(U_{i})  -  \mbox{Tr} \sum c_{ij}U_{i}U_{j}   \Bigg] dU_{i} dU_{j}
 \end{equation}
@@ -457,7 +459,7 @@ if the cut was instead $ C= [b,a]$. For the case of 1MM with quartic potential i
 \label{eq:exact1MM} 
 t_{2} = \frac{(12 g+1)^{3/2}-18 g-1}{54 g^2}. 
 \end{equation}
-The \MA~  code to solve this model is given in the Appendix for the convenience of the reader. 
+The \MA~ code to solve this model is given in the Appendix for the convenience of the reader. 
 
 
 \begin{mdframed}[backgroundcolor=blue!3] 
@@ -538,7 +540,7 @@ by $\mathcal{M}$. For the case of one matrix model (1MM) with a potential $V(X)$
 \begin{equation}
     V(X) = \frac12 X^2 + \frac{g}{4} X^4, 
 \end{equation}
-it is straightforward to show that the odd moments of X i.e., $ t_{n} = \mbox{Tr} X^n = 0$ for odd $n$
+it is straightforward to show that the odd moments of X i.e., $ t_{n} = (1/N)\mbox{Tr} X^n = 0$ for odd $n$
 while the even moments (of order greater than two) are all related to $t_{2} = \mbox{Tr} X^2/N$. This renders the 
 model simple to bootstrap since there is no growth of words (combination of matrix or matrices!)
 since all non-zero $t_{n}$ can be related to $t_{2}$. 
@@ -748,14 +750,26 @@ Monte Carlo results agree for $g=1$ in Fig. \ref{fig:1MM_res}. The \PY~ code whi
 can be found in the Appendix~\ref{sec:1MMPYC}. In the appendix, we also 
 discuss how to run the code on your laptop and estimated time to completion. The most recent version of this 
 code\footnote{Please email author for any bug report or additional requests} is available at:
-\begin{center} \texttt{\href{https://github.com/rgjha/MMMC}{https://github.com/rgjha/MMMC}} \end{center}
-We can also consider one-matrix model with cubic interaction instead of quartic as above. There is well-known instability associated with cubic potential. The model is given by:
+\begin{center} \texttt{\href{https://github.com/rgjha/MMMC}{https://github.com/rgjha/MMMC}} \end{center}. 
+The quartic potential one matrix model has a well-known critical coupling i.e., $ g_{c} = -1/12$. 
+We note that MC method is equally effective to detect the critical $g$ for matrix models. 
+For example, we obtained correct results for $t_{2}$ as given by \ref{eq:exact1MM} 
+until $g_{\rm{min.}} \sim -0.0819$ for $N=300$ but the simulation didn't converge (ran away!) 
+for $g = -0.0820$. It took us about 1-2 hours of computer time to 
+locate the critical coupling to accuracy of about 
+$\sim 0.0014$ (i.e., $g - g_{c} \sim 0.0014$). 
+We can always increase $N$ to get a 
+more precise result. 
+
+One can also consider one-matrix model with cubic interaction instead of quartic as above. 
+There is well-known instability associated with cubic potential. The potential is given by:
 \begin{equation}
-	V(M) = \frac{M^2}{2} + \frac{gM^3}{3}  
+	V(M) = \frac{M^2}{2} + \frac{g_{3}M^3}{3}  
 \end{equation}
 It is only well-defined if $g \le 0.21935$. This is the radius of convergence of the planar perturbation series. 
-Though this method can be exactly solved, we encourage the reader to attempt Exercise~7 to numerically solve this using MC. This exercise is good practice on how we can modify the potential in the given codes to study another model of interest.
-
+Though this method can be exactly solved, we encourage the reader to attempt Exercise~7 to numerically solve this using MC. 
+This exercise provides a good practice on how we can modify the potential in the given 
+codes to study another model of interest. 
 
 \begin{figure}[htbp] 
 	\centering 
@@ -765,7 +779,6 @@ Though this method can be exactly solved, we encourage the reader to attempt Exe
 		These results are with $N = 300$ and $g = 1$ and took about 40 minutes on a laptop.}
 \end{figure}
 
-
 \begin{mdframed}[backgroundcolor=blue!3] 
 	\textsc{} 
 	$\bullet$ Exercise 7:  Check that the one matrix model given in the appendix also reproduces the correct result for cubic potential 
@@ -773,8 +786,10 @@ Though this method can be exactly solved, we encourage the reader to attempt Exe
 	\label{ex:7} 
 \end{mdframed} 
 
-There is another interesting dimer matrix model which was 
-studied in context of understanding the Yang-Lee edge singularity \cite{Staudacher:1989fy} in Ising model on random surface. It is given by: 
+Another interesting dimer matrix model closely related to one matrix model was 
+studied in context of understanding the Yang-Lee edge singularity
+\cite{Staudacher:1989fy} in Ising model on random graphs. 
+It is given by: 
 \begin{equation}
 	\label{eq:Stau0}
 	Z = \int \mathcal{D}X \mathcal{D}M \exp N \mbox{Tr}\Bigg(-\frac{X^2}{2} + \frac{gX^4}{4} - \frac{M^2}{2} + g \sqrt{\zeta} MX^3 \Bigg).
@@ -784,7 +799,9 @@ After integrating out the matrix $M$, we can reduce it to a one matrix model pro
 	\label{eq:Stau1} 
 	Z = \int \mathcal{D}X \exp N \mbox{Tr}\Bigg(-\frac{X^2}{2} + \frac{gX^4}{4} + g^2 \zeta  \frac{X^6}{2}   \Bigg)
 \end{equation}
-Note that if we set $\zeta=0$, this reduces to the 1MM problem but since the sign of quadratic term is negative, this is the symmetry broken version of the one matrix model above. 
+Note that if we set $\zeta=0$, this reduces to the 1MM problem but since the sign of 
+quadratic term is negative, this is the symmetry broken version of the one matrix model 
+discussed above. 
 % ax^2 + bx + c -> a(x-h)^2 + k 
 % where h = -b/2a and k = c - (b^2/4a)  
 \begin{mdframed}[backgroundcolor=blue!3]  
@@ -796,15 +813,18 @@ Note that if we set $\zeta=0$, this reduces to the 1MM problem but since the sig
 \subsection{\label{subsec:Hoppe}Hoppe-type matrix models}
 % Page 71 of his 1982 thesis. 
 
-We now turn our attention to matrix models where there is a commutator interaction term. To our knowledge, this model 
-was first introduced by Hoppe \cite{Hoppe:1982en} and solved later by different methods in Refs.~\cite{Kazakov:1998ji,Berenstein:2008eg}.
+We now turn our attention to matrix models with a commutator interaction term. 
+To our knowledge, this model 
+was first introduced by Hoppe \cite{Hoppe:1982en} and solved later by different methods in 
+Refs.~\cite{Kazakov:1998ji,Berenstein:2008eg}.
 The partition function is given by:
 \begin{equation}
 Z = \int \mathcal{D}X \mathcal{D}Y \exp \Big[-N ~ \mbox{Tr} (X^2 + Y^2 - g^2 [X,Y]^2) \Big] 
 \end{equation}
 At large values of commmutator coupling i.e., $ g \to \infty$, this model becomes commuting with 
 $ [X,Y] \to 0$. The presence of commutator term in matrix models is common especially in 
-models which have a dual gravity interpretation or emergent geometry behaviour.  The exact result for average action is:
+models which have a dual gravity interpretation or emergent geometry behaviour. 
+The exact result for average action is:
 \begin{equation}
 	2 \langle S_{c} \rangle + \langle S_{q}  \rangle = N^2 - 1, 
 \end{equation}
@@ -824,7 +844,10 @@ Z = \int \mathcal{D}X \mathcal{D}Y \exp \Big[-N ~ \mbox{Tr} (X^2 + Y^2 - h^2 [X,
 	\centering 
 	\includegraphics[width=0.75\textwidth]{figs/plot_2MM_sym1.pdf}
 	\caption{\label{fig:2MM_match}The matrix model defined by~(\ref{eq:GHM1}) is not solvable and was 
-		recently studied using bootstrap methods. We show the MC by solid lines and those obtained using bootstrap by dashed lines. We get about three digits of accuracy with 1000 time units by running for 1.7 hours on the laptop. The results are with $g=h=1$ and $N=300$. For larger $N$ say, $N=800$, the same run will take about 17 hours.}
+recently studied using bootstrap methods. We show the MC by solid lines and those 
+obtained using bootstrap by dashed lines. We get about three digits of accuracy with 1000 time units 
+by running for 1.7 hours on the laptop. The results are with $g=h=1$ and $N=300$. For larger $N$ say, $N=800$, 
+the same run will take about 16-18 hours.}
 \end{figure} 
 
 The action in (\ref{eq:GHM1}) has $\mathbb{Z}_{2}^{\otimes 3}$ symmetry 
@@ -855,8 +878,9 @@ We show the eigenvalue distribution for this case in the right panel of Fig.~\re
 \begin{figure}[htbp] 
 	\centering 
 	\includegraphics[width=0.75\textwidth]{figs/2MM_symb_t2_t4.pdf}
-	\caption{\label{fig:2MM_t2t4}We show $t_{2}$ and $t_{4}$ obtained from MC. We have rescaled $t_{2}$ to
-	table viewing on same plot. The values we obtain for this specific stream of run is: $N=300$ is $t_{2} = 29.73(3)$ and $t_{4} = 903(3)$. This took about 3.5 hours on a laptop since it thermalizes late and we need to run bit longer.}
+	\caption{\label{fig:2MM_t2t4}We show $t_{2}$ and $t_{4}$ obtained from MC. 
+	The values we obtain for this specific stream of run is: $N=300$ is $t_{2} = 29.73(3)$ and $t_{4} = 903(3)$. 
+	This took about 3.5 hours on a laptop since it thermalizes late and we need to run bit longer.}
 \end{figure}
 
 \begin{figure}[h] 
@@ -888,7 +912,6 @@ To benchmark our MC results, we explored this model
 with the set of couplings considered in the work above and obtain fairly precise values. 
 The results are shown in Fig.~\ref{fig:2MM_comp1}. It is expected that one would be able to
 produce entire set of solutions by starting MC from different initial value of matrices. 
-%We also show the eigenvalue distribution of the matrices $X, Y$. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{\label{subsec:ext_Hoppe}Extension of Hoppe's model to $D$ matrices}
 
@@ -904,7 +927,9 @@ If we consider $X_i \mapsto (1+\epsilon) X_i$, it must leave $Z$ invariant, one 
 	D(N^2 -1) = 2 h \langle \mbox{Tr}X_{i}^{2} \rangle 
 	- N \lambda \langle \mbox{Tr}[X_i,X_j]^{2} \rangle. 
 \end{equation}
-This serves as a good check of the code and is satisfied to an accuracy of 0.02-0.03\% after ignoring thermalization cut. We studied this model using MC for $D=3,5$ with $h=1, \lambda=1$ and compute: 
+This serves as a good check of the code and is satisfied to an accuracy of 
+0.02-0.03\% after ignoring thermalization cut. 
+We studied this model using MC for $D=3,5$ with $h=1, \lambda=4$ and compute: 
 
 \begin{equation}
 \label{eq:R2R4} 
@@ -927,10 +952,11 @@ The results are collected in Table \ref{table:D_YMM_data}.
 \caption{The results obtained for $D = 3,5$ YM matrix models with mass terms are given for $\lambda=4, h=1$ with $N=300$.}
 \label{table:D_YMM_data}
 \end{table}
-Note that it is easy to get the sign of $\mathcal{O}(1/N)$ corrections using Monte Carlo. 
+Note that it is easy to get the sign of $\mathcal{O}(1/N)$ corrections using Monte Carlo methods.
 The simplest way is to do another set of simulation at $N = 100$ and see how $t_{2}$ and 
-$t_{4}$ change. It is an interesting open problem to understand how one can apply 
-bootstrap methods away from the planar limit where factorization does not hold any more. 
+$t_{4}$ change. It is an interesting problem (in practice, not in principle) 
+to understand how one can apply bootstrap methods away from the planar limit where 
+factorization does not hold any more.  
 \begin{mdframed}[backgroundcolor=blue!3] 
 	\textsc{} 
 	$\bullet$ Exercise 9: Study the model defined by (\ref{eq:HoppeD}) for $d=3$ by modifying the code given in the appendix for studying Yang-Mills type model defined by (\ref{eq:CTmodel}). Check that you obtain results consistent
@@ -1580,13 +1606,13 @@ and \verb"def force(X)"given in Appendix E, we add the following lines
 \begin{mdframed}[backgroundcolor=blue!3] 
  \verb"def potential(X):" \\
  \tab	\verb"for i in range (NSCALAR):" \\ 
-    \tab     \tab	\verb"tmp += h_q * NCOL * np.trace(X[i] @ X[i]).real" \\
+    \tab     \tab	\verb"tmp += h * NCOL * np.trace(X[i] @ X[i]).real" \\
     
 \vspace{5mm} 
 \noindent
 \verb"def force(X):" \\ 
 \tab	\verb"for i in range (NSCALAR):"  \\ 
-       \tab  \tab 	\verb"f_X[i] += 2.0 * h_q * NCOL*X[i] "  
+       \tab  \tab 	\verb"f_X[i] += 2.0 * h * NCOL*X[i] "  
 
 \end{mdframed}
 \end{footnotesize}
