@@ -864,7 +864,7 @@ and for $g = \infty$, we have [X, Y] = 0 and it becomes an eigenvalue problem.
 We considered this model using MC methods and show in Fig. \ref{fig:2MM_match} that the results 
 obtained are consistent with those obtained in \cite{Kazakov:2021lel}. 
 The MC results shown Fig.~\ref{fig:2MM_match} 
-were obtained for $N = 300$ in about \texttt{5000} seconds on a 2.4 GHz i5 A1989 Mac Pro. 
+were obtained for $N = 300$ in about \texttt{5500} seconds on a 2.4 GHz i5 A1989 Mac Pro. 
 We also show the eigenvalue distribution for this case in the left panel of Fig.~\ref{fig:2MM_match1}. 
 Though we don't give this specific code in the appendix of this article, it can be found at: 
 \begin{center} \texttt{\href{https://github.com/rgjha/MMMC}{https://github.com/rgjha/MMMC}} \end{center}
@@ -878,7 +878,7 @@ Though we don't give this specific code in the appendix of this article, it can 
 
 We now consider the case where $g=0$ and $h = h_{c}=-0.04965775$, the bootstrap results were not 
 very accurate because of slow convergence. We obtained MC results for this case 
-and obtain: $t_{2} = 1.1886(15)$ and $t_{4}=2.866(20)$ with $N=300$ after about 4-5 hours of run on the
+and obtain: $t_{2} = 1.1886(15)$ and $t_{4}=2.866(20)$ with $N=300$ after about 4-5 hours of run on a 
 laptop. We also explored $h < h_{c}$ and saw that the MC broke down and $t_{4}$ ran away to infinity. 
 We show the eigenvalue distribution for this case in the right panel of Fig.~\ref{fig:2MM_match1}. 
 
@@ -1121,8 +1121,8 @@ then we find:
 This is an exact result and is used to check the reliability of the simulations. 
 We show in Fig. \ref{fig:IKKT_2} that for $D=3,5,10$ we get the correct result and 
 hence the \PY~ code above can be fully trusted. The timings for generating 500 time units or trajectories 
-with $N=300$ is about \texttt{50000,2300,2000} seconds for $D = 10, 5, 3$ respectively on 2.4 GHz i5 A1989 Mac Pro. 
-The results are collected in Table~\ref{table:D_IKKT_data}. 
+with $N=300$ is about \texttt{50000,2300,2000} seconds for $D = 10, 5, 3$ respectively on 
+a 2.4 GHz i5 A1989 Mac Pro. The results are collected in Table~\ref{table:D_IKKT_data}. 
 \begin{table}[h!]
 	\centering
 	\begin{tabular}{||c c c||} 
@@ -1186,7 +1186,7 @@ One of the methods we discussed for the solution of
 large $N$ limit of matrix models was the saddle point approximation. 
 However, this method is not useful 
 to understand the terms subleading in $1/N$. The method 
-of orthogonal polynomials introduced by Bessis in Ref.~\cite{Bessis:1980ss} 
+of orthogonal polynomials introduced by Bessis et al. in Ref.~\cite{Bessis:1980ss} 
 is usually used for such computations. In fact, it is also very useful in 
 solving two matrix 
 models. These polynomials are defined as:
@@ -1348,11 +1348,10 @@ mentioned below.
 on average. If the acceptance rate is less than this, we
 must reduce the size of leapfrog integrator by reducing 
 $\texttt{dt}$ in the global definitions at the starting. Note that 
-reducing this time step makes the computation little more expensive. 
+reducing this time step makes the computation more expensive. 
 This time step needs to be modified accordingly if you want to explore values of $N$
-much more than $N = 300$ which we mostly use in these notes. The code will give a warning
-if the acceptance falls below $50\%$. The optimum acceptance for the integrator we use is 
-about $60\%$. 
+more than $N = 300$ which we mostly restrict to in these notes. The code will give a warning
+if the acceptance falls below $50\%$.  
 \item We must not change the step size during the entire time of simulation. It has to be 
 chosen to a value where acceptance is reasonable and then kept constant. If the acceptance
 doesn't improve eve after reducing the time step, it signals an error in the force term.
@@ -1384,8 +1383,11 @@ have enough computer time and want to do a systematic study, you should increase
 Though these codes have been checked several times over 
 and compared to known solutions (where available), it is possible 
 that there might still be minor bugs in them. If you encounter a problem or have questions, please contact the author. 
+
+
+%%%%%%%%%%%%%%%%%%%%
 \vspace{18mm}
-\section{\label{sec:1MMPYC}\PY~code for solution of one-matrix model}
+\section{\label{sec:1MMPYC}\PY~code for Hermitian one matrix model}
 We provide the code in this section to study the 1MM using the Monte Carlo method. By running the code given below
 on a modern laptop, we get the result shown in 
 Fig. \ref{fig:1MM_res}. We can readily extend this code (by changing $\texttt{NMAT}$) to study matrix models where the integration is over several different matrices. 

@@ -34,12 +34,12 @@ if Niters_sim%GAP != 0:
   print("'Niters_sim' mod 'GAP' is not zero ")
   sys.exit(1) 
 
-cut=int(0.25*Niters_sim) 
+cut = int(0.25*Niters_sim) 
 X = np.zeros((NMAT, NCOL, NCOL), dtype=complex)
 mom_X = np.zeros((NMAT, NCOL, NCOL), dtype=complex)
 f_X = np.zeros((NMAT, NCOL, NCOL), dtype=complex)
 X_bak = np.zeros((NMAT, NCOL, NCOL), dtype=complex)
-HAM, expDS, trX2, trX4, MOM = [], [], [], [], []
+HAM, expDH, trX2, trX4, MOM = [], [], [], [], []
 
 print ("Matrix integral simulation with %2.0f matrix"%(NMAT)) 
 print ("NCOL = " "%3.0f " ","  " and g = " " %4.2f" % (NCOL, g)) 
@@ -130,8 +130,8 @@ def leapfrog(X,dt):
             X[j] += mom_X[j] * dt
 
     f_X = force(X)
+
     for j in range(NMAT):
-        
         mom_X[j] -= f_X[j] * dt
         X[j] += mom_X[j] * dt * 0.5 
 
@@ -143,7 +143,7 @@ def update(X, acc_count):
     X_bak = copy_fields(X) 
     X, start, end = leapfrog(X, dt) 
     change = end - start  
-    expDS.append(np.exp(-1.0*change)) 
+    expDH.append(np.exp(-1.0*change)) 
     if np.exp(-change) < random.uniform(0,1):
         X = rejected_go_back_old_fields(X_bak)
         print(("REJECT: deltaH = " "%8.7f " " startH = " "%8.7f" " endH = " "%8.7f" % (change, start, end)))
@@ -192,10 +192,9 @@ if __name__ == '__main__':
     acc_count = 0.
 
     for MDTU in range (1, Niters_sim+1):
+
         X, acc_count = update(X, acc_count)
-
         if MDTU%10 == 0 and SAVE == 1:
-
             name_f = "config_1MM_N{}.npy".format(NCOL)
             print ("Saving configuration file: ", name_f)
             np.save(name_f, X)
@@ -213,7 +212,7 @@ if __name__ == '__main__':
     # Exact result for 1MM quartic with g = 1
     plt.figure(1)
     plot (MDTU, trX2, 'teal') 
-    print ("Fraction accepted", (acc_count/Niters_sim)*100) 
+    print ("Acceptance rate: ", (acc_count/Niters_sim)*100,"%") 
 
     if acc_count/Niters_sim < 0.50:
         print("WARNING: Acceptance rate is below 50%")
@@ -221,11 +220,8 @@ if __name__ == '__main__':
     if READIN == 0:
         trX2 = trX2[cut:]
         trX4 = trX4[cut:]
-        expDS = expDS[cut:] 
+        expDH = expDH[cut:] 
 
-    print("<Tr X^2 / NCOL>", np.mean(trX2), "+/-", (np.std(trX2)/np.sqrt(np.size(trX2) - 1.0)))
-    print("<Tr X^4 / NCOL>", np.mean(trX4), "+/-", (np.std(trX4)/np.sqrt(np.size(trX4) - 1.0)))
-    print("<exp(-deltaH)>", np.mean(expDS), "+/-", np.std(expDS)/np.sqrt(np.size(expDS) - 1.0))
     outname = "1MM_N%s_g%s" %(NCOL, g)
     plt.savefig(outname+'.pdf')
     print ("COMPLETED:" , datetime.datetime.now().strftime("%d %B %Y, %H:%M:%S"))
