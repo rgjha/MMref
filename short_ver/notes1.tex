@@ -401,7 +401,7 @@ Using (\ref{eq:sad_sol2}) in (\ref{eq:sad_sol1}) along with the famous Gaussian 
 
 \begin{mdframed}[backgroundcolor=blue!3] 
 	\textsc{} 
-	$\bullet$ Exercise 2: Find the terms which are of $\mathcal{O}(\alpha)$ in (\ref{eq:SP1}) by doing little more work and show that:
+	$\bullet$ Exercise 1: Find the terms which are of $\mathcal{O}(\alpha)$ in (\ref{eq:SP1}) by doing little more work and show that:
 	\begin{equation*}
 	I(\alpha) = \int_{-\infty}^{\infty} e^{-\frac{1}{\alpha}f(x)} ~dx = \sqrt{\frac{2\pi \alpha}{f^{\prime\prime}(x_{0})}} e^{-f(x_{0})/\alpha} \Bigg[1 + 
 	\Big[ \frac{5}{24} \frac{(f^{\prime\prime\prime})^2}{(f^{\prime\prime})^3} - \frac{3}{24} \frac{f^{\prime\prime\prime\prime}}{(f^{\prime\prime})^2}\Big] \alpha + \mathcal{O}(\alpha^{2})\Bigg]. 
@@ -422,7 +422,7 @@ determinant. If we vary one of the eigenvalues, it gives the saddle point equati
 	\label{eq:v_saddle}
 	\frac{2}{N} \sum_{j \neq i} \frac{1}{\lambda_i - \lambda_j} = V^{\prime}(\lambda_i).
 \end{equation}
-It is useful to introduce the density of eigenvalues as:
+It is useful to introduce the density of eigenvalues,
 \begin{equation}
 	\rho(\lambda) = \frac{1}{N} \sum_{i=1}^{N} \delta(\lambda - \lambda_i). 
 \end{equation}
@@ -430,46 +430,46 @@ In the limit of large $N$, we can write (\ref{eq:v_saddle})
 as:
 \begin{equation}
 	\label{eq:vprime}
-	V^{\prime}(\lambda) = 2 \fint_{b}^{a} d\mu \frac{\rho(\mu)}{\lambda - \mu} 
+	V^{\prime}(\lambda) = 2 \fint d\mu \frac{\rho(\mu)}{\lambda - \mu} 
 \end{equation}
 where by $\fint$ we meant the Cauchy principal value of the integral. For often deal with symmetric single-cut such that $b=-a$. We can write resolvent by noting that it is the Stieljes transform of the eigenvalue density as: 
 
 \begin{equation}
-	G(z) = 2 \fint_{-a}^{a} d\mu \frac{\rho(\mu)}{z - \mu}
+	G(z) = \fint d\mu \frac{\rho(\mu)}{\mu - z}
 \end{equation}
 which we can then write using Sokhotski-Plemelj theorem,
 %\footnote{This theorem is $\lim_{\epsilon \rightarrow0} 
 %\int_a^b\frac{f(x)}{x+i\epsilon}dx=-i\pi f(0)+ \text{PV}\int_a^b\frac{f(x)}{x}dx$, where PV is the principal value}):
 \begin{equation}
-	G(z \pm i \epsilon) = \fint_{-a}^{a} d\mu \frac{\rho(\mu)}{z - \mu} \mp i\pi \rho(z),  
+	G(z \pm i \epsilon) = \fint d\mu \frac{\rho(\mu)}{\mu - z} \mp i\pi \rho(z),  
 \end{equation}
-which is equivalent using \ref{eq:vprime} to: 
+and is equivalent using (\ref{eq:vprime}) to: 
 \begin{equation}
-	G(z \pm i \epsilon) = \frac{1}{2} V^{\prime}(z) \mp i\pi \rho(z).  
+	G(z \pm i \epsilon) = -\frac{1}{2} V^{\prime}(z) \mp i\pi \rho(z).  
 \end{equation}
-
-Once we find the resolvent, we can solve the model and find the moments. it is useful to mention here that we can use the useful closed expression for resolvent in terms of a contour integral (see for example (A.24) of \cite{Migdal:1983qrz})
+Once we find the resolvent, we can solve the model and find the moments through the eigenvalue density. 
+It is useful to mention here that we can use the useful closed expression for 
+resolvent in terms of a contour integral (see for example (A.24) of \cite{Migdal:1983qrz})
 as given by:
 \begin{equation}
-	G(x) = \int_{-a}^{a} \frac{1}{2\pi i} \frac{\sqrt{x^2-a^2}}{\sqrt{y^2-a^2}} N V^{\prime}(y) \frac{1}{x-y}, 
+	G(x) = \int_{-a}^{a} \frac{-1}{2\pi i} \frac{\sqrt{x^2-a^2}}{\sqrt{y^2-a^2}} N V^{\prime}(y) \frac{1}{x-y}, 
 \end{equation}
-for symmetric cuts and by,
+for symmetric `one-cut' solutions and by,
 \begin{equation}
-	G(x) = %\oint%
-	\int_{b}^{a} \frac{dy}{2\pi i} \sqrt{\frac{(x-a) (x-b)}{(y-a)(y-b)}}  N V^{\prime}(y) \frac{1}{x-y}, 
+	G(x) = \int_{b}^{a} \frac{-1}{2\pi i} \sqrt{\frac{(x-a) (x-b)}{(y-a)(y-b)}}  N V^{\prime}(y) \frac{1}{x-y} dy, 
 \end{equation}
-if the cut was instead $ C= [b,a]$. For the case of 1MM with quartic potential i.e., 
+if the cut was instead $[b,a]$. For the case of 1MM with quartic potential i.e., 
 $V(M) = M^2/2 + gM^4/4$, one obtains the exact result (for $g \ge -1/12$):
 \begin{equation}
 \label{eq:exact1MM} 
 t_{2} = \frac{(12 g+1)^{3/2}-18 g-1}{54 g^2}. 
 \end{equation}
-The \MA~ code to solve this model is given in the Appendix for the convenience of the reader. 
+The \MA~code to solve this model is given in Appendix~\ref{sec:math_code} for the convenience of the reader. 
 
 
 \begin{mdframed}[backgroundcolor=blue!3] 
 	\textsc{} 
-	$\bullet$ Exercise 3: Show that $\det(V) = \prod_{i<j} (\lambda_i - \lambda_j)$ where $V$ is given by: 
+	$\bullet$ Exercise 2: Show that $\det(V) = \prod_{i<j} (\lambda_i - \lambda_j)$ where $V$ is given by: 
 	\begin{equation*}
 		V = 
 		\begin{pmatrix}
@@ -484,17 +484,14 @@ The \MA~ code to solve this model is given in the Appendix for the convenience o
 
 \begin{mdframed}[backgroundcolor=blue!3] 
 	\textsc{} 
-	$\bullet$ Exercise 4: Derive the loop equations (aka Schwinger-Dyson equations) given below: \\ 
+	$\bullet$ Exercise 3: Derive the loop equations (aka Schwinger-Dyson equations) given below: \\ 
 	\begin{equation}
 		\label{eq:LE1} 
 		\Big< \mbox{Tr} M^{k} V^{\prime}(M) \Big> = \sum_{l=0}^{k-1} \langle \mbox{Tr} M^{l} \rangle  \langle \mbox{Tr} M^{k-l-1} \rangle
 	\end{equation} 
 \end{mdframed} 
 
-%\subsection{Cubic potential}
-
 \subsection{Open and closed $p$-matrix chain model}
-
 The general $p$-matrix model chain was first considered and solved (for open case) in 
 \cite{Chadha:1980ri}. We will not mention details of the analytical solution here but 
 instead show the results we obtain for both open and closed versions 
@@ -554,7 +551,7 @@ model simple to bootstrap since there is no growth of words (combination of matr
 since all non-zero $t_{n}$ can be related to $t_{2}$. 
 \begin{mdframed}[backgroundcolor=blue!3] 
 	\textsc{} 
-	$\bullet$ Exercise 5: Use loop equations and show that for the 1MM with quartic potential, it is possible to write $t_{4}, t_{6}, t_{8}$ in terms of $t_{2}$. Also, check this either using \MA~ or \PY~ [see Appendix for details]. 
+	$\bullet$ Exercise 4: Use loop equations and show that for the 1MM with quartic potential, it is possible to write $t_{4}, t_{6}, t_{8}$ in terms of $t_{2}$. Also, check this either using \MA~ or \PY~ [see Appendix for details]. 
 Repeat this exercise for cubic potential where higher moments can be written in terms of $t_1$.  
 \end{mdframed} 
 If we consider positive constraints that can be derived from $\langle \mbox{Tr}(\Phi^{\dagger}\Phi) \rangle \ge 0 $
@@ -656,11 +653,11 @@ and,
 \begin{equation}
 	p(Y) = \frac{1}{\sqrt{2\pi}} e^{-Y^2/2} 
 \end{equation}
-Since $X$ and $Y$ are independent sets, we can write:
+Since $X$ and $Y$ are independent, we can write:
 \begin{equation}
 	p(X,Y) = p(X) p(Y) = \frac{1}{2\pi} e^{-R^2/2} = p(R, \Theta) 
 \end{equation}
-where $R = X^2 + Y^2$. This allows us to make the identification given below:
+where $R = X^2 + Y^2$. This allows us to make the following identification:
 \begin{equation}
 	U = \frac{\Theta}{2\pi}, 
 \end{equation}
@@ -710,19 +707,22 @@ Using this idea we can easily prove important equality used to check various lat
 \end{itemize} 
     \begin{mdframed}[backgroundcolor=blue!3] 
     \textsc{} 
-    $\bullet$ Exercise 6: Show that a consequence of Liouville theorem is that $ \langle e^{-\Delta H(\boldsymbol{\cdot})} \rangle = 1$, where $\boldsymbol{\cdot}$ denotes fields and its conjugate momenta. Check this also holds in any given HMC simulation within errors if a symplectic integrator is used and we ignore proper data for thermalization cut.
+    $\bullet$ Exercise 5: Show that a consequence of Liouville theorem is that $ \langle e^{-\Delta H(\boldsymbol{\cdot})} \rangle = 1$, where $\boldsymbol{\cdot}$ denotes fields and its conjugate momenta. Check this also holds in any given HMC simulation within errors if a symplectic integrator is used and we ignore proper data for thermalization cut.
     \end{mdframed} 
 In the last step of HMC, a Metropolis test is carried out to accept or reject the proposed
 configuration. Suppose we start from the configuration $X$ of a one matrix model 
 which is a $N \times N$ matrix and carry out the leapfrog part with some parameters and obtain a new configuration 
 $X^{\prime}$. The test then computes \texttt{$\text{min.}(1, e^{-\Delta H})$} and generates 
-a uniform random number between $r \in [0,1]$. The new configuration is rejected if \texttt{$\text{min.}(1, e^{-\Delta H}) < r$} otherwise accepted. 
+a uniform random number between $r \in [0,1]$. The new configuration is 
+rejected if \texttt{$\text{min.}(1, e^{-\Delta H}) < r$} otherwise accepted. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Autocorrelation and jackknife errors} 
 
-It must be kept in mind that given a Markov chain, the new states (i.e., configurations) can be highly correlated to previous ones. In order to ascertain that the measurement of an observable $\langle \mathcal{O} \rangle$ is not affected by correlated configurations, it is essential for proper statistical analysis to know the extent to which they are correlated. In this regard, it is important to measure
+It must be kept in mind that given a Markov chain, the new states 
+(i.e., configurations) can be highly correlated to previous ones. 
+In order to ascertain that the measurement of an observable $\langle \mathcal{O} \rangle$ is not affected by correlated configurations, it is essential for proper statistical analysis to know the extent to which they are correlated. In this regard, it is important to measure
 the autocorrelation time $ \tau_{\rm{auto}}$ which measures the time it takes for two measurements to be considered independent of each other. So, if we generate $L$ configurations, then actually only $L/\tau_{\rm{auto}}$ are useful for computing averages.
 We define the autocorrelation function of observable $\mathcal{O}$ as:
  
@@ -787,9 +787,9 @@ codes to study another model of interest.
 
 \begin{mdframed}[backgroundcolor=blue!3] 
 	\textsc{} 
-	$\bullet$ Exercise 7:  Check that the one matrix model given in the appendix also reproduces the correct result for cubic potential 
-	i.e., $V(M) = M^2/2 + g_{3}M^3$.\\  %The result from bootstrap can be found in Ref. \cite{Kazakov:2021lel}. \\ 
-	\label{ex:7} 
+	$\bullet$ Exercise 6:  Check that the one matrix model given in the appendix also reproduces the correct result for cubic potential 
+	i.e., $V(M) = M^2/2 + g_{3}M^3$.\\  
+	\label{ex:6} 
 \end{mdframed} 
 
 Another interesting dimer matrix model closely related to the one matrix model was 
@@ -811,14 +811,13 @@ discussed above.
 % ax^2 + bx + c -> a(x-h)^2 + k 
 % where h = -b/2a and k = c - (b^2/4a)  
 \begin{mdframed}[backgroundcolor=blue!3]  
-	$\bullet$ Exercise 8: Check that (\ref{eq:Stau1}) follows from (\ref{eq:Stau0}) and modify the potential for the 1MM \PY~ code to study this model. 
+	$\bullet$ Exercise 7: Check that (\ref{eq:Stau1}) follows from (\ref{eq:Stau0}) and modify the potential for the 1MM \PY~ code to study this model. 
 \end{mdframed} 
 % P 706 book
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{\label{subsec:Hoppe}Hoppe-type matrix models}
 % Page 71 of his 1982 thesis. 
-
 We now turn our attention to matrix models with a commutator interaction term. 
 To our knowledge, this model 
 was first introduced by Hoppe \cite{Hoppe:1982en} and solved later by different methods in 
@@ -921,30 +920,28 @@ with the set of couplings considered in the work above and obtain fairly precise
 The results are shown in Fig.~\ref{fig:2MM_comp1}. It is expected that one would be able to
 produce entire set of solutions by starting MC from different initial value of matrices. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{\label{subsec:ext_Hoppe}Extension of Hoppe's model to $D$ matrices}
-
+\subsection{\label{subsec:ext_Hoppe}$D$ matrices models with mass term}
 After our discussion on models involving one or two matrices, we now turn to matrix models 
-with equal or more than three matrices. %Matrix model with $SO(D)$ invariance:
+with equal or more than three matrices. The model is defined as:
 \begin{equation}
 \label{eq:HoppeD} 
 	Z = \int \mathcal{D}X_1 \cdots \mathcal{D}X_D ~
-	\exp\Big[ -Nh\sum_{i}\mbox{Tr}X_{i}^{2} + \frac{N\lambda}{4} \sum_{i > j} \mbox{Tr} [X_i,X_j]^{2}\Big]
+	\exp\Big[ -Nh\sum_{i}\mbox{Tr}X_{i}^{2} + \frac{N\lambda}{4} \sum_{i < j} \mbox{Tr} [X_i,X_j]^{2}\Big]. 
 \end{equation}
 If we consider $X_i \mapsto (1+\epsilon) X_i$, it must leave $Z$ invariant, one arrives at the following exact relation: 
 \begin{equation}
 	D(N^2 -1) = 2 h \langle \mbox{Tr}X_{i}^{2} \rangle 
 	- N \lambda \langle \mbox{Tr}[X_i,X_j]^{2} \rangle. 
 \end{equation}
-This serves as a good check of the code and is satisfied to an accuracy of 
-$\sim 0.03 \%$ after ignoring the thermalization cut. 
-We studied this model using MC for $D=3,5$ with $h=1, \lambda=4$ and compute: 
-
+This serves as a check of the MC code and is satisfied to a very good accuracy
+after ignoring the thermalization cut. We studied this model for $D=3,5$ with 
+$h=1, \lambda=4$ and compute: 
 \begin{equation}
 \label{eq:R2R4} 
 	\langle R^2 \rangle =   \frac{1}{DN} \Bigg \langle \mbox{Tr} \sum_{i=1}^{D} X_{i}^2 \bigg \rangle, 
 	~~ \langle R^4 \rangle =   \frac{1}{DN} \Bigg \langle \mbox{Tr} \sum_{i=1}^{D} X_{i}^4 \bigg \rangle.  
 \end{equation}
-The results are collected in Table \ref{table:D_YMM_data}. 
+The results are given in Table \ref{table:D_YMM_data}. 
 
 \begin{table}[h!]
 	\centering
@@ -957,27 +954,25 @@ The results are collected in Table \ref{table:D_YMM_data}.
 		 \\ [1ex] 
 		\hline 
 	\end{tabular}
-\caption{The results obtained for $D = 3,5$ YM matrix models with mass terms are given for $\lambda=4, h=1$ with $N=300$.}
+\caption{The results obtained for $D = 3,5$ matrices models with mass terms are given for $\lambda=4, h=1$ with $N=300$.}
 \label{table:D_YMM_data}
 \end{table}
 Note that it is easy to get the sign of $\mathcal{O}(1/N)$ corrections using Monte Carlo methods.
 The simplest way is to do another set of simulation at $N = 100$ and see how $t_{2}$ and 
-$t_{4}$ change. It is an interesting problem (in practice, not in principle) 
-to understand how one can apply bootstrap methods away from the planar limit where 
-factorization does not hold any more.  
+$t_{4}$ change. It is an interesting problem (in practice) 
+to understand how one can apply bootstrap methods 
+away from the planar limit where factorization does not hold any more.
 \begin{mdframed}[backgroundcolor=blue!3] 
 	\textsc{} 
-	$\bullet$ Exercise 9: Study the model defined by (\ref{eq:HoppeD}) for $D=3$ by modifying the code given in the appendix for studying the Yang-Mills type model defined by (\ref{eq:CTmodel}). Check that you obtain results consistent
+	$\bullet$ Exercise 8: Study the model defined by (\ref{eq:HoppeD}) for $D=3$ by modifying the code given in the appendix for studying the Yang-Mills type model defined by (\ref{eq:CTmodel}). Check that you obtain results consistent
 	with that in Table \ref{table:D_YMM_data}.  
 \end{mdframed}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{\label{subsection:Mchain}Closed and open chain models with $p = 3, 4$}
-
-The matrix chain is a complicated $p$ matrix model which was first 
-considered in \cite{Chadha:1980ri}.
-The partition function is given by: 
+The matrix chain is a complicated $p$ matrices model which was first 
+considered in \cite{Chadha:1980ri}. The partition function is given by: 
 \begin{equation}
 	\label{eq:Mehta1} 
 	Z_{p}(g,c,\kappa) = \int \mathcal{D}M_{1} \cdots  \mathcal{D}M_{p} \exp \mbox{Tr} \Bigg(\sum_{i=1}^{p} -M_{i}^2  - g M_{i}^{4} + c \sum_{i=1}^{p-1} M_{i}M_{i+1} 
@@ -1044,7 +1039,7 @@ We refer to these models as ~`Yang-Mills' type models following Refs.~\cite{Krau
 and point the reader to these for more details. The action is given by: 
 \begin{equation}
 	\label{eq:CTmodel} 
-S = \frac{N}{4\lambda} \int \mbox{Tr} \Bigg( \sum_{i > j}[X_i, X_j]^{2}\Bigg) 
+S = \frac{N}{4\lambda} \int \mbox{Tr} \Bigg( \sum_{i < j}[X_i, X_j]^{2}\Bigg) 
 \end{equation}
 where $i, j = 1 \cdots D$. The MC code to solve this model is available at:
 \begin{center} \texttt{\href{https://github.com/rgjha/MMMC}{https://github.com/rgjha/MMMC}} \end{center}
@@ -1119,7 +1114,7 @@ then we find:
 
 \begin{mdframed}[backgroundcolor=blue!3] 
 	\textsc{} 
-	$\bullet$ Exercise 10: Derive (\ref{eq:SD_IKKT1}) by doing the change: $X_{\mu} \mapsto e^{\epsilon}X_{\mu}$ and ignoring 
+	$\bullet$ Exercise 9: Derive (\ref{eq:SD_IKKT1}) by doing the change: $X_{\mu} \mapsto e^{\epsilon}X_{\mu}$ and ignoring 
 	$\mathcal{O}(\epsilon^{2})$ terms.
 \end{mdframed}
 
@@ -1146,7 +1141,7 @@ The results are collected in Table~\ref{table:D_IKKT_data}.
 
 \begin{mdframed}[backgroundcolor=blue!3] 
 	\textsc{} 
-	$\bullet$ Exercise 11: Carry out the MC computation for the bosonic Yang-Mills type matrix model with $D=6$. After sufficient thermalization cut, check that the results for average action is consistent with exact result obtained using Schwinger-Dyson equations within errors. Refer to appendix for the \PY~ code and to perform jackknife error analysis with sufficiently large block size. Compute the ratio $\langle R^4 \rangle / \langle R^2 \rangle$ for fixed $\lambda=1$. 
+	$\bullet$ Exercise 10: Carry out the MC computation for the bosonic Yang-Mills type matrix model with $D=6$. After sufficient thermalization cut, check that the results for average action is consistent with exact result obtained using Schwinger-Dyson equations within errors. Refer to appendix for the \PY~ code and to perform jackknife error analysis with sufficiently large block size. Compute the ratio $\langle R^4 \rangle / \langle R^2 \rangle$ for fixed $\lambda=1$. 
 \end{mdframed} 
 
 
@@ -1162,7 +1157,7 @@ to carry out these numerical computations using the programs provided and will e
 
 \subsection*{Acknowledgements}
 The author is indebted to Pedro Vieira
-for discussions and for encouragement. 
+for discussions and encouragement. 
 We thank Vladimir Kazakov 
 and Zhechuang Zhang for email correspondence and for permission to use a 
 figure from their paper. The author is supported by a postdoctoral fellowship 
@@ -1178,6 +1173,9 @@ and the Department of Physics at Syracuse University for research and teaching
 assistantship during 2013-2019. 
 % Though I would also like to thank Sci Hub in acknowledgements, some might not like it! 
 %%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
 %%%% Appendices now %%%%
 %\newpage
 \vspace{16mm}
@@ -1206,14 +1204,13 @@ The basic idea is to rewrite the Vandermonde determinant appearing after we chan
 These polynomials can solve:
 \begin{equation}
 	\label{eq:mm_main}
-	\exp(Z) = \int dM \exp[-\mbox{Tr} V(M)] 
+	Z = \int dM \exp[-\mbox{Tr} V(M)] 
 \end{equation}
 In fact, it can be shown that \ref{eq:mm_main} is equivalent to:
 \begin{equation}
-	\exp(Z) = N! ~ a_{0}^{N} \prod_{k=1}^{N} f_{k}^{N-k}
+	Z = N! ~ a_{0}^{N} \prod_{k=1}^{N-1} f_{k}^{N-k}
 \end{equation}
-where $f_{k} := a_{k}/a_{k-1}$. 
-Hence, solving the matrix model is now equivalent to solving for the 
+where $f_{k} := a_{k}/a_{k-1}$. Hence, solving the matrix model is now equivalent to solving for the 
 normalization appearing in \ref{eq:ortho_nn}. As we have shown in Sec.~\ref{sec:MMAres}, 
 this method was used to solve the unitary 
 matrix model. In fact, this method was also used to study the Ising Model on a random graph as two-matrix model 
@@ -1265,7 +1262,9 @@ By turning the partition function in terms of eigenvalues, we get:
 	Z = \int dX dY \Delta(X) \Delta(Y)
 	 \exp \Big[-N \sum_{i} (x_{i}^2 + y_{i}^{2} +2c x_{i}y_{i} + 4ge^{h}x_{i}^{4} + 4ge^{-h}y_{i}^4) \Big]
 	\end{equation}
-It is now clear that we would need two polynomials $P_{k}(x)$ and $Q_{j}(y)$ for this case such that their determinant matches $\Delta(X)$ and $\Delta(Y)$ respectively. These polynomials satisfy the following orthonormal condition: 
+It is now clear that we would need two polynomials $P_{k}(x)$ and $Q_{j}(y)$ for this case 
+such that their determinant matches $\Delta(X)$ and $\Delta(Y)$ respectively. 
+These polynomials satisfy the following orthonormal condition: 
 \begin{equation}
 \int dx dy e^{-N V(x,y)} P_{k}(x) Q_{j}(y) = h_{k} \delta_{kj}
 \end{equation}
@@ -1275,7 +1274,8 @@ They also satisfy several recursion relations for which the interested reader ca
 \begin{equation}
 	Z = \int dX dY \det[P_{r}(x_k)] \det[Q_{r}(y_k)] \exp\Big[-N \sum V(X,Y)\Big]
 \end{equation}
-where we have denoted $\sum_{i} (x_{i}^2 + y_{i}^{2} +2c x_{i}y_{i} + 4ge^{h}x_{i}^{4} + 4ge^{-h}y_{i}^4)$ by $V(X,Y)$. Transforming to the eigenvalue basis of both matrices $X$ and $Y$ and using the expansion of the determinant we get:
+where we have denoted $\sum_{i} (x_{i}^2 + y_{i}^{2} +2c x_{i}y_{i} + 4ge^{h}x_{i}^{4} + 4ge^{-h}y_{i}^4)$ by $V(X,Y)$. 
+Transforming to the eigenvalue basis of both matrices $X$ and $Y$ and using the expansion of the determinant we get:
 
 \begin{align}
 	Z &= \epsilon^{i_1 \cdots i_N} \epsilon^{j_1 \cdots j_N} \int dx_{1 \cdots N}
@@ -1297,10 +1297,7 @@ One is usually interested in computing the quantity (the subscript `pc' denotes 
 	F_{pc} = \frac{1}{N^2} \log\Bigg( \frac{Z(c,g,h)}{Z(c,0,0)}\Bigg) = \frac{1}{N} \sum_{k=1}^{N-1} \left(1 - \frac{k}{N} \log \Big(\frac{f_k}{f_{k,0}}\Big)\right)
 \end{equation}
 
-
-
-
-\section{\MA~code for the solution of one-matrix model}
+\section{\label{sec:math_code}\MA~code for the solution of one-matrix model}
 We now give the details to solve the one matrix model in \MA. For this we consider the potential:
 \[ V(Y) = \frac{Y^2}{2} + \frac{gY^4}{4}.\]
 As we have shown in the text, for this case, the higher moments of the trace of $Y$ are related and hence we will just calculate $\mbox{Tr}~Y^2$ in the planar limit (normalized by $N$). We give the code below for computing $t_{2}$ with $g=1$. The reader is encouraged to try and change $g$ and see how the results change.
@@ -1330,8 +1327,6 @@ We provide programs which can deal with several different types of Hermitian mat
 	\item Two matrix Hoppe-type models: \texttt{\href{https://github.com/rgjha/MMMC}{https://github.com/rgjha/MMMC}}  
 	\item $p=3,4$ matrix chain models: \texttt{\href{https://github.com/rgjha/MMMC}{https://github.com/rgjha/MMMC}}
 	\item Yang-Mills type models: \texttt{\href{https://github.com/rgjha/MMMC}{https://github.com/rgjha/MMMC}}
-	%\item Yang-Mills type models with mass term for different $D$: This is Exercise 9 and hint on how to proceed 
-	%is given in Appendix~\ref{sec:solutions}.
 \end{enumerate}
 In addition to this, we also give codes for one matrix model and $D$ matrices Yang-Mills models in Appendix~\ref{sec:1MMPYC}, and \ref{sec:YMC} respectively.
 These codes can also be modified to other potentials as required. In general, only two routines need modifications. 
@@ -1389,7 +1384,6 @@ have enough computer time and want to do a systematic study, you should increase
 Though these codes have been checked several times over 
 and compared to known solutions (where available), it is possible 
 that there might still be minor bugs in them. If you encounter a problem or have questions, please contact the author. 
-%(which is real and bounded i.e., where the MC methods can be applied), 
 \vspace{18mm}
 \section{\label{sec:1MMPYC}\PY~code for solution of one-matrix model}
 We provide the code in this section to study the 1MM using the Monte Carlo method. By running the code given below
@@ -1445,7 +1439,7 @@ are same within errors. One can do the same for the block size.
 %%%%%%%% Some Exercise Solutions %%%%%%%%%%%%%
 \section{\label{sec:solutions}Solutions to selected Exercises} 
 
-\noindent $\bigstar$ Solution to Exercise :
+\noindent $\bigstar$ Solution to Exercise 2:
 \\ \\ 
 We now show that $\det(V) = \prod_{i<j} (\lambda_i - \lambda_j)$ where $V$ is: 
 \begin{equation*}
@@ -1503,8 +1497,7 @@ To define a Vandermonde matrix and compute determinant, we can execute following
 	\end{footnotesize} 
 \end{mdframed}
 
-
-\noindent $\bigstar$ Solution to Exercise \TODO{...} and additional comments: 
+\noindent $\bigstar$ Solution to Exercise 3 and additional comments: 
 \\ \\ 
 The basic idea of the loop equations of matrix models is to capture the invariance of the model under field redefinitions. This is also sometimes known as `Schwinger-Dyson (SD) equations'. One of the exercises in the main text was to derive these equations. Here, we will sketch a proof for the interested reader. We start by noting that the integral of the total derivative vanish and hence:
 
@@ -1537,41 +1530,7 @@ It is easy to derive `generalized loop equations' from here using the fact that 
 \end{equation}
  
 
-\noindent $\bigstar$ Solution to Exercise \TODO{...}: 
-\\ \\ 
-We consider $ X_{\mu} \to (1 + \epsilon) X_{\mu} + \mathcal{O}(\epsilon^2)$
-and $\mathcal{D}X \to (1 + \epsilon D (N^2-1))\mathcal{D}X$ with the path integral:
-
-\begin{equation}
-Z = \int \mathcal{D}X e^{-S} = \int \mathcal{D}X \exp\Big[-\frac{1}{4g^2} \mbox{Tr} [X_\mu,X_\nu]^2\Big]
-\end{equation}
-The transformation changes $Z$ by:
-\begin{equation}
-	Z = Z + \epsilon \Big\{ D(N^2 -1)Z - 4\langle S \rangle Z  \Big\} = Z ( 1 + \epsilon \Big\{ D(N^2 -1) - 4\langle S \rangle   \Big\})
-\end{equation}
-If we demand that $Z$ remains invariant, the term in the paranthesis should vanish and we get the desired result:
-
-\begin{equation}
-	\frac{D}{4} = \frac{\langle S \rangle}{N^2 - 1 }
-\end{equation}
-
-
-
-\noindent $\bigstar$ Executing following command in \MA~ will check that Wigner distribution is 
-observed. The deviation from the semi-circle distribution cane be seen for small 
-$n$. \footnote{Please see \texttt{https://www.wolfram.com/language/11/random-matrices} for more}.  
-
-\begin{mdframed}[backgroundcolor=magenta!3]
-	\begin{footnotesize} 
-		\verb"n = 1000;"\\ 
-		\verb"scaledSpectrum=Flatten[RandomVariate[scaledSpectrum\[ScriptCapitalD][n], 100]];"\\
-		\verb"Show[Histogram[scaledSpectrum, {0.05}, PDF, ChartStyle -> LightOrange], "  \\ 
-		\verb"Plot[PDF[WignerSemicircleDistribution[1], x],{x, -1.5, 1.5}, PlotLegends -> None, " \\
-		\verb"PlotStyle -> ColorData[27, 1]], ImageSize -> Medium]"
-	\end{footnotesize} 
-\end{mdframed}
-
-\noindent $\bigstar$ Solution to Exercise \TODO{XXX}:
+\noindent $\bigstar$ Solution to Exercise 4:
 \\ \\ Considering (\ref{eq:LE1}) with $k=1$ and quartic potential, we get: 
     \begin{equation}
     \Big< \mathrm{Tr}\Big(M^{2} + g M^{4}\Big) \Big> = 1 
@@ -1603,8 +1562,8 @@ Dividing (\ref{eq:ps1}) by $Z$ we get,
 	\langle e^{H-H^{\prime}} \rangle = 	\langle e^{-\Delta H} \rangle = 1
 \end{equation}
 
-\noindent $\bigstar$ Solution to Exercise XX:
-\\  
+\noindent $\bigstar$ Solution to Exercise 8:
+\\  \\ 
 We need to modify the potential and the corresponding forces as discussed in Appendix~\ref{sec:BEOC}. In addition to the \verb"def potential(X)" 
 and \verb"def force(X)"given in Appendix E, we add the following lines 
 
@@ -1619,10 +1578,44 @@ and \verb"def force(X)"given in Appendix E, we add the following lines
 \noindent
 \verb"def force(X):" \\ 
 \tab	\verb"for i in range (NSCALAR):"  \\ 
-       \tab  \tab 	\verb"f_X[i] += 2.0 * h * NCOL*X[i] "  
-
+       \tab  \tab 	\verb"f_X[i] += 2.0 * h * NCOL*X[i] " 
 \end{mdframed}
-\end{footnotesize}
+\end{footnotesize} 
+
+\noindent $\bigstar$ Solution to Exercise 9: 
+\\ \\ 
+We consider $ X_{\mu} \to (1 + \epsilon) X_{\mu} + \mathcal{O}(\epsilon^2)$
+and $\mathcal{D}X \to (1 + \epsilon D (N^2-1))\mathcal{D}X$ with the path integral:
+
+\begin{equation}
+	Z = \int \mathcal{D}X e^{-S} = \int \mathcal{D}X \exp\Big[-\frac{1}{4g^2} \mbox{Tr} [X_\mu,X_\nu]^2\Big]
+\end{equation}
+The transformation changes $Z$ by:
+\begin{equation}
+	Z = Z + \epsilon \Big\{ D(N^2 -1)Z - 4\langle S \rangle Z  \Big\} = Z ( 1 + \epsilon \Big\{ D(N^2 -1) - 4\langle S \rangle   \Big\})
+\end{equation}
+If we demand that $Z$ remains invariant, the term in the paranthesis should vanish and we get the desired result:
+
+\begin{equation}
+	\frac{D}{4} = \frac{\langle S \rangle}{N^2 - 1 }
+\end{equation}  
+       
+\noindent $\bigstar$ Solution to the Exercise in a footnote:
+\\  \\
+Executing following command in \MA~ will check that Wigner distribution is 
+observed. The deviation from the semi-circle distribution cane be seen for small 
+$n$. \footnote{Please see \texttt{https://www.wolfram.com/language/11/random-matrices} for more}.  
+
+\begin{mdframed}[backgroundcolor=magenta!3]
+	\begin{footnotesize} 
+		\verb"n = 1000;"\\ 
+		\verb"scaledSpectrum=Flatten[RandomVariate[scaledSpectrum\[ScriptCapitalD][n], 100]];"\\
+		\verb"Show[Histogram[scaledSpectrum, {0.05}, PDF, ChartStyle -> LightOrange], "  \\ 
+		\verb"Plot[PDF[WignerSemicircleDistribution[1], x],{x, -1.5, 1.5}, PlotLegends -> None, " \\
+		\verb"PlotStyle -> ColorData[27, 1]], ImageSize -> Medium]"
+	\end{footnotesize} 
+\end{mdframed} 
+
 \bibliographystyle{utphys}
 \bibliography{notes1}
 \end{document}
