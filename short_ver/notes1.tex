@@ -268,8 +268,7 @@ We show the three distributions using \MA~ in Fig. \ref{fig:ensem1}.
 
 It was later concluded that much to Wigner's own surprise, 
 his guess was fairly accurate as shown and improved by Mehta \cite{MEHTA1960395} and 
-Gaudin \cite{GAUDIN1961447}. Apart from its extensive use in Physics, it is now clear that 
-the field of random matrix theory is intimately related to number theory 
+Gaudin \cite{GAUDIN1961447}. Apart from its extensive use in Physics, the field of random matrix theory is intimately related to areas of Mathematics like number theory 
 (especially the pair correlation of the zeros of the Riemann-zeta function) and this was 
 observed by Montgomery and Dyson in the 1970s. Some still believe that any future proof of the
 Riemann hypothesis lies in the
@@ -279,25 +278,19 @@ might be the eigenvalues of some unknown Hermitian `operator'. It is another thi
 no one yet knows such an operator! We refer the reader to the excellent books 
 \cite{Meh2004, Akemann:2011csh} for introductions to the field of random matrix theory. 
 
-The major development in the study of quantum field theories with matrix degrees of freedom
-started with the work of 't~Hooft in 1974 on large $N$ limit of gauge theories. 
-By then, it was almost clear that the correct theory of 
-strong interactions was QCD where we have matrix degrees of freedom for gauge fields
-based on $SU(3)$ gauge group. `t Hooft proposed to consider a general $SU(N)$ 
-symmetry with large $N$ and he showed that in such a limit only planar diagrams 
-survive and calculations become more tractable. In fact, this large $N$ limit was later 
-understood to be closely related to some description of string theory. This work brought together the idea of random matrix models
-in the asymptotic limit (large matrices) to mainstream Physics and is extremely fruitful till date. 
+The major development in the study of quantum field theories with matrix degrees of freedom satisfyig some well-defined properties started with the work of 't~Hooft in 1974 on the large $N$ limit of gauge theories. By then, it was mostly accepted that the correct theory of 
+strong interactions was QCD where we there are matrix degrees of freedom for gauge fields based on $SU(3)$ gauge group. `t Hooft proposed to consider a general $SU(N)$ 
+symmetry with large $N$ and he showed that in such a limit only planar diagrams survive and calculations become more tractable and the effects in QCD can be explained as $1/M$ expansion. In fact, this large $N$ limit was later 
+understood to be closely related to some description of string theory. This work brought together the idea of random matrix models in the asymptotic limit (large matrices) to mainstream Physics and is extremely fruitful till date. 
 This also enabled us to study several interesting features of quantum gravity 
 from a field theoretic point of view through the famous AdS/CFT conjecture.
 There are some excellent reviews about random matrix theory, matrix integrals/models, large $N$ limit 
 and their formal aspects. We refer the reader to two excellent reviews written more than two decades 
-apart \cite{DiFrancesco:1993cyw,Eynard:2015aea} for detailed discussions. 
+apart \cite{DiFrancesco:1993cyw,Eynard:2015aea} for detailed discussions. \\
 
-The goal of this article is to introduce the numerical solutions of matrix models using 
-Monte Carlo (MC) methods and implement them to solve several multi-matrix 
-models where no other analytical/numerical treatment is possible. 
-The motivation for this work is partly from the recent progress in the numerical bootstrap program to 
+
+The goal of this article is to introduce the numerical solutions of matrix models using Monte Carlo (MC) methods and implement them to solve several multi-matrix 
+models where no other analytical/numerical treatment is possible in the large $M$ limit. The motivation for this work is partly from the recent progress in the numerical bootstrap program to 
 solve matrix models and we hope that these notes with the \PY~ codes will supplement
 those explorations and serve as a cross-check of the results. All the codes in these notes can be accessed at:  
 \begin{center} \texttt{\href{https://github.com/rgjha/MMMC}{https://github.com/rgjha/MMMC}} \end{center}
@@ -320,10 +313,10 @@ In these cases, one evaluates integrals of the form:
 \begin{equation}
 Z = \int dM_{i} \cdots dM_{j} \exp\Bigg[-N \mathrm{Tr} \sum V(M_{i})\Bigg] 
 \end{equation}
-where $M^{i}$ are $N \times N$ complex matrices which can either be hermitian or unitary.  
+where $M_{i}$ are $N \times N$ complex matrices which can either be hermitian or unitary.  
 In the study of zero-dimensional gauge theories, we encounter these types of matrix models 
 where the integral is over the Haar measure. These models often have interesting features in the 
-large $N$ limit. 
+large $N$ limit. In following subsections, we discuss two matrix models and mention two different methods in which they both can be respectively solved.
 
 \subsection{One-matrix model with cubic and quartic potentials - Saddle point analysis}
 Before we delve into the details of how to solve the one matrix model using the 
@@ -1305,10 +1298,10 @@ We provide programs which can deal with several different types of Hermitian mat
 \begin{center} \texttt{\href{https://github.com/rgjha/MMMC\#readme}{https://github.com/rgjha/MMMC}} \end{center}
  The list of all programs are summarized below:
 \begin{enumerate}
-	\item One matrix model: \texttt{\href{https://github.com/rgjha/MMMC}{https://github.com/rgjha/MMMC}}
-	\item Two matrix Hoppe-type models: \texttt{\href{https://github.com/rgjha/MMMC}{https://github.com/rgjha/MMMC}}  
-	\item $p=3,4$ matrix chain models: \texttt{\href{https://github.com/rgjha/MMMC}{https://github.com/rgjha/MMMC}}
-	\item Yang-Mills type models: \texttt{\href{https://github.com/rgjha/MMMC}{https://github.com/rgjha/MMMC}}
+	\item One matrix model: \texttt{\href{https://github.com/rgjha/MMMC/1MM.py}{https://github.com/rgjha/MMMC/1MM.py}}
+	\item Two matrix Hoppe-type models: \texttt{\href{https://github.com/rgjha/MMMC/2MM.py}{https://github.com/rgjha/MMMC/2MM.py}}  
+	\item $p=3,4$ matrix chain models: \texttt{\href{https://github.com/rgjha/MMMC/MMC_3_4.py}{https://github.com/rgjha/MMMC/MMC\_3\_4.py}}
+	\item Yang-Mills type models: \texttt{\href{https://github.com/rgjha/MMMC/YM_type.py}{https://github.com/rgjha/MMMC/YM\_type.py}}
 \end{enumerate}
 In addition to this, we also give codes for one matrix model and $D$ matrices Yang-Mills models in Appendix~\ref{sec:1MMPYC}, and \ref{sec:YMC} respectively.
 These codes can also be modified to other potentials as required. In general, only two routines need modifications. 
