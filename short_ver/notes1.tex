@@ -40,7 +40,11 @@ innerrightmargin=4pt,innertopmargin=2pt,innerbottommargin=4pt]{mybox}
 \usepackage{draftwatermark}
 \newcommand{\TODO}[1]{\textcolor{red}{{\bf #1}}}
 \newcommand{\Tr}[1]{\ensuremath{\text{Tr}\left[ #1 \right]} }
-\renewcommand{\baselinestretch}{1.18}	
+
+
+\renewcommand{\baselinestretch}{1.25}	
+
+
 \newcommand{\MA}{\textsc{Mathematica}} 
 \newcommand{\PY}{\textsc{Python}}
 \newcommand\tab[1][1cm]{\hspace*{#1}}
@@ -146,8 +150,8 @@ The models involving matrices play an important role in
 Physics ranging from nuclear 
 physics to the study of random surfaces, conformal field theories, 
 integrable systems, two-dimensional quantum gravity, 
-and non-perturbative descriptions of M-theory. In these notes, 
-we consider a wide variety of multi-matrix models and study them 
+and non-perturbative descriptions of M-theory. 
+In this work, we consider a wide variety of multi-matrix models and study them 
 using Monte Carlo methods in the large $N$ limit. The agreement with 
 exact analytical results and recent bootstrap results are shown
 and results for some unsolved models are provided
@@ -310,68 +314,16 @@ and bootstrap can serve as a useful guide to solve matrix models.
 
 
 \section{\label{sec:MMAres}Matrix models - Analytical results} 
-\subsection{One-plaquette model - Orthogonal Polynomials} 
-In these matrix models, one often needs to evaluate integrals of the form:
+Matrix models (or matrix integrals) are the simplest of models in Physics 
+defined with integration over matrices in zero dimensions. 
+In these cases, one evaluates integrals of the form:
 \begin{equation}
-Z = \int \exp\Bigg[  -\mathrm{Tr} \sum V(M_{i})  -  \mathrm{Tr} \sum c_{ij}M_{i}M_{j}   \Bigg] dM_{i} dM_{j}
+Z = \int dM_{i} \cdots dM_{j} \exp\Bigg[-N \mathrm{Tr} \sum V(M_{i})\Bigg] 
 \end{equation}
-where $M^{i}$ are $N \times N$ complex Hermitian matrices. 
-In the study of zero-dimensional gauge theories, we encounter these types of matrix models where the integral is over the Haar measure. These models often have interesting features in the large $N$ limit.
-For ex:, in QCD, the gauge fields are elements of SU(3) group and 
-hence they are well-described in some cases by unitary matrix models. 
-A general model is given by:
-\begin{equation}
-	Z = \int \exp\Bigg[  -\mbox{Tr} \sum V(U_{i})  -  \mbox{Tr} \sum c_{ij}U_{i}U_{j}   \Bigg] dU_{i} dU_{j}
-\end{equation}
-where $U^{i}$ are $N \times N$ unitary matrices. 
-One of the well-known examples is the unitary matrix model first considered by Gross, Witten, and Wadia (GWW) around 1979. This is often known as one-plaquette matrix model. This unitary matrix model has deep connections to string theory in the so called `double-scaling limit' (DSL) where $N \to \infty$ and $\lambda \to \lambda_{c}$ simultaneously. The requirement of this double scaling can be understood as follows: If we merely take $N \to \infty$ then we get genus zero surfaces in the expansion of the free energy. However, this would prohibit string interaction since they would imply a change of genus which is not possible in that limit. In taking DSL, this problem is resolved and topological information is maintained. This model is given by : 
-
-\begin{equation}
-	Z = \int \exp \Big[- \mbox{Tr} (U + U^{\dagger})   \Big] dU
-\end{equation}
-This model admits exact solution for all $N$ and $\lambda$ in terms of determinant of a Toeplitz matrix. However, it is not very useful and hence this model has been studied by saddle-point methods and orthogonal polynomials (OP). We will sketch the solution using OP 
-closely following \cite{Goldschmidt:1979hq}. 
-Following the discussion in the Appendix, we define the polynomial:
-\begin{equation}
-	P_{j}(x) = \sum_{k=0}^{j-1} b_{k} x^{k} + x^{j}. 
-\end{equation} 
-We have to choose polynomials that are orthonormal with respect to the measure which in this case is:
-\begin{equation}
-	\rho(\theta) = \exp\Big[\frac{2N}{\lambda} \cos \theta \Big],
-\end{equation}
-and this results in:
-\begin{equation}
-	\int_{-\pi}^{\pi} \rho(\theta) P_{m}(e^{i\theta}) P_{n}^{*}(e^{i\theta}) = a_{m} \delta_{mn}
-\end{equation}
-Denoting $\kappa = 2N/\lambda$ then we have, 
-
-\begin{equation}
-	I_{n}(\kappa) = I_{-n}(\kappa) = \int_{-\pi}^{\pi} \rho(\theta) e^{i n \theta} 
-\end{equation}
-and the polynomials defined above are given by:
-
-\begin{equation}
-	P_{n}(z) = \det
-	\begin{pmatrix}
-		I_0 & I_1 & \cdots & I_n \\
-		I_1 & I_0 & \cdots & I_{n-1} \\
-		\vdots  & \vdots  & \ddots & \vdots  \\
-		1 & z & \cdots & z^n 
-			\end{pmatrix}
-		 \frac{1}{\det [I_{i-j}]_{i,j = 1 \cdots N}}
-\end{equation}
-We note that the coefficients of $P_{n}(z)$ are real and hence $P_{n}^{*}(e^{i\theta}) = P_{n}(e^{-i\theta})$. It is also starightforward by expanding the determinant to see that: $a_{n} = c_{n+1}/c_{n}$ where $c_{N} = \det [I_{i-j}]_{i,j = 1 \cdots n}$ is the Toeplitz determinant. In fact, it is easy to show that for U($N$) model:
-\begin{equation}
-\label{eq:GWW_ex} 
-Z = \det \Big[I_{i-j}(\kappa) \Big].
-\end{equation}
-The result is true for all $\lambda$ and $N$. If we impose additional constraint of 
-$U$ belonging to $SU(N)$ rather than $U(N)$, then for finite $N$, it is easy to show that
-it becomes:
-\begin{equation}
-\label{eq:GWW_ex} 
-Z = \sum_{k=-\infty}^{\infty} \det \Big[I_{i-j+k}(\kappa) \Big].
-\end{equation}
+where $M^{i}$ are $N \times N$ complex matrices which can either be hermitian or unitary.  
+In the study of zero-dimensional gauge theories, we encounter these types of matrix models 
+where the integral is over the Haar measure. These models often have interesting features in the 
+large $N$ limit. 
 
 \subsection{One-matrix model with cubic and quartic potentials - Saddle point analysis}
 Before we delve into the details of how to solve the one matrix model using the 
@@ -413,7 +365,7 @@ The one matrix hermitian model using the saddle point method was famously solved
 This model is solved using the method of resolvent
 and we will briefly sketch the solution described below:
 \begin{align}
-	Z &= \int dM \exp\Big[-\frac{N}{g} \mbox{Tr} V(M)\Big] \\
+	Z &= \int dM \exp\Big[-N~\mbox{Tr} V(M)\Big] \\
 	& = \int \prod d\lambda_{i} \Delta^2(\lambda)  e^{-N \sum V(\lambda_i)} 
 \end{align}
 where $\Delta(\lambda) = \prod_{i > j} (\lambda_i - \lambda_j) = \exp\Big[\sum_{i>j} \log |\lambda_{i} - \lambda_{j}|\Big]$ is the Vandermonde 
@@ -489,33 +441,82 @@ The \MA~code to solve this model is given in Appendix~\ref{sec:math_code} for th
 		\label{eq:LE1} 
 		\Big< \mbox{Tr} M^{k} V^{\prime}(M) \Big> = \sum_{l=0}^{k-1} \langle \mbox{Tr} M^{l} \rangle  \langle \mbox{Tr} M^{k-l-1} \rangle
 	\end{equation} 
-\end{mdframed} 
+\end{mdframed}
 
-\subsection{Open and closed $p$-matrix chain model}
-The general $p$-matrix model chain was first considered and solved (for open case) in 
-\cite{Chadha:1980ri}. We will not mention details of the analytical solution here but 
-instead show the results we obtain for both open and closed versions 
-from numerics later in Fig. \ref{fig:3MM_open}
-of Sec~\ref{subsection:Mchain}. 
-This model was also studied in context 
-of $q$-state Potts model in 
-Refs.~\cite{KAZAKOV198893, KOSTOV1989295, Daul:1994qy}.
-This model is defined as: 
+\subsection{One-plaquette unitary model - Orthogonal polynomials} 
+
+The origin of large $N$ limit of gauge theories was motivated by the hope of understanding 
+the accepted theory of strong interactions (QCD). 
+In the subsequent years, ~t~Hooft solved two-dimensional model of mesons in large $N$ 
+limit. One of the first known examples of a unitary matrix model which was 
+relevant to lattice gauge theory (and to QCD) 
+was considered by Gross, Witten, and Wadia (GWW) around 1979 \TODO{cite}.
+This is often known as one-plaquette matrix model and describes the 
+gauge part of large $N$ of the two-dimensional Yang-Mills theory (also sometimes called $\rm{QCD}_{2}$).
+This model also has deep connections to string theory in the so called 
+`double-scaling limit' (DSL) where $N \to \infty$ and $\lambda \to \lambda_{c}$ simultaneously. 
+The requirement of this double scaling can be understood as follows: 
+If we merely take $N \to \infty$ then we get genus zero surfaces in the 
+expansion of the free energy. However, this would prohibit string interaction 
+since they would imply a change of genus which is not possible in that limit. 
+In taking DSL, this problem is resolved and topological information is maintained. 
+It is given by the partition function: 
 \begin{equation}
-\label{eq:Mehta1} 
-Z_{p}(g,c,\kappa) = \int \mathcal{D}M_{1} \cdots  \mathcal{D}M_{p} \exp \mathrm{Tr}\Bigg(\sum_{i=1}^{p} -M_{i}^2  - g M_{i}^{4} + c \sum_{i=1}^{p-1} M_{i}M_{i+1} 
-+ \kappa M_{p}M_{1} \Bigg).
+	Z = \int \exp \Big[- \mbox{Tr} (U + U^{\dagger})   \Big] dU. 
+\end{equation}
+This model admits exact solution for all $N$ and $\lambda$ in terms of determinant of a 
+Toeplitz matrix. However, it is not very useful and hence this model has been studied by 
+saddle-point methods and orthogonal polynomials (OP). We will sketch the solution using OP 
+closely following \cite{Goldschmidt:1979hq}. 
+Following the discussion in the Appendix~\ref{sec:Ortho_pol1}, we define the polynomial:
+\begin{equation}
+	P_{j}(x) = \sum_{k=0}^{j-1} b_{k} x^{k} + x^{j}. 
 \end{equation} 
+We have to choose polynomials that are orthonormal with respect to the measure which in this case is:
+\begin{equation}
+	\rho(\theta) = \exp\Big[\frac{2N}{\lambda} \cos \theta \Big],
+\end{equation}
+and this results in:
+\begin{equation}
+	\int_{-\pi}^{\pi} \rho(\theta) P_{m}(e^{i\theta}) P_{n}^{*}(e^{i\theta}) = a_{m} \delta_{mn}
+\end{equation}
+If we define $\kappa = 2N/\lambda$, then we have for the representation in terms of 
+Bessel functions as, 
 
-There are many other interesting matrix models which can be solved analytically
+\begin{equation}
+	I_{n}(\kappa) = I_{-n}(\kappa) = \int_{-\pi}^{\pi} \rho(\theta) e^{i n \theta}, 
+\end{equation}
+and the polynomials defined above becomes:
+\begin{equation}
+	P_{n}(z) = \det
+	\begin{pmatrix}
+		I_0 & I_1 & \cdots & I_n \\
+		I_1 & I_0 & \cdots & I_{n-1} \\
+		\vdots  & \vdots  & \ddots & \vdots  \\
+		1 & z & \cdots & z^n 
+			\end{pmatrix}
+		 \frac{1}{\det [I_{i-j} (\kappa)]_{i,j = 1 \cdots N}}
+\end{equation}.
+We note that the coefficients of $P_{n}(z)$ are real and hence $P_{n}^{*}(e^{i\theta}) = P_{n}(e^{-i\theta})$. It is also starightforward by expanding the determinant to see that: $a_{n} = c_{n+1}/c_{n}$ where $c_{n} = \det [I_{i-j}(\kappa)]_{i,j = 1 \cdots n}$ is the Toeplitz determinant. 
+In fact, it is easy to show that for this U($N$) model, $Z$ is just $c_{n}$ (i.e., only single coefficient remains in (\ref{eq:ZOP})) and we get, 
+\begin{equation}
+\label{eq:GWW_ex} 
+Z = \det \Big[I_{i-j}(\kappa) \Big].
+\end{equation}
+The result is true for all $\lambda$ and $N$. If we impose additional constraint of 
+$U$ belonging to the $SU(N)$ rather than $U(N)$ group, it is easy to show that
+it becomes:
+\begin{equation}
+\label{eq:GWW_ex} 
+Z = \sum_{k=-\infty}^{\infty} \det \Big[I_{i-j+k}(\kappa) \Big].
+\end{equation}
+%\subsection{Open and closed $p$-matrix chain model}
+In addition to this model, there are many other interesting matrix models which can be solved analytically
 and are physically relevant which we will not discuss here. 
-One such model is the external field problem
-which was considered in \cite{Brezin:1980rk}. In this paper, a matrix 
-model of unitary links was solved with an external field in the large $N$ limit and found to
-have a third-order phase transition. These models are relevant for several problems in lattice gauge theory. 
-This model reduces to the GWW model (we discussed using orthogonal polynomials previously) 
-if the external source is set to unit matrix. 
+One such model is the external field problem which was considered in \cite{Brezin:1980rk}. In this paper, a matrix 
+model of unitary links was solved with an external field in the large $N$ limit and found to have a third-order phase transition. These models are relevant for several problems in lattice gauge theory. This model reduces to the GWW model when the external source is set to unit matrix. These developments in large $N$ $\rm{QCD}_{2}$ models also lead after few years to the idea of volume reduction in large $M$ limit known as Eguchi-Kawai volume reduction \cite{Eguchi:1982nm}. They showed that in planar limit, the lattice gauge theory for an infinite lattice and unit cube are identical. The space-time seems incorporated in the large $N$ limit as an internal degree of freedom. There are some subtlety involved but this has lead to interesting work, see Ref.~\cite{Kovtun:2007py} for instance. 
 
+%\vspace{20mm}  
 \section{\label{sec:NSOL}Numerical solutions} 
 There is only a selected list of analytically solvable matrix models in the planar limit. This inevitably brings 
 the thought of attempting numerical solutions. Unfortunately, even here, there are not many methods 
@@ -546,7 +547,7 @@ by $\mathcal{M}$. For the case of one matrix model (1MM) with a potential $V(X)$
     V(X) = \frac12 X^2 + \frac{g}{4} X^4, 
 \end{equation}
 the odd moments of X vanishes i.e., $ t_{n} = (1/N)\mbox{Tr} X^n = 0$ for odd $n$
-while the even moments (of order greater than two) are all related to $t_{2} = \mbox{Tr} X^2/N$. This renders the 
+while the even moments (of order greater than two) are all related to $t_{2}$. This renders the 
 model simple to bootstrap since there is no growth of words (combination of matrix or matrices!)
 since all non-zero $t_{n}$ can be related to $t_{2}$. 
 \begin{mdframed}[backgroundcolor=blue!3] 
@@ -630,8 +631,7 @@ and molecular dynamics (MD) methods.
 For a detailed review about HMC and its extension to rational 
 HMC which is required for fermions, the interested readers 
 can consult the Refs. \cite{Hanada:2018fnp,Joseph:2019zer}. 
-The two basic parts of HMC are -  
-a) Use of integrator to evolve and propose a new configuration, b) accept or reject
+The two basic parts of HMC are, a) Use of integrator to evolve and propose a new configuration, b) accept or reject
 the proposed configuration. But before we discuss HMC, 
 it is important to see how we generate random momentum 
 matrices for the leapfrog algorithm 
@@ -707,7 +707,7 @@ Using this idea we can easily prove important equality used to check various lat
 \end{itemize} 
     \begin{mdframed}[backgroundcolor=blue!3] 
     \textsc{} 
-    $\bullet$ Exercise 5: Show that a consequence of Liouville theorem is that $ \langle e^{-\Delta H(\boldsymbol{\cdot})} \rangle = 1$, where $\boldsymbol{\cdot}$ denotes fields and its conjugate momenta. Check this also holds in any given HMC simulation within errors if a symplectic integrator is used and we ignore proper data for thermalization cut.
+    $\bullet$ Exercise 5: Show that a consequence of Liouville theorem is that $ \langle e^{-\Delta H(\boldsymbol{\cdot})} \rangle = 1$, where $\boldsymbol{\cdot}$ denote fields. Check this also holds in any given HMC simulation within errors if a symplectic integrator is used and we ignore proper data for thermalization cut.
     \end{mdframed} 
 In the last step of HMC, a Metropolis test is carried out to accept or reject the proposed
 configuration. Suppose we start from the configuration $X$ of a one matrix model 
@@ -728,17 +728,17 @@ We define the autocorrelation function of observable $\mathcal{O}$ as:
  
  \begin{equation}
  	C(t) = \frac{\langle \mathcal{O}(t_0) \mathcal{O}(t_0 + t) \rangle - \langle \mathcal{O}(t_0)\rangle \langle \mathcal{O}(t_0 + t) \rangle}{\langle \mathcal{O}^2(t_0)\rangle - \langle \mathcal{O}(t_0)\rangle^{2}}
- \end{equation}
+ \end{equation}.
 The behaviour of $C(t)$ is $\sim \exp(-t/\tau_{\rm{auto}})$ as $ t \to \infty$. This is called exponential autocorrelation time. We can also compute something which is called `integrated autocorrelation time' defined as:
 \begin{equation}
 	\tau_{\rm{auto}}^{\rm{int.}} = \frac{\sum_{t=1}^{\infty} \langle \mathcal{O}(t_0) \mathcal{O}(t_0 + t) \rangle - \langle \mathcal{O} \rangle^2 }{\langle \mathcal{O}^2\rangle - \langle \mathcal{O}\rangle^{2}}
-\end{equation}
+\end{equation}.
 We can write this in terms of a sum over autocorrelation function as: $\tau_{\rm{auto}}^{\rm{int.}} = 1 + \sum_{t=1}^{N} C(t)$. In general, $ \tau_{\rm{auto}}$ increases with system size, close to the critical point. One 
 can express the statistical error in the average of $\mathcal{O}$ denoted 
 by $\delta \mathcal{O}$ is given in terms of variance and integrated autocorrelation time as:
 
 \begin{equation}
-	\delta \mathcal{O} = \frac{\sigma}{\sqrt{N}} \sqrt{2 \tau_{\rm{auto}}^{\rm{int.}}}
+	\delta \mathcal{O} = \sigma \sqrt{\frac{2 \tau_{\rm{auto}}^{\rm{int.}}}{N}}  %^{\rm{int.}}}{}
 \end{equation}
 where we have usual definitions i.e., 
 $\sigma = \sqrt{\langle \mathcal{O}^2\rangle - \langle \mathcal{O}\rangle^{2}}$ and $N$ is the number of measurements. 
@@ -971,16 +971,14 @@ away from the planar limit where factorization does not hold any more.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{\label{subsection:Mchain}Closed and open chain models with $p = 3, 4$}
-The matrix chain is a complicated $p$ matrices model which was first 
-considered in \cite{Chadha:1980ri}. The partition function is given by: 
+The matrix chain is a complicated $p$ matrices model which was first considered in \cite{Chadha:1980ri}. We will not mention details of the analytical solution here but instead show the results we obtain for both open and closed versions from numerics later in Fig. \ref{fig:3MM_open}. This model was also studied in context 
+of $q$-state Potts model in Refs.~\cite{KAZAKOV198893, KOSTOV1989295, Daul:1994qy}. We define this model in the same way as the original reference: 
 \begin{equation}
 	\label{eq:Mehta1} 
-	Z_{p}(g,c,\kappa) = \int \mathcal{D}M_{1} \cdots  \mathcal{D}M_{p} \exp \mbox{Tr} \Bigg(\sum_{i=1}^{p} -M_{i}^2  - g M_{i}^{4} + c \sum_{i=1}^{p-1} M_{i}M_{i+1} 
-	+ \kappa M_{p}M_{1} \Bigg)
-\end{equation}
-Though some exact results are available for $p=3$, not much has been explicitly done 
-for $p > 3$. When the chain is connected, the 
-model is \emph{not solvable} with $p \ge 4$. 
+	Z_{p}(g,c,\kappa) = \int \mathcal{D}M_{1} \cdots  \mathcal{D}M_{p} \exp \mathrm{Tr}\Bigg(\sum_{i=1}^{p} -M_{i}^2  - g M_{i}^{4} + c \sum_{i=1}^{p-1} M_{i}M_{i+1} 
+	+ \kappa M_{p}M_{1} \Bigg).
+\end{equation} 
+Though exact results are available for any $p$ with $\kappa=0$, not much has been explicitly done for $p > 3$ since algebra becomes rather involved. When the chain is connected ($\kappa \neq 0$), the model is \emph{not solvable} with $p \ge 4$. 
 \begin{figure}[htbp] 
 	\centering 
 	\includegraphics[width=0.75\textwidth]{figs/3MM_open.pdf}
@@ -1006,7 +1004,8 @@ The general $p$ matrix MC code to solve these models
 \begin{figure}[htbp] 
 	\centering 
 	\includegraphics[width=0.75\textwidth]{figs/4MM_g1_g2.pdf}
-\caption{\label{fig:4MM_closed1} We show the expectation value for $N=300, c=\kappa=1.35$ with two different $g$. These runs have not started from a \texttt{trivial} start. See Appendix~\ref{sec:BEOC} for details. The data is given in Table~\ref{table:4mchain_data}}
+\caption{\label{fig:4MM_closed1} We show the expectation value for $N=300, c=\kappa=1.35$ with two different $g$. These runs have not started from a \texttt{trivial} start
+	as is clear by noting that the traces are non-zero at the start. See Appendix~\ref{sec:BEOC} for details. The data is given in Table~\ref{table:4mchain_data}}
 \end{figure}
 
 \begin{table}[h!]
@@ -1020,16 +1019,12 @@ The general $p$ matrix MC code to solve these models
 		\\ [1ex] 
 		\hline 
 	\end{tabular}
-	\caption{The results obtained for $g=1,2$ four matrix closed chain with $N=300, c=\kappa=1.35$.}
+	\caption{The results obtained for closed chain model with four matrices for $g=1,2$ and $N=300, c=\kappa=1.35$.}
 	\label{table:4mchain_data}
 \end{table}
 
 In order to study the model with four matrices and periodic (closed) boundary conditions 
-as defined in \ref{eq:Mehta1}, we can simply modify the code for $p=3$ by changing 
-$\texttt{NMAT=3}$ to  $\texttt{NMAT=4}$. Note that setting $\kappa=0$ 
-will reduce to open chain case. The broken symmetry 
-cases correspond to $ c \neq \kappa$. The results for $p=4$ closed symmetric case is 
-given in Table \ref{table:4mchain_data}. 
+as defined in (\ref{eq:Mehta1}), we can simply modify the move between $p=3$ and $p=4$ in the codes given by changing $\texttt{NMAT=3}$ to  $\texttt{NMAT=4}$. Note that setting $\kappa=0$ reduces to the open chain case. The broken symmetry correspond to $ c \neq \kappa$ but we have not considered those here. The results for $p=4$ closed symmetric case is given in Table \ref{table:4mchain_data}. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Multi-matrix Yang-Mills models}
@@ -1049,9 +1044,8 @@ Shortly after the BFSS matrix model\footnote{This matrix model was proposed in R
 Banks, Fischler, Shenker, and Susskind. This proposal related the 
 uncompactified eleven dimensional $M$-theory in the light cone frame and the 
 planar limit of the supersymmetric matrix quantum mechanics describing $D0$-branes. This model has been
-well-studied using numerical MC methods\cite{Catterall:2007fp,Hanada:2008ez,Filev:2015hia,Berkowitz:2016tyy}. 
-The publicly available code (by some of the groups) to study these model and its mass deformation (BMN matrix model) and higher-dimensional systems which describes D1/D2 branes 
-\cite{Catterall:2017lub,Jha:2017zad,Catterall:2020nmn}
+well-studied using numerical MC methods~\cite{Catterall:2007fp,Hanada:2008ez,Filev:2015hia,Berkowitz:2016tyy}. 
+The publicly available code (by some of the groups) to study these model and its mass deformation (BMN matrix model) and higher-dimensional systems which describes D1/D2 branes~\cite{Catterall:2017lub,Jha:2017zad,Catterall:2020nmn}
 is available at \texttt{\href{https://github.com/daschaich/susy}{https://github.com/daschaich/susy}}, while the
 highly efficient parallelized code over number of colours for only BFSS and BMN is available at
 \texttt{\href{https://sites.google.com/site/hanadamasanori/home/mmmm}
@@ -1157,15 +1151,14 @@ to carry out these numerical computations using the programs provided and will e
 
 \subsection*{Acknowledgements}
 The author is indebted to Pedro Vieira
-for discussions and encouragement. 
-We thank Vladimir Kazakov 
-and Zhechuang Zhang for email correspondence and for permission to use a 
-figure from their paper. The author is supported by a postdoctoral fellowship 
-at the Perimeter Institute for Theoretical Physics. Research at Perimeter Institute is supported 
-in part by the Government of Canada through the Department of Innovation, Science and 
-Economic Development Canada and by the Province of Ontario through 
+for discussions and encouragement. We thank Vladimir Kazakov 
+and Zechuan Zheng for helpful email correspondence and for 
+permission to use a figure from their paper. The author is supported by a 
+postdoctoral fellowship at the Perimeter Institute for Theoretical Physics. Research at Perimeter 
+Institute is supported in part by the Government of Canada through the Department of Innovation, 
+Science and Economic Development Canada and by the Province of Ontario through 
 the Ministry of Economic Development, Job Creation and Trade.
-The author would like to acknowledge past support from 
+The author would like to acknowledge support in the past from 
 the Department of Science \& Technology, Government of India's KVPY
 (Kishore Vaigyanik Protsahan Yojana) Scholarship during 2008-2010, 
 the European Union for Erasmus Mundus (Lot 13) scholarship during 2010-2011, 
@@ -1208,6 +1201,7 @@ These polynomials can solve:
 \end{equation}
 In fact, it can be shown that \ref{eq:mm_main} is equivalent to:
 \begin{equation}
+\label{eq:ZOP} 
 	Z = N! ~ a_{0}^{N} \prod_{k=1}^{N-1} f_{k}^{N-k}
 \end{equation}
 where $f_{k} := a_{k}/a_{k-1}$. Hence, solving the matrix model is now equivalent to solving for the 
