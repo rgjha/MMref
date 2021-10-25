@@ -448,13 +448,9 @@ The \MA~code to solve this model is given in Appendix~\ref{sec:math_code} for th
 The origin of large $N$ limit of gauge theories was motivated by the hope of understanding 
 the accepted theory of strong interactions (QCD). 
 In the subsequent years, ~t~Hooft solved two-dimensional model of mesons in large $N$ 
-limit. One of the first known examples of a unitary matrix model which was 
-relevant to lattice gauge theory (and to QCD) 
-was considered by Gross, Witten, and Wadia (GWW) around 1979 \TODO{cite}.
-This is often known as one-plaquette matrix model and describes the 
-gauge part of large $N$ of the two-dimensional Yang-Mills theory (also sometimes called $\rm{QCD}_{2}$).
-This model also has deep connections to string theory in the so called 
-`double-scaling limit' (DSL) where $N \to \infty$ and $\lambda \to \lambda_{c}$ simultaneously. 
+limit. One of the first known examples of a unitary matrix model which was relevant to lattice gauge theory (and to QCD) was considered by Gross, Witten, and Wadia (GWW) \cite{Gross:1980he, Wadia:2012fr}.
+This is often known as one-plaquette matrix model and describes the gauge part of large $N$ of the two-dimensional Yang-Mills theory (also sometimes called $\rm{QCD}_{2}$).
+This model also has deep connections to string theory in the so called `double-scaling limit' (DSL) where $N \to \infty$ and $\lambda \to \lambda_{c}$ simultaneously. 
 The requirement of this double scaling can be understood as follows: 
 If we merely take $N \to \infty$ then we get genus zero surfaces in the 
 expansion of the free energy. However, this would prohibit string interaction 
@@ -595,10 +591,7 @@ of size $2^L \times 2^L$ which should be positive definite is constructed as:
 They considered bootstrap matrices up to $L=4$ and observed
 convergence to the expected result. 
 For the case of two-matrix quantum mechanics, the convergence
-was found to be slow but consistent with results expected using 
-Monte Carlo results and bounds from Born-Oppenheimer wavefunction. 
-Another two-matrix integral model given by the action 
-(\ref{eq:GHM1}) was recently solved \cite{Kazakov:2021lel}. 
+was found to be slow but consistent with results expected using Monte Carlo results and bounds from Born-Oppenheimer wavefunction. Another two-matrix integral model given by the action (\ref{eq:GHM1}) was recently solved \cite{Kazakov:2021lel}. 
 In this work, authors used relaxation bootstrap methods (which takes us 
 from non-linear semi-definite programming (SDP) problem to linear) with
 $\Lambda=11$ (which determines the size of the minor of the full bootstrap matrix) 
@@ -766,17 +759,6 @@ locate the critical coupling to accuracy of about
 $\sim 0.0014$ (i.e., $g - g_{c} \sim 0.0014$). 
 We can always increase $N$ to get a 
 more precise result. 
-
-One can also consider one-matrix model with cubic interaction instead of quartic as above. 
-There is well-known instability associated with cubic potential. The potential is given by:
-\begin{equation}
-	V(M) = \frac{M^2}{2} + \frac{g_{3}M^3}{3}  
-\end{equation}
-It is only well-defined if $g \le 0.21935$. This is the radius of convergence of the planar perturbation series. 
-Though this method can be exactly solved, we encourage the reader to attempt Exercise~7 to numerically solve this using MC. 
-This exercise provides a good practice on how we can modify the potential in the given 
-codes to study another model of interest. 
-
 \begin{figure}[htbp] 
 	\centering 
 	\includegraphics[width=0.75\textwidth]{figs/mm_plot.pdf}
@@ -784,6 +766,14 @@ codes to study another model of interest.
 		one matrix model is consistent with that obtained using analytical saddle-point methods (shown by dashed lines). 
 		These results are with $N = 300$ and $g = 1$ and took about 40 minutes on a laptop.}
 \end{figure}
+One can also consider one-matrix model with cubic interaction instead of quartic as above. 
+There is well-known instability associated with cubic potential. The potential is given by:
+\begin{equation}
+	V(M) = \frac{M^2}{2} + \frac{g_{3}M^3}{3}  
+\end{equation}
+It is only well-defined if $g \le 0.21935$. This is the radius of convergence of the planar perturbation series. 
+Though this method can be exactly solved, we encourage the reader to attempt Exercise~6 to numerically solve this using MC. This exercise provides a good practice on how we can modify the potential in the given codes to study another model of interest. 
+
 
 \begin{mdframed}[backgroundcolor=blue!3] 
 	\textsc{} 
@@ -791,7 +781,6 @@ codes to study another model of interest.
 	i.e., $V(M) = M^2/2 + g_{3}M^3$.\\  
 	\label{ex:6} 
 \end{mdframed} 
-
 Another interesting dimer matrix model closely related to the one matrix model was 
 studied in the context of understanding the Yang-Lee edge singularity
 \cite{Staudacher:1989fy} in Ising model on random graphs. 
@@ -811,10 +800,9 @@ discussed above.
 % ax^2 + bx + c -> a(x-h)^2 + k 
 % where h = -b/2a and k = c - (b^2/4a)  
 \begin{mdframed}[backgroundcolor=blue!3]  
-	$\bullet$ Exercise 7: Check that (\ref{eq:Stau1}) follows from (\ref{eq:Stau0}) and modify the potential for the 1MM \PY~ code to study this model. 
+	$\bullet$ Exercise 7: Check that (\ref{eq:Stau1}) follows from (\ref{eq:Stau0}) and modify the potential for the 1MM \PY~code to study this model. 
 \end{mdframed} 
 % P 706 book
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{\label{subsec:Hoppe}Hoppe-type matrix models}
 % Page 71 of his 1982 thesis. 
@@ -1005,7 +993,7 @@ The general $p$ matrix MC code to solve these models
 	\centering 
 	\includegraphics[width=0.75\textwidth]{figs/4MM_g1_g2.pdf}
 \caption{\label{fig:4MM_closed1} We show the expectation value for $N=300, c=\kappa=1.35$ with two different $g$. These runs have not started from a \texttt{trivial} start
-	as is clear by noting that the traces are non-zero at the start. See Appendix~\ref{sec:BEOC} for details. The data is given in Table~\ref{table:4mchain_data}}
+	as is clear by noting that the traces are non-zero at the first time unit. See Appendix~\ref{sec:BEOC} for details. The data is given in Table~\ref{table:4mchain_data}}
 \end{figure}
 
 \begin{table}[h!]
