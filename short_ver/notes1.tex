@@ -153,14 +153,14 @@ ranging from nuclear physics to the study of random surfaces,
 conformal field theories, integrable systems, two-dimensional quantum gravity, 
 and non-perturbative descriptions of M-theory. 
 We consider a wide variety of multi-matrix models and study them 
-using Monte Carlo methods in the large $N$ limit. The agreement with 
+using Monte Carlo (MC) methods in the large $N$ limit. The agreement with 
 exact analytical results and recent bootstrap results are shown
 and new results for some unsolved models are provided
 to assist future bootstrapping. In order to encourage this exchange,
-we provide programs in \PY~for the convenience of the reader and explain how 
+we provide programs in \PY~and explain how 
 it can be modified to study other potentials. We hope this will be useful 
 for further numerical/analytical investigations of matrix models for those
-who are not familiar with Monte Carlo methods. The programs we present 
+who are not familiar with MC methods. The programs we present 
 were tested on a laptop and took between a few minutes to several hours to 
 finish depending on the model and precision required. 
 %\vspace{40mm} \\ \\ 
@@ -181,9 +181,7 @@ In this pursuit, from very early days, matrices have played an important role in
 developments in quantum mechanics to the understanding of the large scale structures of the universe. 
 It is well-known that several physical systems are explained to a great extent 
 by normally distributed elements (Gaussian distribution). It is the most important probability 
-distribution in statistics because it fits many natural phenomena. It is appropriate here to quote a statement by Mark Kac 
-\footnote{Kac was a Polish American mathematician. His main interest was probability theory. 
-He is also known apart from other things for his thought provoking question - ``Can one hear 
+distribution in statistics because it fits many natural phenomena. It is appropriate here to quote a statement by Mark Kac\footnote{Kac was a Polish American mathematician. His main interest was probability theory. He is also known apart from other things for his thought provoking question - ``Can one hear 
 the shape of a drum?''} - ``That we are led here to the normal law (distribution), usually associated with random phenomena, is perhaps
 an indication that the deterministic and probabilistic points of view are not as irreconcilable as they may appear at first sight''.
 The subject of random matrix theory is the study of matrices whose entries are random 
@@ -195,8 +193,8 @@ now known as `Wishart ensembles'. These are sometimes also known
 as `Wishart-Laguerre' because the spectral properties of this distribution 
 involve the use of Laguerre polynomials. But, the application of random matrices/distributions
 to physical problems was not until the 1950s
-when it took the genius of Wigner to first apply the random matrix theory 
-in understanding the energy spectrum in nuclei of heavy elements. It was experimentally 
+when Wigner first applied the random matrix theory 
+to understand the energy spectrum in nuclei of heavy elements. It was experimentally 
 shown that unlike the case when the energy levels are assumed to be uncorrelated
 random numbers and the variable $s$ would be governed by the familiar Poisson distribution 
 i.e., $P(s) = e^{-s}$, there was more to this story and the distribution was nothing like Poisson. 
@@ -206,14 +204,12 @@ Ridge National Laboratory in 1956, someone in the audience asked a question abou
 of the distribution of the spacings of energy levels in a heavy nucleus. Wigner who was in the audience 
 walked up to the blackboard and guessed the answer given above.}) that it could be described by a distribution given by $P(s) = \pi s/2~e^{-\pi s^2/4}$. 
 The linear growth of $P(s)$ for small $s$ is due to quantum mechanical level repulsion (the fact that eigenvalues of random matrices don't like to stay too close)
-which was first considered by von Neumann and Wigner in 1929. 
+which was first considered by von Neumann and Wigner. 
 This surmise and the paper written in 1951
 \cite{Wigner1951OnTS} introduced random matrix theory 
 to nuclear physics and then in later decades to almost all of Physics.
 
-This program was further continued in the 1960stea when in their exploration of random matrices, 
-Dyson and Mehta studied and classified three types (also called `the threefold way') 
-of matrix ensembles with different correlations. The first was `Gaussian orthogonal ensemble' which was used to describe systems with time reversal invariance and integer spin with weakest level repulsion between neighboring levels and had $\beta=1$. The second was the Gaussian unitary ensemble with no time reversal invariance with intermediate level repulsion and $\beta=2$. The third was the Gaussian symplectic ensemble for time reversal invariance for half integer spin with $\beta=4$. These are now known as GOE, GUE, and GSE respectively.\footnote{For example, GUE represents a statistical distribution over complex Hermitian matrices 
+This program was further continued in the 1960s when in their exploration of random matrices, Dyson and Mehta studied and classified three types (also called `the threefold way') of matrix ensembles with different correlations. The first was `Gaussian orthogonal ensemble' which was used to describe systems with time reversal invariance and integer spin with weakest level repulsion between neighboring levels and had $\beta=1$. The second was the Gaussian unitary ensemble with no time reversal invariance with intermediate level repulsion and $\beta=2$. The third was the Gaussian symplectic ensemble for time reversal invariance for half integer spin with $\beta=4$. These are now known as GOE, GUE, and GSE respectively.\footnote{For example, GUE represents a statistical distribution over complex Hermitian matrices 
 that have probability densities proportional to $ \exp(-\mbox{Tr}(A^2/2\sigma^2))$ and
 where matrix elements i.e., $a_{ij}$ are an independent collection of complex 
 variates whose real and imaginary parts are from a normal distribution
@@ -225,8 +221,8 @@ The general $P(s)$ is given by, $c_{\beta}s^{\beta} e^{-a_{\beta}s^2}$
 where $\beta \in (1,2,4)$ depending on the symmetry in question. 
 For example, the nuclear data for heavy elements nearest neighbour spacing distribution
 is closely related to that of GOE distribution, see Fig.~\ref{fig:data_exp1}. 
-Dyson's and Mehta's work made it more precise and improved further 
-compared to what is shown in Fig.~\ref{fig:data_exp1} as explained in 
+The work of Dyson and Mehta made it more precise and improved it further 
+compared to what is shown in Fig.~\ref{fig:data_exp1} and explained in 
 \cite{PhysRevLett.48.1086}. We mention $c_{\beta}$ and  $a_{\beta}$ in Table (\ref{table:c_and_a}). 
 We show the three distributions using \MA~ in Fig. \ref{fig:ensem1}.  
 
@@ -277,32 +273,25 @@ might be the eigenvalues of some unknown Hermitian `operator'. It is another thi
 no one yet knows such an operator! We refer the reader to the excellent books 
 \cite{Meh2004, Akemann:2011csh} for introductions to the field of random matrix theory. 
 
-The major development in the study of quantum field theories with matrix degrees of freedom satisfyig some well-defined properties started with the work of 't~Hooft in 1974 on the large $N$ limit of gauge theories. By then, it was mostly accepted that the correct theory of 
-strong interactions was QCD where we there are matrix degrees of freedom for gauge fields based on $SU(3)$ gauge group. `t Hooft proposed to consider a general $SU(N)$ 
-symmetry with large $N$ and he showed that in such a limit only planar diagrams survive and calculations become more tractable and the effects in QCD can be explained as $1/M$ expansion. In fact, this large $N$ limit was later 
-understood to be closely related to some description of string theory. This work brought together the idea of random matrix models in the asymptotic limit (large matrices) to mainstream Physics and is extremely fruitful till date. 
-This also enabled us to study several interesting features of quantum gravity 
-from a field theoretic point of view through the famous AdS/CFT conjecture.
+The major development in the study of quantum field theories with matrix degrees of freedom satisfying some well-defined properties started with the work of 't~Hooft in 1974 on the large $N$ limit of gauge theories. By then, it was mostly accepted that the correct theory of 
+strong interactions was QCD where we have matrix degrees of freedom for gauge fields based on $SU(3)$ gauge group. `t Hooft proposed to consider a general $SU(N)$ 
+symmetry with large $N$ and showed that in such a limit only planar diagrams survive and calculations become more tractable and the effects in QCD can be explained as $1/N$ expansion. This work brought together the idea of random matrix models in the asymptotic limit (large matrices) to mainstream Physics and quantum gravity and is extremely fruitful till date. This enabled us to study several interesting features of quantum gravity 
+from a field-theoretic point of view through the famous AdS/CFT conjecture.
 There are some excellent reviews about random matrix theory, matrix integrals/models, large $N$ limit 
 and their formal aspects. We refer the reader to two excellent reviews written more than two decades 
 apart \cite{DiFrancesco:1993cyw,Eynard:2015aea} for detailed discussions. \\
 
 
 The goal of this article is to introduce the numerical solutions of matrix models using Monte Carlo (MC) methods and implement them to solve several multi-matrix 
-models where no other analytical/numerical treatment is possible in the large $M$ limit. The motivation for this work is partly from the recent progress in the numerical bootstrap program to 
-solve matrix models and we hope that these notes with the \PY~ codes will supplement
-those explorations and serve as a cross-check of the results. All the codes in these notes can be accessed at:  
+models in the large $N$ where no other analytical/numerical treatment is yet possible. The motivation for this work is partly from the recent progress in the numerical bootstrap program to solve matrix models and we hope that these notes with the \PY~codes will assist those explorations and serve as a cross-check of the results. All the codes in these notes can be accessed at:  
 \begin{center} \texttt{\href{https://github.com/rgjha/MMMC}{https://github.com/rgjha/MMMC}} \end{center}
-The plan of the article is as follows. In Sec.~\ref{sec:MMAres}, we mention saddle-point one-cut solution 
-of one matrix Hermitian model and provide a brief explanation about an alternative and equally effective
+The plan of the article is as follows. In Sec.~\ref{sec:MMAres}, we mention saddle-point one-cut analysis of one matrix Hermitian model and provide a brief explanation about an alternative and equally effective
 method of orthogonal polynomials and show how it can be used to 
 solve a unitary matrix model. We provide some additional details about Ising model on random graph 
 which was also solved using this method in Appendix~\ref{sec:Ortho_pol1}. 
 Then in Sec.~\ref{sec:NSOL}, we start by discussing the recent 
 numerical bootstrap results for matrix models and then focus for bulk of the 
 remaining section on explaining the basics of MC method and use it to solve different models. 
-We hope on how the close association between MC 
-and bootstrap can serve as a useful guide to solve matrix models. 
 
 
 \section{\label{sec:MMAres}Matrix models - Analytical results} 
@@ -310,11 +299,11 @@ Matrix models (or matrix integrals) are the simplest of models in Physics
 defined with integration over matrices in zero dimensions. 
 In these cases, one evaluates integrals of the form:
 \begin{equation}
-Z = \int dM_{i} \cdots dM_{j} \exp\Bigg[-N \mathrm{Tr} \sum V(M_{i})\Bigg] 
+Z = \int dM_{i} \cdots dM_{j} \exp\Bigg[-N \mathrm{Tr} \sum V(M_{i})\Bigg] ,
 \end{equation}
-where $M_{i}$ are $N \times N$ complex matrices which can either be hermitian or unitary.  
+where $M_{i}$ are $N \times N$ complex matrices which can be hermitian or unitary.  
 In the study of zero-dimensional gauge theories, we encounter these types of matrix models 
-where the integral is over the Haar measure. These models often have interesting features in the 
+where the integral is over some well-defined measure. These models often have interesting features in the 
 large $N$ limit. In following subsections, we discuss two matrix models and mention two different methods in which they both can be respectively solved.
 
 \subsection{One-matrix model with cubic and quartic potentials - Saddle point analysis}
@@ -327,8 +316,7 @@ I(\alpha) = \lim_{\alpha \to 0} \int_{-\infty}^{\infty} e^{-\frac{1}{\alpha}f(x)
 \end{equation}
 where $\alpha$ is a positive integer but we would like to eventually consider the interesting limit 
 of $\alpha \to 0$ and $f(x)$ is a real valued function. In the limit where $\alpha$ becomes small, 
-the exponential causes the integrand to peak sharply at the function's minima. There might be several extrema,
-But the integral will be dominated by one which minimizes $f(x)$ as $\alpha \to 0$ (let it be $x_{0}$), 
+the exponential causes the integrand to peak sharply at the function's minima. There might be several extrema, but the integral will be dominated by one which minimizes $f(x)$ as $\alpha \to 0$ (let it be $x_{0}$), 
 we use the Taylor expansion about the saddle point $x_{0}$ and throw away higher-order terms to get:
 \begin{equation}
 	\label{eq:sad_sol2}
@@ -356,10 +344,7 @@ twice two makes four is to common man'.}we get the desired result:
 	\end{equation*}	
 \end{mdframed} 
 
-The one matrix hermitian model using a saddle-point analysis was famously solved by 
-Brezin-Itzykson-Parisi-Zuber (BIPZ) \cite{Brezin:1977sv}. This solution is standard 
-and can be found in several reviews and textbooks, such as Ref.~\cite{DiFrancesco:1993cyw, Marino:2004eq, 2002mcgt.book.....M}. 
-This model is solved using the method of resolvent
+We now move to the one-matrix model case where the role of $1/\alpha$ will be played by $N$ and hence in the planar limit, one can evaluate these integrals using saddle-point method. The was first considered and famously solved by Brezin-Itzykson-Parisi-Zuber (BIPZ) \cite{Brezin:1977sv}. This solution is standard and can be found in several reviews and textbooks, such as Ref.~\cite{DiFrancesco:1993cyw, Marino:2004eq, 2002mcgt.book.....M}. This model is solved using the method of resolvent
 and we will briefly sketch the solution described below:
 \begin{align}
 	Z &= \int dM \exp\Big[-N~\mbox{Tr} V(M)\Big] \\
@@ -421,7 +406,7 @@ a = \frac{2\mu}{3g} \left( \sqrt{1 + \frac{12g}{\mu^2}} - 1\right).
 \end{equation}
 This one-cut solution is not valid for $g < -\mu^2/12$ and reduces to famous Wigner semi-circle
 law when $g \to 0$ with radius given by $2 \sqrt{\mu}$. The \MA~code to solve 
-this model is given in Appendix~\ref{sec:math_code} for the convenience of the reader. 
+this model is given in Appendix~\ref{sec:math_code} for the interested reader. 
 
 \vspace{5mm} 
 \begin{mdframed}[backgroundcolor=blue!3] 
@@ -479,17 +464,17 @@ Following the discussion in the Appendix~\ref{sec:Ortho_pol1}, we define the pol
 \end{equation} 
 We have to choose polynomials that are orthonormal with respect to the measure which in this case is:
 \begin{equation}
-	\rho(\theta) = \exp\Big[\frac{2N}{\lambda} \cos \theta \Big],
+	\rho(\theta) = \exp\Big(\frac{2N}{\lambda} \cos \theta \Big),
 \end{equation}
 and this results in:
 \begin{equation}
-	\int_{-\pi}^{\pi} \rho(\theta) P_{m}(e^{i\theta}) P_{n}^{*}(e^{i\theta}) = a_{m} \delta_{mn}
+	\int_{-\pi}^{\pi} \rho(\theta) P_{m}(e^{i\theta}) P_{n}^{*}(e^{i\theta}) d\theta= a_{m} \delta_{mn},
 \end{equation}
 If we define $\kappa = 2N/\lambda$, then we have for the representation in terms of 
 Bessel functions as, 
 
 \begin{equation}
-	I_{n}(\kappa) = I_{-n}(\kappa) = \int_{-\pi}^{\pi} \rho(\theta) e^{i n \theta}, 
+	I_{n}(\kappa) = I_{-n}(\kappa) = \int_{-\pi}^{\pi} \rho(\theta) e^{i n \theta}d\theta, 
 \end{equation}
 and the polynomials defined above becomes:
 \begin{equation}
@@ -506,7 +491,7 @@ We note that the coefficients of $P_{n}(z)$ are real and hence $P_{n}^{*}(e^{i\t
 In fact, it is easy to show that for this U($N$) model, $Z$ is just $c_{n}$ (i.e., only single coefficient remains in (\ref{eq:ZOP})) and we get, 
 \begin{equation}
 \label{eq:GWW_ex} 
-Z = \prod_{p=0}^{n-1} a_{p} = c_{n}/c_{0} = c_{n} = \det \Big[I_{i-j}(\kappa) \Big].
+Z = \prod_{p=0}^{n-1} a_{p} = \frac{c_n}{c_0} = c_{n} = \det \Big[I_{i-j}(\kappa) \Big].
 \end{equation}
 The result is true for all $\lambda$ and $N$. If we impose additional constraint of 
 $U$ belonging to the $SU(N)$ rather than $U(N)$, it is easy to show that
@@ -540,7 +525,7 @@ published the first paper on MC in 1949 titled `The Monte Carlo Method'.}
 is quite effective but is not a panacea. 
 The newly introduced numerical bootstrap method has already been used to solve several matrix models \cite{Anderson:2016rcw,Lin:2020mme,Han:2020bkb,Kazakov:2021lel} but the extension to matrix models with more than two matrices i.e., 3-matrix commutator type models or IKKT models seems highly non-trivial at the moment. 
 This is related to the fact that with more matrices, the loop equations which become highly non-linear are difficult to handle.
-In these notes, we will mostly focus on MC methods since as of this writing bootstrap methods have not been able to access or constrain matrix models with more than two matrices. However, we want to explain the bootstrap solution for the case of one matrix model as first shown by \cite{Lin:2020mme} for the interested reader. For a detailed exposition, we refer the reader to the references above. 
+In these notes, we will mostly focus on MC methods since as of this now bootstrap methods have not been able to access or constrain matrix models with more than two matrices. However, we want to explain the bootstrap solution for the case of one matrix model as first shown by \cite{Lin:2020mme} for the interested reader. For a detailed exposition, we refer the reader to the references above. 
 We hope that this yet small section on bootstrap methods would be extended in later versions 
 of these notes as more results accumulate in coming years. 
 
@@ -551,7 +536,7 @@ by $\mathcal{M}$. For the case of one matrix model (1MM) with a potential $V(X)$
 \begin{equation}
     V(X) = \frac12 X^2 + \frac{g}{4} X^4, 
 \end{equation}
-the odd moments of X vanishes i.e., $ t_{n} = (1/N)\mbox{Tr} X^n = 0$ for odd $n$
+the odd moments of $X$ vanishes i.e., $ t_{n} = (1/N)\mbox{Tr} X^n = 0$ for odd $n$
 while the even moments (of order greater than two) are all related to $t_{2}$. This renders the 
 model simple to bootstrap since there is no growth of words (combination of matrix or matrices!)
 since all non-zero $t_{n}$ can be related to $t_{2}$. 
@@ -577,12 +562,12 @@ For example, $\mathcal{M}_{2 \times 2}$ is given by:
 \end{equation}
 In this case, solving the model just means finding the bounds on $t_{2}$ 
 since all others can then be calculated (see the exercise above). 
-Following this work, a quantum mechanics 
+Following this work, a quantum-mechanical 
 model (in 0+1-dimensions) with two matrices was solved using similar techniques. 
 The results obtained were shown to be consistent with MC results. 
 In this work, the Hamiltonian considered was given by:
 \begin{equation}
-H = \mbox{Tr} \Big( P^2 + X^2 + \frac{g}{N} X^4 \Big)
+H = \mbox{Tr} \Big( P^2 + X^2 + \frac{g}{N} X^4 \Big),
 \end{equation}
 and corresponding to the trial operators up to length (L) = 2, 
 they considered $ \mathbb{I}, X, X^{2}$ and $P$. The bootstrap matrix
@@ -600,14 +585,14 @@ of size $2^L \times 2^L$ which should be positive definite is constructed as:
 They considered bootstrap matrices up to $L=4$ and observed
 convergence to the expected result. 
 For the case of two-matrix quantum mechanics, the convergence
-was found to be slow but consistent with results expected using Monte Carlo results and bounds from Born-Oppenheimer wavefunction. Another two-matrix integral model given by the action (\ref{eq:GHM1}) was recently solved \cite{Kazakov:2021lel}. 
+was found to be slow but consistent with results expected using Monte Carlo results and bounds from Born-Oppenheimer wavefunction. Recently, another two-matrix integral given by the action (\ref{eq:GHM1}) was recently solved \cite{Kazakov:2021lel}. 
 In this work, authors used relaxation bootstrap methods (which takes us 
-from non-linear semi-definite programming (SDP) problem to linear) with
+from non-linear semi-definite programming (SDP) problem to linear SDP) with
 $\Lambda=11$ (which determines the size of the minor of the full bootstrap matrix) 
 to constrain the moments of matrices such as $\mathrm{Tr}X^2/N = t_{2}$ and $t_{4}$ 
 to six decimal places of precision for the symmetric case. We will come back to 
 discuss this model for both symmetric and symmetry broken cases 
-and its corresponding solution using MC methods in Sec.~\ref{subsec:Hoppe}. 
+and its corresponding solution using MC methods in Sec.~\ref{subsec:Hoppe} 
 and show that they are in perfect agreement.  
 
 \subsection{Monte Carlo method - Some details}
@@ -649,11 +634,11 @@ It is essential during a Monte Carlo process that we correctly generate momentum
 Suppose we have two numbers $U$ and $V$ taken from uniform distribution i.e., (0,1) 
 and we want two random numbers with probability density function $p(X)$ and $p(Y)$ given by:
 \begin{equation}
-	p(X) = \frac{1}{\sqrt{2\pi}} e^{-X^2/2} 
+	p(X) = \frac{1}{\sqrt{2\pi}} e^{-X^2/2}, 
 \end{equation}
 and, 
 \begin{equation}
-	p(Y) = \frac{1}{\sqrt{2\pi}} e^{-Y^2/2} 
+	p(Y) = \frac{1}{\sqrt{2\pi}} e^{-Y^2/2} .
 \end{equation}
 Since $X$ and $Y$ are independent, we can write:
 \begin{equation}
