@@ -1,4 +1,3 @@
-% !TeX spellcheck = <none>
 % v1: November 2021
 % v1: 1 Mathematica code, 3 Python codes, 5 tables, 10 exercises, 14 figures, 51 references, 53 pages. 
 % !TeX spellcheck = en_GB
@@ -80,31 +79,12 @@ innerrightmargin=4pt,innertopmargin=2pt,innerbottommargin=4pt]{mybox}
 \usetikzlibrary{arrows}
 \definecolor{qqqqcc}{rgb}{0.,0.,0.8}
 \definecolor{ffqqqq}{rgb}{1.,0.,0.}
-
 \renewcommand{\ttdefault}{pcr}
 % Another option 
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
 \definecolor{navyblue}{rgb}{0.0, 0.0, 0.5}
-
-\lstset{frame=none,
-  language=Python,
-  numbers=left,
-  aboveskip=1mm,
-  belowskip=1mm,
-  showstringspaces=false,
-  columns=flexible,
-  basicstyle={\scriptsize\ttfamily},
-  numbers=none,
-  numberstyle=\tiny\color{gray},
-  keywordstyle=\color{BrickRed},
-  commentstyle=\color{navyblue},
-  stringstyle=\color{blue},
-  breaklines=true,
-  breakatwhitespace=true,
-  tabsize=3
-}
 
 \lstset{frame=none,
   language=Python,
@@ -146,18 +126,15 @@ innerrightmargin=4pt,innertopmargin=2pt,innerbottommargin=4pt]{mybox}
 % A postdoc should never use his institutional ID :-) 
 \emailAdd{raghav.govind.jha@gmail.com}
 %------------------------
-
-
 \abstract{\\~\\ {\textsc{Abstract:} 
 The models involving matrices play an 
-important role in several areas of Physics 
-ranging from nuclear physics to the study of random surfaces, 
+important role in several areas ranging from nuclear physics to the study of random surfaces, 
 conformal field theories, integrable systems, two-dimensional quantum gravity, 
-and non-perturbative descriptions of M-theory. 
+and non-perturbative descriptions of string theory. 
 We consider a wide variety of multi-matrix models and study them 
 using Monte Carlo (MC) methods in the large $N$ limit. The agreement with 
-exact analytical results and recent bootstrap results are shown
-and new results for some unsolved models are provided
+exact analytical expressions and recent bootstrap methods are shown
+and new results for other models are provided
 to assist future bootstrapping. In order to encourage this exchange,
 we provide programs in \PY~and explain how 
 it can be modified to study other potentials. We hope this will be useful 
@@ -703,7 +680,6 @@ rejected if \texttt{$\text{min.}(1, e^{-\Delta H}) < r$} otherwise accepted.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Autocorrelation and jackknife errors} 
-
 It must be kept in mind that given a Markov chain, the new states 
 (i.e., configurations) can be highly correlated to previous ones. 
 In order to ascertain that the measurement of an observable $\langle \mathcal{O} \rangle$ is not affected by correlated configurations, it is essential for proper statistical analysis to know the extent to which they are correlated. In this regard, it is important to measure
@@ -839,7 +815,7 @@ and for $g = \infty$, we have [X, Y] = 0 and it becomes an eigenvalue problem.
 We considered this model using MC methods and show in Fig. \ref{fig:2MM_match} that the results 
 obtained are consistent with those obtained in \cite{Kazakov:2021lel}. 
 The MC results shown Fig.~\ref{fig:2MM_match} 
-were obtained for $N = 300$ in about \texttt{5500} seconds on a 2.4 GHz i5 A1989 Mac Pro. 
+were obtained for $N = 300$ in about \texttt{5500} seconds on a 2.4 GHz i5 A1989 MacBook Pro. 
 We also show the eigenvalue distribution for this case in the left panel of Fig.~\ref{fig:2MM_match1}. 
 Though we don't give this specific code in the appendix of this article, it can be found at: 
 \begin{center} \texttt{\href{https://github.com/rgjha/MMMC}{https://github.com/rgjha/MMMC}} \end{center}
@@ -1018,12 +994,8 @@ highly efficient parallelized code over number of colours for only BFSS and BMN 
 The discussion of these models is not the goal of this article. 
 }
 was proposed as a description of M-theory, the authors of 
-\cite{Ishibashi:1996xs} proposed a reduction of quantum mechanical model down to zero 
-dimensions. This model is related to D-instantons 
-in the sense that it has the same action as that of low-energy effective action of D-instantons. 
-This model was proposed with the hope to play a key role in description of Type IIB string theory in 
-the discrete light cone quantization (DLCQ). Though a complete large $N$ solution of even this model 
-is out of reach, there is lot of numerical results are available. 
+\cite{Ishibashi:1996xs} considered a reduction of quantum-mechanical model down to zero 
+dimensions and conjectured it to describe the \TODO{Check!!} Type IIA string. This model is related to D-instantons in the sense that it has the same action as that of low-energy effective action of D-instantons. This model was proposed with the hope to play a key role in description of Type IIB string theory in the discrete light cone quantization (DLCQ). Though a complete large $N$ solution of even this model is out of reach, there is lot of numerical results are available. 
 We also note that there has been some recent work that tries to take the master-field approach to the
 IKKT model \cite{Klinkhamer:2021wrv}. This is a promising direction but it is not yet clear how effective 
 it is in general. The action for the IKKT model is schematically written as:
@@ -1032,8 +1004,7 @@ it is in general. The action for the IKKT model is schematically written as:
 	\label{eq:IKKT} 
 S = \frac{N}{4\lambda} \int \mbox{Tr} \Big( \frac{1}{4} [X_\mu, X_\nu]^{2} + \overline{\psi} \Gamma^{\mu} [A_{\mu},\psi] \Big) 
 \end{equation}
-where $X_{\mu}$ and $\psi$ are $N \times N$ Hermitian matrices. The gauge field is a ten-dimensional vector and $\psi$ is ten-dimensional Majorana-Weyl spinor field respectively. This model in zero dimensions possesses no usual space-time supersymmetry and is the dimensional reduction of $\mathcal{N}=1$ SYM theory in ten dimensions. 
-It is expected that in this model both space and time should be dynamically generated as a result of the dynamics of the large matrices. 
+where $X_{\mu}$ and $\psi$ are $N \times N$ Hermitian matrices. The gauge field is a ten-dimensional vector and $\psi$ is ten-dimensional Majorana-Weyl spinor field respectively. This model in zero dimensions possesses no usual space-time supersymmetry and is the dimensional reduction of $\mathcal{N}=1$ super Yang-Mills (SYM) theory in ten dimensions. It is expected that in this model both space and time should be dynamically generated as a result of the dynamics of  large matrices. 
 The space-time is expected to emerge entirely from the matrices. 
 IKKT model has no free parameters since $\lambda$ can be absorbed in the 
 field redefinitions. 
@@ -1047,7 +1018,7 @@ refer the reader to those for additional details.
 In what follows in these notes, we will ignore the fermionic 
 term and only focus on the commutator/bosonic term. 
 One of the observables (also known as `size' or i.e., the extent of scalars) 
-which we compute in these models is already defined in \ref{eq:R2R4}. 
+which we compute in these models is already defined in (\ref{eq:R2R4}). 
 It is known that $\langle R^2 \rangle$ behaves as $\sqrt{\lambda}$ in the large $N$ limit 
 as discussed in Ref.~\cite{Hotta:1998en} but we have not found any previous study
 which computes the coefficient. In supersymmetric matrix models like BFSS/BMN, this 
@@ -1079,9 +1050,9 @@ then we find:
 
 This is an exact result and is used to check the reliability of the simulations. 
 We show in Fig. \ref{fig:IKKT_2} that for $D=3,5,10$ we get the correct result and 
-hence the \PY~ code above can be fully trusted. The timings for generating 500 time units or trajectories 
+hence the \PY~code above can be fully trusted. The timings for generating 500 time units or trajectories 
 with $N=300$ is about \texttt{50000,2300,2000} seconds for $D = 10, 5, 3$ respectively on 
-a 2.4 GHz i5 A1989 Mac Pro. The results are collected in Table~\ref{table:D_IKKT_data}. 
+a 2.4 GHz i5 A1989 MacBook Pro. The results are collected in Table~\ref{table:D_IKKT_data}. 
 \begin{table}[h!]
 	\centering
 	\begin{tabular}{||c c c||} 
@@ -1111,9 +1082,7 @@ to numerically study them in the large $N$ limit. We obtained some new results a
 to carry out these numerical computations using the programs provided and will eventually lead to new ways of solving matrix models and to bootstrap the models not yet explored.
  
 %%%%%%%%%%%%%%%%%%%%%%%%
-
-\vspace{8mm}
-
+%\vspace{8mm}
 \subsection*{Acknowledgements}
 The author is indebted to Pedro Vieira
 for discussions and encouragement. We thank Vladimir Kazakov 
@@ -1131,19 +1100,16 @@ and the Department of Physics at Syracuse University for research and teaching
 assistantship during 2013-2019. 
 % Though I would also like to thank Sci Hub in acknowledgements, some might not like it! 
 %%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
 %%%% Appendices now %%%%
 %\newpage
-\vspace{16mm}
+\vspace{6mm}
 \appendix
 \begin{center} \large{\textsc{Appendices}}\end{center}
 \section{\label{sec:Ortho_pol1}Orthogonal polynomials}
 One of the methods we discussed for the solution of 
 large $N$ limit of matrix models was the saddle point approximation. 
 However, this method is not useful 
-to understand the terms subleading in $1/N$. The method 
+to understand the terms sub-leading in $1/N$. The method 
 of orthogonal polynomials introduced by Bessis et al. in Ref.~\cite{Bessis:1980ss} 
 is usually used for such computations. In fact, it is also very useful in 
 solving two matrix 
@@ -1152,42 +1118,40 @@ models. These polynomials are defined as:
 	\label{eq:ortho_nn} 
 	\int d\lambda e^{-V(\lambda)} P_{n}(\lambda)
 	P_{m}(\lambda) = \int d \mu(\lambda) P_{n}(\lambda)
-	P_{m}(\lambda) = a_{n} \delta_{mn} 
+	P_{m}(\lambda) = a_{n} \delta_{mn} ,
 \end{equation}
 where $d \mu(\lambda) = d\lambda e^{-V(\lambda)}$ is the measure. 
 The basic idea is to rewrite the Vandermonde determinant appearing after we change from matrix basis to the basis of eigenvalues. 
 \begin{equation}
-	\Delta(\lambda) = \det(\lambda_{i}^{j-1})_{1 \le i, j \le N} = \det(P_{j-1}(\lambda_i))_{1 \le i, j \le N}
+	\Delta(\lambda) = \det(\lambda_{i}^{j-1})_{1 \le i, j \le N} = \det(P_{j-1}(\lambda_i))_{1 \le i, j \le N}. 
 \end{equation}
 These polynomials can solve:
 \begin{equation}
 	\label{eq:mm_main}
-	Z = \int dM \exp[-\mbox{Tr} V(M)] 
+	Z = \int dM \exp[-\mbox{Tr} V(M)] ,
 \end{equation}
-In fact, it can be shown that \ref{eq:mm_main} is equivalent to:
+and it can be shown that (\ref{eq:mm_main}) is equivalent to:
 \begin{equation}
 \label{eq:ZOP} 
-	Z = N! ~ a_{0}^{N} \prod_{k=1}^{N-1} f_{k}^{N-k}
+	Z = N! ~ a_{0}^{N} \prod_{k=1}^{N-1} f_{k}^{N-k},
 \end{equation}
 where $f_{k} := a_{k}/a_{k-1}$. Hence, solving the matrix model is now equivalent to solving for the 
-normalization appearing in \ref{eq:ortho_nn}. As we have shown in Sec.~\ref{sec:MMAres}, 
+normalization appearing in (\ref{eq:ortho_nn}). As we have shown in Sec.~\ref{sec:MMAres}, 
 this method was used to solve the unitary 
 matrix model. In fact, this method was also used to study the Ising Model on a random graph as two-matrix model 
 \cite{Kazakov:1986hu}
 and the partition function is given by:
 \begin{equation}
 	\label{eq:Kaz1} 
-	Z = \int \mathcal{D}A \mathcal{D}B \exp N \mbox{Tr} \Bigg(-A^2 -B^2 + 2c AB -g \frac{A^3}{3} - g\frac{B^3}{3}  \Bigg)
+	Z = \int \mathcal{D}A \mathcal{D}B \exp N \mbox{Tr} \Bigg(-A^2 -B^2 + 2c AB -g \frac{A^3}{3} - g\frac{B^3}{3}  \Bigg). 
 \end{equation}
 Note that this has a $\mathbb{Z}_{2}$ symmetry because of 
 the partition function being invariant under $A \mapsto B$. This is however broken in finite magnetic fields ($h \neq 0$) and the partition fuction in that case is given by:
-
 \begin{equation}
 	\label{eq:RIsing1} 
 	Z = \int \mathcal{D}A \mathcal{D}B \exp N \mbox{Tr} \Bigg(-A^2 -B^2 + 2c AB -g_{A}e^{h} \frac{A^3}{3} 
-	- g_{B}e^{-h} \frac{B^3}{3}  \Bigg)
+	- g_{B}e^{-h} \frac{B^3}{3}  \Bigg). 
 \end{equation}
-
 After the solution of Ising model on random graph, this was extended to admit magnetic fields
 \cite{Boulatov:1986sb} as well. We will not discuss the entire solution but will 
 sketch the solution. In this paper, the authors also computed the critical exponents 
@@ -1199,7 +1163,7 @@ This is a striking correspondence between exponents of two different models in d
 In fact, after few years, while discussing the Yang-Lee edge sigularity (YLES) on dyamical graph, 
 it was shown that an additional exponent $\sigma =1/2$ 
 also behaved accordingly. 
-We have listed the exponents in Table (\ref{table:crit_exp}) for the curiosity of the reader.
+We have listed the exponents in Table (\ref{table:crit_exp}) for the interested reader.
 \begin{table} 
 	\begin{center} 
 \begin{tabular}{|c|c|c|}
@@ -1219,19 +1183,19 @@ We have listed the exponents in Table (\ref{table:crit_exp}) for the curiosity o
 By turning the partition function in terms of eigenvalues, we get:
 \begin{equation}
 	Z = \int dX dY \Delta(X) \Delta(Y)
-	 \exp \Big[-N \sum_{i} (x_{i}^2 + y_{i}^{2} +2c x_{i}y_{i} + 4ge^{h}x_{i}^{4} + 4ge^{-h}y_{i}^4) \Big]
+	 \exp \Big[-N \sum_{i} (x_{i}^2 + y_{i}^{2} +2c x_{i}y_{i} + 4ge^{h}x_{i}^{4} + 4ge^{-h}y_{i}^4) \Big].
 	\end{equation}
 It is now clear that we would need two polynomials $P_{k}(x)$ and $Q_{j}(y)$ for this case 
 such that their determinant matches $\Delta(X)$ and $\Delta(Y)$ respectively. 
 These polynomials satisfy the following orthonormal condition: 
 \begin{equation}
-\int dx dy e^{-N V(x,y)} P_{k}(x) Q_{j}(y) = h_{k} \delta_{kj}
+\int dx dy e^{-N V(x,y)} P_{k}(x) Q_{j}(y) = h_{k} \delta_{kj}. 
 \end{equation}
 They also satisfy several recursion relations for which the interested reader can refer to 
 \cite{Boulatov:1986sb}:
 
 \begin{equation}
-	Z = \int dX dY \det[P_{r}(x_k)] \det[Q_{r}(y_k)] \exp\Big[-N \sum V(X,Y)\Big]
+	Z = \int dX dY \det[P_{r}(x_k)] \det[Q_{r}(y_k)] \exp\Big[-N \sum V(X,Y)\Big], 
 \end{equation}
 where we have denoted $\sum_{i} (x_{i}^2 + y_{i}^{2} +2c x_{i}y_{i} + 4ge^{h}x_{i}^{4} + 4ge^{-h}y_{i}^4)$ by $V(X,Y)$. 
 Transforming to the eigenvalue basis of both matrices $X$ and $Y$ and using the expansion of the determinant we get:
@@ -1242,18 +1206,18 @@ Transforming to the eigenvalue basis of both matrices $X$ and $Y$ and using the 
 	Q_{j_{1}}(y_1) \cdots Q_{j_{N}}(y_N)
 	e^{-N \sum V(x_i,y_i)} \nonumber  \\  
 	&= \epsilon^{i_1 \cdots i_N} \epsilon^{j_1 \cdots j_N} \prod_{r=1}^{N} \int dx_{r} dy_{r} e^{-N V(x_r, y_r)} P_{i_r}(x_r) Q_{j_r}(y_r) \nonumber  \\  
-	&=  N! \prod_{i=0}^{N-1} h_{i} 
+	&=  N! \prod_{i=0}^{N-1} h_{i}.  
 	\label{eq:ising_r2}
 \end{align}
 We can define $f_{k} := h_k/h_{k-1}$ and hence 
 (\ref{eq:ising_r2}) implies:
 
 \begin{equation}
-	\log Z_{N}(c,g,h) = \log N! + N \log h_0 + \sum_{k=1}^{N-1} (N-k) \log f_{k} 
+	\log Z_{N}(c,g,h) = \log N! + N \log h_0 + \sum_{k=1}^{N-1} (N-k) \log f_{k} . 
 \end{equation}
 One is usually interested in computing the quantity (the subscript `pc' denotes planar/continuum limit i.e., $ N \to \infty$):
 \begin{equation}
-	F_{pc} = \frac{1}{N^2} \log\Bigg( \frac{Z(c,g,h)}{Z(c,0,0)}\Bigg) = \frac{1}{N} \sum_{k=1}^{N-1} \left(1 - \frac{k}{N} \log \Big(\frac{f_k}{f_{k,0}}\Big)\right)
+	F_{pc} = \frac{1}{N^2} \log\Bigg( \frac{Z(c,g,h)}{Z(c,0,0)}\Bigg) = \frac{1}{N} \sum_{k=1}^{N-1} \left(1 - \frac{k}{N} \log \Big(\frac{f_k}{f_{k,0}}\Big)\right). 
 \end{equation}
 
 \section{\label{sec:math_code}\MA~code for the solution of one-matrix model}
@@ -1340,10 +1304,7 @@ have enough computer time and want to do a systematic study, we should increase 
 \item Note that Monte Carlo is a sampling method and hence we will always have errors for the expectation values. The errors must be carefully computed using either jackknife binning or some other method. 
 \end{itemize} 
 Though these codes have been checked several times over and compared to known solutions (where available), it is possible that there might still be minor bugs in them. If you encounter a problem or have questions, please contact the author. 
-
-
 %%%%%%%%%%%%%%%%%%%%
-\vspace{18mm}
 \section{\label{sec:1MMPYC}\PY~code for Hermitian one matrix model}
 We provide the code in this section to study the 1MM using the Monte Carlo method. By running the code given below
 on a modern laptop, we get the result shown in 
@@ -1360,16 +1321,13 @@ get to third or four decimal place of accuracy,
 more than $\texttt{5000}$ may be needed. 
 It takes about 35-40 minutes to run 500 time units 
 with $\texttt{N = 300}$ on a modern laptop. 
-
-
 \begin{footnotesize} 
 \begin{mdframed}[backgroundcolor=mauve!3] 
 \input{codes/1MM_MC.tex}
 \end{mdframed} 
 \end{footnotesize} 
-
-\vspace{10mm}
- 
+%%%%%%%%%%%%%%%%%%%%
+%\vspace{10mm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\label{sec:YMC}YM matrix model with $D$ matrices: \PY~code}
 
@@ -1482,7 +1440,8 @@ However, these loop equations are not valid when the integration is over some ot
 \langle \mbox{Tr} M^k  \rangle = \frac{1}{Z} \int \Delta(\lambda)^{\beta} 
 	d\lambda_1 \cdots d\lambda_{N~} \exp\Bigg(-\frac{N\beta}{2} \sum_{i} V(\lambda_{i})\Bigg)  \sum_{i=1}^{N} \lambda_{i}^k
 \end{equation}
-It is easy to derive `generalized loop equations' from here using the fact that inntegral of total derivatives vanishes. We obtain:
+It is easy to derive `generalized loop equations' from here using the fact that integral 
+of total derivatives vanishes. We obtain:
 
 \begin{equation}
 		\Big< \mathrm{Tr} M^{k} V^{\prime}(M) \Big> +  \underbrace{k \Bigg(\frac{2}{\beta} - 1 \Bigg) \mathrm{Tr} M^{k-1}}_{\text{zero for $\beta=2$}} = \sum_{l=0}^{k-1} \langle \mathrm{Tr} M^{l} \rangle  \langle \mathrm{Tr} M^{k-l-1} \rangle
@@ -1506,11 +1465,11 @@ It is easy to derive `generalized loop equations' from here using the fact that 
      \end{equation} 
 
 \noindent $\bigstar$ Solution to Exercise 5:
-\\ \\ We now show that $ \langle e^{-\Delta H} \rangle = 1$ whe phase-space are is preserved under evolution. The Hamiltonian of the system is defined as:
+\\ \\ We now show that $ \langle e^{-\Delta H} \rangle = 1$ when phase-space are is preserved under evolution. The Hamiltonian of the system is defined as:
 \begin{equation}
 	H(P,X) = \frac{1}{2}P^2  + S(X), 
 \end{equation} 
-where $X$ will be set of $n$-matrices depending o which $n$ matrix model we consider. If we assume that the area of phase space is preserved under evolution i.e., $dP dX = dP^{\prime} dX^{\prime}$, we then have:
+where $X$ will be set of matrices involved in the model. If we assume that the area of phase space is preserved under evolution i.e., $dP dX = dP^{\prime} dX^{\prime}$, we then have:
 \begin{align}
 	\label{eq:ps1} 
 	Z &= \int dP^{\prime} dX^{\prime} e^{-H^{\prime} \nonumber }  \\
@@ -1553,7 +1512,7 @@ The transformation changes $Z$ by:
 \begin{equation}
 	Z = Z + \epsilon \Big\{ D(N^2 -1)Z - 4\langle S \rangle Z  \Big\} = Z ( 1 + \epsilon \Big\{ D(N^2 -1) - 4\langle S \rangle   \Big\})
 \end{equation}
-If we demand that $Z$ remains invariant, the term in the paranthesis should vanish and we get the desired result:
+If we demand that $Z$ remains invariant, term in the parenthesis should vanish and we get the desired result:
 
 \begin{equation}
 	\frac{D}{4} = \frac{\langle S \rangle}{N^2 - 1 }
