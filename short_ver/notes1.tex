@@ -1,7 +1,7 @@
 % v1: November 2021
 % v1: 1 Mathematica code, 3 Python codes, 5 tables, 10 exercises, 14 figures, 51 references, 53 pages. 
 % !TeX spellcheck = en_GB
-\documentclass[11pt]{article}
+\documentclass[letter,11pt]{article}
 \pdfoutput=1
 \usepackage{mathStyle}
 %\usepackage{jhepmod}
@@ -30,7 +30,7 @@
 \colorlet{framecolor}{Red1}
 \usepackage[framemethod=tikz]{mdframed}
 \usepackage{xcolor}
-\newmdenv[innerlinewidth=0.3pt, roundcorner=2pt,linecolor=mycolor,innerleftmargin=4pt,
+\newmdenv[innerlinewidth=0.3pt, roundcorner=2pt,linecolor=mycolor,innerleftmargin=2pt,
 innerrightmargin=4pt,innertopmargin=2pt,innerbottommargin=4pt]{mybox}
 \usepackage{verbatim}
 \usepackage{url}
@@ -134,16 +134,17 @@ and non-perturbative descriptions of string theory.
 We consider a wide variety of multi-matrix models and study them 
 using Monte Carlo (MC) methods in the large $N$ limit. The agreement with 
 exact analytical expressions and recent bootstrap methods are shown
-and new results for other models are provided
+and many new results for other models are given
 to assist future bootstrapping. In order to encourage this exchange,
-we provide programs in \PY~and explain how 
-it can be modified to study other potentials. We hope this will be useful 
-for further numerical/analytical investigations of matrix models for those
-who are not familiar with MC methods. The programs we present 
-were tested on a laptop and took between a few minutes to several hours to 
-finish depending on the model and precision required. 
+we provide programs in \PY~which can
+be easily modified to study other potentials. 
+We hope this will be useful for further numerical/analytical investigations 
+of matrix models for those who are not familiar with MC methods. 
+The programs we present were tested on a laptop and took between a 
+few minutes to several hours to finish depending on the model, $N$, 
+and the required precision. 
 %\vspace{40mm} \\ \\ 
-%\noindent v1: 05/11/2021
+%\noindent v1: 04/11/2021 or 11/11/2021 at 1400 EST
 }}
 
 %\toccontinuoustrue 
@@ -235,9 +236,9 @@ We show the three distributions using \MA~ in Fig. \ref{fig:ensem1}.
 	\includegraphics[width=0.55\textwidth]{figs/data_exp.png}
 	\caption{\label{fig:data_exp1}The nearest neighbour spacing distribution (i.e., $P(s)$) 
 	for nuclear data. The GOE (Gaussian Orthoghonal Ensemble) and Poisson are shown 
-	by solid curves. This figure is taken from - ``Fluctuation Properties of Nuclear Energy 
-	Levels and Widths : Comparison of Theory with Experiment'' by O. Bohigas, R. U. 
-	Haq, and A. Pandey}
+	by solid curves. This figure is taken from - `Fluctuation Properties of Nuclear Energy 
+	Levels and Widths : Comparison of Theory with Experiment' by O. Bohigas, R. U. 
+	Haq, and A. Pandey.}
 \end{figure}
 
 It was later concluded that much to Wigner's own surprise, 
@@ -602,11 +603,8 @@ matrices for the leapfrog algorithm
 at the start of each trajectory (time unit) since 
 this is necessary to ensure that we converge to the 
 correct answer using Monte Carlo methods. 
-
-
-\subsubsection{Random number generator}  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\subsubsection{Random number generator}  
 It is essential during a Monte Carlo process that we correctly generate momentum matrices at the start of the leapfrog method taken from a Gaussian distribution. In this part, we will sketch this process and provide the accompanying code. 
 Suppose we have two numbers $U$ and $V$ taken from uniform distribution i.e., (0,1) 
 and we want two random numbers with probability density function $p(X)$ and $p(Y)$ given by:
@@ -784,10 +782,9 @@ The exact result for average action is:
 	2 \langle S_{c} \rangle + \langle S_{q}  \rangle = N^2 - 1, 
 \end{equation}
 where $ S_{c} = -Ng^2 \mbox{Tr}[X,Y]^2$  and 
-$ S_{q} = N~\mbox{Tr} (X^2 + Y^2) $
-This average action serves as a good check of the code. We can alternatively also consider a slightly more 
-general two-matrix model which reduces to Hoppe's model mentioned above in a special limit. 
-Such a matrix model is generally not solvable. This model was considered in \cite{Kazakov:2021lel} and 
+$ S_{q} = N~\mbox{Tr} (X^2 + Y^2)$.
+This average action serves as a good check of the code. We can alternatively also consider a slightly more general two-matrix model which reduces to Hoppe's model mentioned above in a special limit. 
+Such a matrix model is generally not solvable. This model was considered in Ref.~\cite{Kazakov:2021lel} and 
 solved using bootstrap methods and is given by:
 
 \begin{equation}
@@ -798,12 +795,7 @@ Z = \int \mathcal{D}X \mathcal{D}Y \exp \Big[-N ~ \mbox{Tr} (X^2 + Y^2 - h^2 [X,
 \begin{figure}[htbp] 
 	\centering 
 	\includegraphics[width=0.75\textwidth]{figs/plot_2MM_sym1.pdf}
-	\caption{\label{fig:2MM_match}The matrix model defined by~(\ref{eq:GHM1}) is not solvable and was 
-recently studied using bootstrap methods. We show the MC by solid lines and those 
-obtained using bootstrap by dashed lines. We get about two to three digits of accuracy with 1000 time units 
-by running for 1.5 hours on the laptop. The results are with $g=h=1$ and $N=300$. For larger $N$ say, $N=800$, 
-the same run will take about 16-18 hours. By running for about 80-85 hours, we obtained 
-$t_{2} = 0.421773(13) $ and $t_{4}=0.333335(22)$ with $N=800$.}
+	\caption{\label{fig:2MM_match}The matrix model defined by~(\ref{eq:GHM1}) is not solvable for generic $g$ and $h$ and was recently studied using bootstrap methods. We show the MC results by solid lines and those obtained using bootstrap by dashed lines. We get few digits of accuracy with 1000 time units by running for about 1.5 hours on a laptop. These results are with $g=h=1$ and $N=300$. For larger $N$ say, $N=800$, the same run will take about 16-18 hours. By doing an extended run for about 80-85 hours, we obtained $t_{2} = 0.421773(13) $ and $t_{4}=0.333335(22)$ with $N=800$. The bootstrap results are $0.421783612 \le t_{2} \le 0.421784687$ and $0.333341358 \le t_{4} \le 0.333342131$ \cite{Kazakov:2021lel}.}
 \end{figure} 
 
 The action in (\ref{eq:GHM1}) has $\mathbb{Z}_{2}^{\otimes 3}$ symmetry 
@@ -812,13 +804,11 @@ matrix model which can be solved via saddle-point analysis or through the reduct
 to a Kadomtsev-Petviashvili (KP) type equation. 
 For $g = 0$ it reduces to two decoupled one-matrix models 
 and for $g = \infty$, we have [X, Y] = 0 and it becomes an eigenvalue problem. 
-We considered this model using MC methods and show in Fig. \ref{fig:2MM_match} that the results 
-obtained are consistent with those obtained in \cite{Kazakov:2021lel}. 
-The MC results shown Fig.~\ref{fig:2MM_match} 
-were obtained for $N = 300$ in about \texttt{5500} seconds on a 2.4 GHz i5 A1989 MacBook Pro. 
-We also show the eigenvalue distribution for this case in the left panel of Fig.~\ref{fig:2MM_match1}. 
-Though we don't give this specific code in the appendix of this article, it can be found at: 
-\begin{center} \texttt{\href{https://github.com/rgjha/MMMC}{https://github.com/rgjha/MMMC}} \end{center}
+We considered this model with $g=h=1$ using MC methods and show in Fig. \ref{fig:2MM_match} that the results obtained are consistent with Ref.~\cite{Kazakov:2021lel}. 
+This result is for $N = 300$ and took about \texttt{5500} seconds on a 2.4 GHz i5 A1989 MacBook Pro. We also show the eigenvalue distribution for this case in the left panel of Fig.~\ref{fig:2MM_match1}. The code for this model is available at:  
+\begin{center} 
+	\texttt{\href{https://github.com/rgjha/MMMC}{https://github.com/rgjha/MMMC}}
+ \end{center}
 
 \begin{figure}[htbp] 
 	\centering 
@@ -842,7 +832,7 @@ Z = \int \mathcal{D}X \mathcal{D}Y \exp \Big[-N ~ \mbox{Tr} (-X^2  -Y^2 - h^2 [X
 	\centering 
 	\includegraphics[width=0.75\textwidth]{figs/2MM_symb_t2_t4.pdf}
 	\caption{\label{fig:2MM_t2t4}We show $t_{2}$ and $t_{4}$ obtained from MC. 
-	The values we obtain for this specific stream of run is for $N=300$ with $t_{2} = 29.73(3)$ and $t_{4} = 903(3)$. This took about 3.5 hours on a laptop since it thermalizes late and we need to run bit longer. This dataset corresponds to the red point in Fig.~\ref{fig:2MM_comp1}}
+	The values we obtain for this specific stream of run is for $N=300$ with $t_{2} = 29.73(3)$ and $t_{4} = 903(3)$. This took about 3.5 hours on a laptop since it thermalizes late compared to symmetric case and we need to run for a longer time. This specific dataset corresponds to the red point in Fig.~\ref{fig:2MM_comp1}}
 \end{figure}
 
 \begin{figure}[h] 
@@ -882,19 +872,18 @@ after ignoring the thermalization cut. We studied this model for $D=3,5$ with
 $h=1, \lambda=4$ and compute: 
 \begin{equation}
 \label{eq:R2R4} 
-	\langle R^2 \rangle =   \frac{1}{DN} \Bigg \langle \mbox{Tr} \sum_{i=1}^{D} X_{i}^2 \bigg \rangle, 
-	~~ \langle R^4 \rangle =   \frac{1}{DN} \Bigg \langle \mbox{Tr} \sum_{i=1}^{D} X_{i}^4 \bigg \rangle.  
+	R^2  =   \frac{1}{DN} \Bigg \langle \mbox{Tr} \sum_{i=1}^{D} X_{i}^2 \bigg \rangle, 
+	~~ R^4  =   \frac{1}{DN} \Bigg \langle \mbox{Tr} \sum_{i=1}^{D} X_{i}^4 \bigg \rangle.  
 \end{equation}
 The results are given in Table \ref{table:D_YMM_data}. Note that it is easy to get the sign of $\mathcal{O}(1/N)$ corrections using Monte Carlo methods. The simplest way is to do another set of simulation at $N = 100$ and see how $t_{2}$ and 
 $t_{4}$ change. It is an interesting problem (in practice) 
-to understand how one can apply bootstrap methods 
-away from the planar limit where factorization does not hold any more.
+to understand how one can apply bootstrap methods away from the planar limit where factorization no longer holds.
 
 \begin{table}[h!]
 	\centering
 	\begin{tabular}{||c c c||} 
 		\hline
-		$D$ & $ \langle R^2 \rangle$ & $ \langle R^4 \rangle$ \\ [0.5ex] 
+		$D$ & $ R^2$ & $R^4$ \\ [0.5ex] 
 		\hline\hline
 		3 & $ 0.279(4) $ & $ 0.158(5) $  \\ 
 		5 & $ 0.212(3) $ & $ 0.091(5) $
@@ -906,7 +895,7 @@ away from the planar limit where factorization does not hold any more.
 \end{table}
 \begin{mdframed}[backgroundcolor=blue!3] 
 	\textsc{} 
-	$\bullet$ Exercise 8: Study the model defined by (\ref{eq:HoppeD}) for $D=3$ by modifying the code given in the appendix for studying the Yang-Mills type model defined by (\ref{eq:CTmodel}). Check that results are consistent with Table \ref{table:D_YMM_data}.  
+	$\bullet$ Exercise 8: Study the model defined by (\ref{eq:HoppeD}) for $D=3$ by modifying the code given in Appendix~\ref{sec:YMC} for studying the Yang-Mills type model defined by (\ref{eq:CTmodel}). Check that results are consistent with Table \ref{table:D_YMM_data}.  
 \end{mdframed}
 
 
@@ -1004,31 +993,18 @@ it is in general. The action for the IKKT model is schematically written as:
 	\label{eq:IKKT} 
 S = \frac{N}{4\lambda} \int \mbox{Tr} \Big( \frac{1}{4} [X_\mu, X_\nu]^{2} + \overline{\psi} \Gamma^{\mu} [A_{\mu},\psi] \Big) 
 \end{equation}
-where $X_{\mu}$ and $\psi$ are $N \times N$ Hermitian matrices. The gauge field is a ten-dimensional vector and $\psi$ is ten-dimensional Majorana-Weyl spinor field respectively. This model in zero dimensions possesses no usual space-time supersymmetry and is the dimensional reduction of $\mathcal{N}=1$ super Yang-Mills (SYM) theory in ten dimensions. It is expected that in this model both space and time should be dynamically generated as a result of the dynamics of  large matrices. 
-The space-time is expected to emerge entirely from the matrices. 
-IKKT model has no free parameters since $\lambda$ can be absorbed in the 
-field redefinitions. 
-
-In the original model, since it is a ten-dimensional reduction we have, $\mu, \nu = 1 \cdots 10$. 
-It is possible to consider other models where $\mu, \nu = 1 \cdots D$ where $D=4,6$. 
-One might worry whether because of the integral measure being over non-compact $X$, 
-it is divergent. The convergence issues of the partition function of 
-these models for $D=4,6,10$ were studied by Refs.~\cite{Krauth:1998yu,Krauth:1999qw} and 
-refer the reader to those for additional details.  
-In what follows in these notes, we will ignore the fermionic 
-term and only focus on the commutator/bosonic term. 
-One of the observables (also known as `size' or i.e., the extent of scalars) 
-which we compute in these models is already defined in (\ref{eq:R2R4}). 
-It is known that $\langle R^2 \rangle$ behaves as $\sqrt{\lambda}$ in the large $N$ limit 
-as discussed in Ref.~\cite{Hotta:1998en} but we have not found any previous study
+where $X_{\mu}$ and $\psi$ are $N \times N$ Hermitian matrices and $\psi$ is ten-dimensional Majorana-Weyl spinor field and the indices run from $ 1 \cdots D$ with $D=10$. This model in zero dimensions possesses no usual space-time supersymmetry and is the dimensional reduction of $\mathcal{N}=1$ super Yang-Mills (SYM) theory in ten dimensions. It is expected that in this model both space and time should be generated from the dynamics of large matrices. This model has no free parameters since $\lambda$ can be absorbed in the field redefinitions. It is also possible to consider variants of this model where $D < 10$. One might worry whether the partition function is convergent at all because of the integral measure being over non-compact $X$. These convergence issues of the partition function of these models for different $D$ was studied by Refs.~\cite{Krauth:1998yu,Krauth:1999qw} and we
+refer the reader to those for additional details.  In what follows, we will ignore the fermionic 
+term and only focus on the commutator/bosonic term. One of the observables (also known as `size' or i.e., the extent of scalars) which we compute in these models is already defined in (\ref{eq:R2R4}). It is known that $\langle R^2 \rangle$ behaves as $\sqrt{\lambda}$ in the large $N$ limit as discussed in Ref.~\cite{Hotta:1998en} but we have not found any previous study
 which computes the coefficient. In supersymmetric matrix models like BFSS/BMN, this 
 extent of scalars has a dual interpretation in terms of the radius of 
-the dual black hole topology.  Our numerical results suggests 
-that $ \langle R^2 \rangle = 0.361(2) \sqrt{\lambda}$ 
-and $ \langle R^4 \rangle = 0.266(3) \lambda$ with $N = 300$ for a wide range of couplings i.e., 
-$\lambda \in [1,100]$. We also note that we see the $\sqrt{\lambda}$ and $\lambda$ behaviour for 
-$\langle R^2 \rangle$ and $\langle R^4 \rangle$ valid down to $D=3$. 
-One of the standard tests we do for the reliability of the numerical results is 
+the dual black hole horizon topology.  Our numerical results suggests 
+that $R^2 = 0.361(2) \sqrt{\lambda}$ 
+and $R^4 = 0.266(3) \lambda$ with $N = 300$ for a wide range of couplings i.e., 
+$\lambda \in [1,100]$. 
+We also note that we see the $\sqrt{\lambda}$ and $\lambda$ behaviour for 
+$R^2$ and $R^4$ valid down to $D=3$. 
+One of the standard tests we do for the reliability of our numerical results is 
 computing the average action. It can be shown that under a 
 change: $X \to e^{\epsilon} X$ if we demand that $Z$ is invariant, 
 then we find:
@@ -1047,17 +1023,14 @@ then we find:
 	$\bullet$ Exercise 9: Derive (\ref{eq:SD_IKKT1}) by doing the change: $X_{\mu} \mapsto e^{\epsilon}X_{\mu}$ and ignoring 
 	$\mathcal{O}(\epsilon^{2})$ terms.
 \end{mdframed}
-
-This is an exact result and is used to check the reliability of the simulations. 
-We show in Fig. \ref{fig:IKKT_2} that for $D=3,5,10$ we get the correct result and 
-hence the \PY~code above can be fully trusted. The timings for generating 500 time units or trajectories 
+This is an exact result and must be satisfied during the simulation.We show in Fig. \ref{fig:IKKT_2} that for $D=3,5,10$ we get this expected result and hence the \PY~code above can be fully trusted. The timings for generating 500 time units or trajectories 
 with $N=300$ is about \texttt{50000,2300,2000} seconds for $D = 10, 5, 3$ respectively on 
 a 2.4 GHz i5 A1989 MacBook Pro. The results are collected in Table~\ref{table:D_IKKT_data}. 
 \begin{table}[h!]
 	\centering
 	\begin{tabular}{||c c c||} 
 		\hline
-		$D$ & $ \langle R^2 \rangle$ & $ \langle R^4 \rangle$ \\ [0.5ex] 
+		$D$ & $R^2$ & $R^4$ \\ [0.5ex] 
 		\hline\hline
 		3 & $1.129(3) $ & $2.71(2) $  \\ 
 		5 & $0.608(2) $ & $0.765(3) $  \\
@@ -1074,22 +1047,19 @@ a 2.4 GHz i5 A1989 MacBook Pro. The results are collected in Table~\ref{table:D_
 	$\bullet$ Exercise 10: Carry out the MC computation for the Yang-Mills type matrix model with $D=6$. After sufficient thermalization cut, check that the results for average action is consistent with exact result obtained using Schwinger-Dyson equations within errors. Refer to appendix for the \PY~code and to perform jackknife error analysis with sufficiently large block size. Compute the ratio $\langle R^4 \rangle / \langle R^2 \rangle$ for fixed $\lambda=1$. 
 \end{mdframed} 
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%
 \section{Summary}
-In these notes, we have considered wide range of matrix models starting from the simplest one matrix Hermitian matrix model and then considering models with two/three matrices and then Yang-Mills type models with up to ten matrices. We described the Monte Carlo method 
-to numerically study them in the large $N$ limit. We obtained some new results and confirmed several known results from analytical methods and recently developed bootstrap program. We hope this introduction will encourage interested readers 
-to carry out these numerical computations using the programs provided and will eventually lead to new ways of solving matrix models and to bootstrap the models not yet explored.
- 
+
+We have described the Monte Carlo method to study wide range of matrix models in the large $N$ limit starting with the simplest one-matrix Hermitian matrix model and then considering models with two and three matrices before carrying on to Yang-Mills type models with up to ten matrices. We obtained new results and confirmed several previously known results from analytical methods and bootstrap program. Though, matrix models play a very important role in different areas of Physics, most of them are analytically not solvable and resorting to numerical techniques also turn up only handful of methods with own merits and problems. The recent progress in bootstrap methods look promising and one can hope that there might be interesting ways to combine these two numerical methods and understand the  matrix models in greater detail. We hope this introduction will encourage interested readers to carry out these numerical computations using the programs provided and will eventually lead to new ways of solving matrix models and to bootstrap those not yet explored.
 %%%%%%%%%%%%%%%%%%%%%%%%
-%\vspace{8mm}
+\vspace{8mm}
 \subsection*{Acknowledgements}
 The author is indebted to Pedro Vieira
 for discussions and encouragement. We thank Vladimir Kazakov 
 and Zechuan Zheng for helpful email correspondence and for 
 permission to use a figure from their paper. The author is supported by a 
-postdoctoral fellowship at the Perimeter Institute for Theoretical Physics. Research at Perimeter 
-Institute is supported in part by the Government of Canada through the Department of Innovation, 
+postdoctoral fellowship at the Perimeter Institute for Theoretical Physics. 
+Research at Perimeter Institute is supported in part by the Government of Canada through the Department of Innovation, 
 Science and Economic Development Canada and by the Province of Ontario through 
 the Ministry of Economic Development, Job Creation and Trade.
 The author would like to acknowledge support in the past from 
@@ -1310,7 +1280,7 @@ We provide the code in this section to study the 1MM using the Monte Carlo metho
 on a modern laptop, we get the result shown in 
 Fig. \ref{fig:1MM_res}. We can readily extend this code (by changing $\texttt{NMAT}$) to study matrix models where the integration is over several different matrices. 
 To run this code using Mac/Linux system (assuming  \PY~is installed with required libraries) just type in terminal: 
-$\texttt{python 1MM\_MC.py 0 1 300 200}$. The code takes four input arguments. The first two are binary arguments
+$\texttt{python 1MM.py 0 1 300 200}$. The code takes four input arguments. The first two are binary arguments
 related to whether we are reading any old configuration file and whether we want to save the one which will be 
 generated. $\texttt{0 1}$ means that we are not reading any configuration but we want to save it for later use. 
 The third argument is the size of the matrices to consider, in an ideal world, planar limit is $ N \to \infty$ but here
@@ -1321,11 +1291,9 @@ get to third or four decimal place of accuracy,
 more than $\texttt{5000}$ may be needed. 
 It takes about 35-40 minutes to run 500 time units 
 with $\texttt{N = 300}$ on a modern laptop. 
-\begin{footnotesize} 
 \begin{mdframed}[backgroundcolor=mauve!3] 
 \input{codes/1MM_MC.tex}
 \end{mdframed} 
-\end{footnotesize} 
 %%%%%%%%%%%%%%%%%%%%
 %\vspace{10mm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1333,25 +1301,18 @@ with $\texttt{N = 300}$ on a modern laptop.
 
 In this section, We provide the Monte Carlo code which can be used to study the bosonic part of any $D$ matrix YM matrix model and especially $D=10$ which is the bosonic sector of the well-known IKKT model. More details about the model and its relation to the non-perturbative formulations of string theory can be found in Ref.~\cite{Hotta:1998en}.
 It is left for the reader to compare the differences with the one matrix model code given in Sec.~\ref{sec:1MMPYC}. 
-
-\begin{footnotesize} 
 	\begin{mdframed}[backgroundcolor=mauve!3] 
 			\input{codes/bIKKT_MC.tex}
 	\end{mdframed} 
-\end{footnotesize}
 
 
 \section{Computing error using Jackknife method for the data files output from Monte Carlo}
-
 We give a simple code for computing statistical errors in \PY. The interested reader can find more details in Ref.~\cite{2012arXiv1210.3781Y}. The code can be used as follows from a terminal: \\ 
 $\texttt{python jk\_error.py t2.txt 1000 25 0}$. This means that we ask the code to take out first $\texttt{1000}$ time units data for thermalization cut and we set the size of block to be $\texttt{25}$. The last argument tells the program which column to consider for averaging with $\texttt{0}$ meaning the first column. To ensure that we have used reasonable thermalization cut, one can check for different cuts and see if the results 
 are same within errors. One can do the same for the block size. 
-
-\begin{footnotesize} 
 	\begin{mdframed}[backgroundcolor=mauve!3] 
 			\input{codes/jk_error.tex}
 	\end{mdframed} 
-\end{footnotesize}
 
 %%%%%%%% Some Exercise Solutions %%%%%%%%%%%%%
 \section{\label{sec:solutions}Solutions to selected Exercises} 
