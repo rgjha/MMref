@@ -27,7 +27,7 @@ NMAT = 1
 g = 1.0
 dt = 1e-3
 nsteps = int(0.5/dt) 
-GAP = 1.
+GAP = 2.
 
 if Niters_sim%GAP != 0:
   print("'Niters_sim' mod 'GAP' is not zero ")
@@ -39,9 +39,11 @@ mom_X = np.zeros((NMAT, NCOL, NCOL), dtype=complex)
 f_X = np.zeros((NMAT, NCOL, NCOL), dtype=complex)
 X_bak = np.zeros((NMAT, NCOL, NCOL), dtype=complex)
 HAM, expDH, trX2, trX4, MOM = [], [], [], [], []
+t2_ex = [None] * NMAT
+t4_ex = [None] * NMAT
 
-print ("Matrix integral simulation with %2.0f matrix"%(NMAT)) 
-print ("NCOL = " "%3.0f " ","  " and g = " " %4.2f" % (NCOL, g)) 
+print ("Matrix integral simulation of%2.0f MM"%(NMAT)) 
+print ("NCOL =" " %3.0f " ","  " and g =" " %4.2f" % (NCOL, g)) 
 print ("------------------------------------------------------")
 
 def dagger(a):
@@ -151,12 +153,27 @@ def update(X, acc_count):
         acc_count += 1 
 
     if MDTU%GAP == 0:
-        tmp0 = np.trace(np.dot(X[0],X[0])).real
-        trX2.append(tmp0/NCOL)
-        tmp1 = np.trace((X[i] @ X[i] @ X[i] @ X[i])).real
-        trX4.append(tmp1/NCOL)
-        f3.write("%4.8f  \n" %(tmp0/NCOL))
-        f4.write("%4.8f  \n" %(tmp1/NCOL))
+
+        t2_ex[0] = np.trace(np.dot(X[0],X[0])).real
+        trX2.append(t2_ex[0]/NCOL)
+        t4_ex[0] = np.trace((X[0] @ X[0] @ X[0] @ X[0])).real
+        trX4.append(t4_ex[0]/NCOL)
+        
+        if NMAT > 1:
+            for i in range (1, NMAT):
+                t2_ex[i] = np.trace(np.dot(X[i],X[i])).real
+                t4_ex[i] = np.trace((X[i] @ X[i] @ X[i] @ X[i])).real
+        
+        for item in t2_ex:
+            f3.write("%4.8f " % (item/NCOL))
+        for item in t4_ex:
+            f4.write("%4.8f " % (item/NCOL))
+        f3.write("\n")
+        f4.write("\n")
+
+        #f3.write("%4.8f  \n" %(tmp0/NCOL))
+        #f4.write("%4.8f  \n" %(tmp1/NCOL))
+
     
     return X, acc_count
 
@@ -201,19 +218,23 @@ if __name__ == '__main__':
     f3.close()
     f4.close()
 
-    t2_exact = (((12*g)+1)**(3/2.) - 18*g - 1)/(54*g*g)
-    plt.rc('text', usetex=True)
-    plt.rc('font', family='serif')
-    MDTU = np.linspace(0, int(Niters_sim/GAP), int(Niters_sim/GAP), endpoint=True)
-    plt.ylabel(r'Tr(X$^2)/N$',fontsize=12)
-    plt.xlabel('Time units', fontsize=12)
-    plt.grid(which='major', axis='y', linestyle='--')
-    plt.axhline(y=t2_exact, color='teal', linestyle='--')
-    # Exact result for 1MM quartic with g = 1
-    plt.figure(1)
-    plot (MDTU, trX2, 'teal') 
-    print ("Acceptance rate: ", (acc_count/Niters_sim)*100,"%") 
+    if NMAT == 1: 
+        t2_exact = (((12*g)+1)**(3/2.) - 18*g - 1)/(54*g*g)
+        plt.rc('text', usetex=True)
+        plt.rc('font', family='serif')
+        MDTU = np.linspace(0, int(Niters_sim/GAP), int(Niters_sim/GAP), endpoint=True)
+        plt.ylabel(r'Tr(X$^2)/N$',fontsize=12)
+        plt.xlabel('Time units', fontsize=12)
+        plt.grid(which='major', axis='y', linestyle='--')
+        plt.axhline(y=t2_exact, color='teal', linestyle='--')
+        # Exact result for 1MM quartic with g = 1
+        plt.figure(1)
+        plot (MDTU, trX2, 'teal') 
+        outname = "1MM_N%s_g%s" %(NCOL, g)
+        plt.savefig(outname+'.pdf')
 
+    print ("------------------------------------------------------")
+    print ("Acceptance rate: ", (acc_count/Niters_sim)*100,"%") 
     if acc_count/Niters_sim < 0.50:
         print("WARNING: Acceptance rate is below 50%")
 
@@ -222,8 +243,6 @@ if __name__ == '__main__':
         trX4 = trX4[cut:]
         expDH = expDH[cut:] 
 
-    outname = "1MM_N%s_g%s" %(NCOL, g)
-    plt.savefig(outname+'.pdf')
     print ("COMPLETED:" , datetime.datetime.now().strftime("%d %B %Y, %H:%M:%S"))
     endTime = time.time() 
     print ("Running time:", round(endTime - startTime, 2),  "seconds")
