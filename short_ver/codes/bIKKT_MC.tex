@@ -19,18 +19,15 @@ from matplotlib import pyplot
 
 startTime = time.time()
 print ("STARTED:" , datetime.datetime.now().strftime("%d %B %Y %H:%M:%S"))
-
 if len(sys.argv) < 7:
   print("Usage: python", str(sys.argv[0]), "READ-IN? " "SAVE-or-NOT? " "NCOL " "NITERS " "D " "LAMBDA ")
   sys.exit(1)
-
 READIN = int(sys.argv[1])
 SAVE = int(sys.argv[2])
 NCOL = int(sys.argv[3]) 
 Niters_sim = int(sys.argv[4]) 
 NMAT = int(sys.argv[5])
 LAMBDA = float(sys.argv[6])
-
 if NMAT < 2:
     print ("Number of scalars must be at least two")
     sys.exit(1) 
@@ -102,16 +99,18 @@ def random_hermitian():
     return tmp 
 
 def makeH(tmp):
-    tmp = 0.50*(tmp+dagger(tmp)) - (0.50*np.trace(tmp+dagger(tmp))*np.eye(NCOL))/NCOL
-    if np.allclose(tmp, dagger(tmp)) == False:
-        print ("WARNING: Couldn't make hermitian")
-    return tmp
+    tmp2 = 0.50*(tmp+dagger(tmp)) - (0.50*np.trace(tmp+dagger(tmp))*np.eye(NCOL))/NCOL
+    for i in range (NCOL):
+        tmp2[i][i] = complex(tmp[i][i].real,0.0)  
+    if np.allclose(tmp2, dagger(tmp2)) == False:
+        print ("WARNING: Couldn't make hermitian.")
+    return tmp2
 
 def hamil(mom_X):
     s = 0.0 
     for j in range (NMAT):
-        s += 0.50 * np.trace(np.dot(dagger(mom_X[j]),mom_X[j]))
-    return s.real    
+        s += 0.50 * np.trace(np.dot(dagger(mom_X[j]),mom_X[j])).real
+    return s    
 
 def potential(X):
     s1 = 0.0 
@@ -120,7 +119,6 @@ def potential(X):
             co = np.dot(X[i],X[j]) - np.dot(X[j],X[i])
             tr = np.trace(np.dot(co,co))
             s1 -= COUPLING*tr.real 
-
     return s1
 
 def force(X):
@@ -138,7 +136,6 @@ def force(X):
     for j in range(NMAT):
         if np.allclose(f_X[j], dagger(f_X[j])) == False:
             f_X[j] = makeH(f_X[j])
-
     return f_X  
 
 def leapfrog(X,mom_X, dt):
@@ -174,12 +171,11 @@ def update(X):
 
     if np.exp(-change) < random.uniform(0,1):
         X = rejected_go_back_old_fields(X_bak)
-        print(("REJECT: deltaS = " "%8.7f " " startS = " "%8.7f" " endS = " "%8.7f" % (change, start_act, end_act)))
+        print(("REJECT: deltaH = " "%8.7f " " startH = " "%8.7f" " endH = " "%8.7f" % (change, start_act, end_act)))
     else:   
-        print(("ACCEPT: deltaS = " "%8.7f " "startS = " "%8.7f" " endS = " "%8.7f" % (change, start_act, end_act)))
+        print(("ACCEPT: deltaH = " "%8.7f " "startH = " "%8.7f" " endH = " "%8.7f" % (change, start_act, end_act)))
 
     ACT.append(s2)
-
     tmp = 0.0 
     for i in range (0,NMAT):
         val = np.trace(X[i] @ X[i]).real/NCOL
@@ -190,9 +186,7 @@ def update(X):
 
     tmp /= NMAT 
     scalar.append(tmp) 
-
     if MDTU%GAP == 0:
-
         f3.write("%4.8f \n" % (s2/GENS))
         for item in t2:
             f4.write("%4.8f " % item)
@@ -211,13 +205,12 @@ if __name__ == '__main__':
             X[i] = 0.0  
 
     if READIN == 1:
-
         name_f = "config_YM_N{}_l_{}_D_{}.npy".format(NCOL, LAMBDA, NMAT)
+
         if os.path.isfile(name_f) == True: 
             print ("Reading old configuration file:", name_f)
             
             A = np.load(name_f)
-
             for i in range (NMAT):
                 for j in range (NCOL):
                     for k in range (NCOL):
@@ -227,18 +220,15 @@ if __name__ == '__main__':
                 if np.allclose(X[j], dagger(X[j])) == False:
                     print ("Input configuration not hermitian, making it so")
                     X[j] = makeH(X[j])
-
         else: 
             print ("Can't find config. file for this NCOL and LAM")
             print ("Starting from randomized fresh")
             for i in range (NMAT):  
                 X[i] = 0.0
 
-
     f3 = open('action_N%s_D%s.txt' %(NCOL,NMAT), 'w')
     f4 = open('t2_N%s_D%s.txt' %(NCOL,NMAT), 'w')
     f5 = open('t4_N%s_D%s.txt' %(NCOL,NMAT), 'w')
-
 
     for MDTU in range (1, Niters_sim+1): 
         X = update(X)
@@ -249,15 +239,13 @@ if __name__ == '__main__':
             np.save(name_f, X)
 
     ACT = [x/GENS for x in ACT] 
-
     f3.close()
     f4.close()
     f5.close()
-    
+    print ("--------------------------------------------")
     print("<S> = ", np.mean(ACT), "+/-", (np.std(ACT)/np.sqrt(np.size(ACT) - 1.0)))
     print ("COMPLETED:" , datetime.datetime.now().strftime("%d %B %Y %H:%M:%S")) 
     endTime = time.time() 
-
     # Plot results!
     t2plot = plt.figure(1) 
     plt.rc('text', usetex=True)
@@ -270,7 +258,7 @@ if __name__ == '__main__':
     act_plot = plt.figure(2) 
     plt.ylabel(r'$\langle S/(N^2-1) \rangle$')
     plt.xlabel('Time units')
-    plt.axhline(y=NMAT/4.0, color='blue', linestyle='--')
+    plt.axhline(y = NMAT/4.0, color='blue', linestyle='--')
     plot(MDTU, ACT, 'blue') 
     plt.grid(which='major', axis='y', linestyle='--')
     outname = "YM_N%s_D%s" %(NCOL,NMAT)

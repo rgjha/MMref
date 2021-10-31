@@ -13,7 +13,6 @@ from matplotlib import pyplot as plt
 
 startTime = time.time()
 print ("STARTED:" , datetime.datetime.now().strftime("%d %B %Y, %H:%M:%S"))
-
 if len(sys.argv) < 5:
   print("Usage:python",str(sys.argv[0]),"READ-IN? " "SAVE-or-NOT? " "NCOL " "NITERS")
   sys.exit(1)
@@ -23,16 +22,15 @@ SAVE = int(sys.argv[2])
 NCOL = int(sys.argv[3]) 
 Niters_sim = int(sys.argv[4])
 
+if Niters_sim%GAP != 0:
+  print("'Niters_sim' mod 'GAP' is not zero ")
+  sys.exit(1) 
+
 NMAT = 1
 g = 1.0
 dt = 1e-3
 nsteps = int(0.5/dt) 
 GAP = 2.
-
-if Niters_sim%GAP != 0:
-  print("'Niters_sim' mod 'GAP' is not zero ")
-  sys.exit(1) 
-
 cut = int(0.25*Niters_sim) 
 X = np.zeros((NMAT, NCOL, NCOL), dtype=complex)
 mom_X = np.zeros((NMAT, NCOL, NCOL), dtype=complex)
@@ -82,7 +80,6 @@ def random_hermitian():
     for i in range (NCOL):
         r1, r2 = box_muller()
         tmp[i][i] = complex(r1, 0.0) 
-
     return tmp
 
 
@@ -131,7 +128,6 @@ def leapfrog(X,dt):
             X[j] += mom_X[j] * dt
 
     f_X = force(X)
-
     for j in range(NMAT):
         mom_X[j] -= f_X[j] * dt
         X[j] += mom_X[j] * dt * 0.5 
@@ -153,7 +149,6 @@ def update(X, acc_count):
         acc_count += 1 
 
     if MDTU%GAP == 0:
-
         t2_ex[0] = np.trace(np.dot(X[0],X[0])).real
         trX2.append(t2_ex[0]/NCOL)
         t4_ex[0] = np.trace((X[0] @ X[0] @ X[0] @ X[0])).real
@@ -171,42 +166,31 @@ def update(X, acc_count):
         f3.write("\n")
         f4.write("\n")
 
-        #f3.write("%4.8f  \n" %(tmp0/NCOL))
-        #f4.write("%4.8f  \n" %(tmp1/NCOL))
-
-    
     return X, acc_count
 
 if __name__ == '__main__':
-
 
     if READIN == 0:
         for i in range (NMAT): 
             X[i] = 0.0  
 
-
     if READIN == 1:
         name_f = "config_1MM_N{}.npy".format(NCOL)
         A = np.load(name_f)
-
         for i in range (NMAT):
             for j in range (NCOL):
                 for k in range (NCOL):
                     X[i][j][k] = A[i][j][k]
-
         for j in range(NMAT):
             if np.allclose(X[j], dagger(X[j])) == False:
                 print ("Input configuration 'X' not hermitian, ", LA.norm(X[j] - dagger(X[j])), "making it so")
                 X[j] = makeH(X[j])
-
         print ("Read old configuration file: ", name_f)
-
 
     f3 = open('t2_1MM_N%s_g%s.txt' %(NCOL,round(g,4)), 'w')
     f4 = open('t4_1MM_N%s_g%s.txt' %(NCOL,round(g,4)), 'w')
 
     acc_count = 0.
-
     for MDTU in range (1, Niters_sim+1):
 
         X, acc_count = update(X, acc_count)
@@ -220,6 +204,7 @@ if __name__ == '__main__':
 
     if NMAT == 1: 
         t2_exact = (((12*g)+1)**(3/2.) - 18*g - 1)/(54*g*g)
+        # Exact result for 1MM quartic potential with g = 1
         plt.rc('text', usetex=True)
         plt.rc('font', family='serif')
         MDTU = np.linspace(0, int(Niters_sim/GAP), int(Niters_sim/GAP), endpoint=True)
@@ -227,12 +212,10 @@ if __name__ == '__main__':
         plt.xlabel('Time units', fontsize=12)
         plt.grid(which='major', axis='y', linestyle='--')
         plt.axhline(y=t2_exact, color='teal', linestyle='--')
-        # Exact result for 1MM quartic with g = 1
         plt.figure(1)
         plot (MDTU, trX2, 'teal') 
         outname = "1MM_N%s_g%s" %(NCOL, g)
         plt.savefig(outname+'.pdf')
-
     print ("------------------------------------------------------")
     print ("Acceptance rate: ", (acc_count/Niters_sim)*100,"%") 
     if acc_count/Niters_sim < 0.50:
