@@ -139,7 +139,7 @@ Matrices have played an important role in Physics for a long time. Their presenc
 conformal field theories, integrable systems, two-dimensional quantum gravity, and nonperturbative descriptions of string theory. It is well-known that several physical systems are explained to a great extent by normally distributed elements (Gaussian distribution). It is the most important probability 
 distribution because it fits many natural phenomena.  In this regard, Mark Kac\footnote{Kac was a Polish American mathematician. His main interest was probability theory. He is also known apart from other things for his thought-provoking question - ``Can one hear 
 the shape of a drum?''} once made a remark which perfectly explains this - ``That we are led here to the normal law (distribution), usually associated with random phenomena, is perhaps
-an indication that the deterministic and probabilistic points of view are not as irreconcilable as they may appear at first sight''. The subject of random matrix theory is the study of matrices whose entries are random variables chosen from a well-defined distribution. It was Wishart who 
+an indication that the deterministic and probabilistic points of view are not as irreconcilable as they may appear at first sight''. The subject of random matrix theory is the study of matrices whose entries are random variables chosen from a well-defined distribution. It was Wishart who first
 noticed around 1928 that one can consider a family of 
 probability distributions which is defined over symmetric, non-negative definite 
 matrices sometimes also known as matrix-valued random variables 
@@ -147,7 +147,7 @@ now known as `Wishart ensembles'. These are sometimes also known
 as `Wishart-Laguerre' because the spectral properties of this distribution 
 involve the use of Laguerre polynomials. But, the application of random matrices/distributions
 to physical problems was not until the 1950s
-when Wigner first applied the random matrix theory 
+when Wigner first applied the ideas of random matrix theory 
 to understand the energy spectrum in nuclei of heavy elements. It was experimentally 
 shown that unlike the case when the energy levels are assumed to be uncorrelated
 random numbers and the variable $s$ would be governed by the familiar Poisson distribution 
@@ -226,13 +226,13 @@ no one knows about such an operator! We refer reader to the excellent books \cit
 
 The major development in the study of quantum field theories with matrix degrees of freedom satisfying some well-defined properties started with the work of 't~Hooft in 1974 on the large $N$ limit of gauge theories. By then, it was accepted that the correct theory of 
 strong interactions was QCD where we have matrix degrees of freedom for gauge fields based on $SU(3)$ gauge group. He proposed to consider a general $SU(N)$ 
-symmetry with large $N$ and showed that in such a limit only planar diagrams survive and calculations become more tractable and the effects in QCD can be explained as $1/N$ expansion. This work started an exposition of studying large $N$ limit of matrix valued fields and their applications to diverse areas of Physics and quantum gravity and is extremely fruitful to date. This also enabled us to study several interesting features of quantum gravity from a field-theoretic point of view through the famous AdS/CFT conjecture. There are some excellent reviews about random matrix theory, matrix integrals/models, large $N$ limit 
+symmetry with large $N$ and showed that in such a limit only planar diagrams survive and calculations become more tractable and the effects in QCD can then be explained as $1/N$ expansion. This work started an exposition of studying large $N$ limit of matrix valued fields and their applications to diverse areas of Physics and is extremely fruitful to date. This also enabled us to study several interesting features of quantum gravity from a field-theoretic point of view through the famous AdS/CFT conjecture. There are some excellent reviews about random matrix theory, matrix integrals/models, large $N$ limit 
 and their formal aspects. We refer the reader to two excellent reviews written more than two decades 
 apart \cite{DiFrancesco:1993cyw,Eynard:2015aea} for detailed discussions. 
 
 The goal of this work is to introduce the numerical solutions of matrix models using Monte Carlo (MC) methods and implement them to solve several multi-matrix 
 models in the large $N$ where no other analytical/numerical treatment is yet possible. The motivation for this work is partly from the recent progress in the numerical bootstrap program to solve matrix models and we hope that this introduction with the \PY~codes will assist those explorations and serve as a cross-check of the results. We now outline the plan of this article. In Sec.~\ref{sec:MMAres}, we discuss saddle-point one-cut analysis of one matrix Hermitian model and provide a brief explanation about an alternative and equally effective method of orthogonal polynomials and show how it can be used to 
-solve a special unitary matrix model. We provide some additional details about the Ising model on a random graph which was solved using these polynomials in Appendix~\ref{sec:Ortho_pol1}. In Sec.~\ref{sec:NSOL}, we start by discussing the recent numerical bootstrap results for matrix models and then focus for bulk of the remaining section on explaining basics of the MC method and using it to solve different models. We discuss the solution of one-matrix model using \MA~in  Appendix~\ref{sec:math_code} and explain how to run \PY~codes in Appendix~\ref{sec:BEOC}. Then  we provide three  \PY~programs used in the paper in Appendix ~\ref{sec:1MMPYC}, \ref{sec:YMC}, and \ref{sec:jk_code} respectively. In the last Appendix~\ref{sec:solutions}, we give solutions to some exercises. All the programs can be accessed at:  
+solve a special unitary matrix model. We provide some additional details about the Ising model on a random graph which was solved using these polynomials in Appendix~\ref{sec:Ortho_pol1}. In Sec.~\ref{sec:NSOL}, we start by mentioning the recent numerical bootstrap results for matrix models and then focus for bulk of the remaining section on explaining basics of the MC method and using it to solve different models. We discuss the solution of one-matrix model using \MA~in  Appendix~\ref{sec:math_code} and explain how to run \PY~codes in Appendix~\ref{sec:BEOC}. Then  we provide three  \PY~programs used in the paper in Appendix~\ref{sec:1MMPYC}, \ref{sec:YMC}, and \ref{sec:jk_code} respectively. At last, in Appendix~\ref{sec:solutions}, we give solutions to some exercises. All the programs can be accessed at:  
 \begin{center} \texttt{\href{https://github.com/rgjha/MMMC}{https://github.com/rgjha/MMMC}} \end{center}
 
 \section{\label{sec:MMAres}Matrix models - Analytical results} 
@@ -435,7 +435,7 @@ model of unitary links was solved with an external field in the large $N$ limit 
  
 \section{\label{sec:NSOL}Numerical solutions} 
 There is only a selected list of analytically solvable matrix models in the planar limit. This inevitably brings 
-the thought of attempting numerical solutions. Unfortunately, even here, there are not many methods that one can use. In fact, there are only two methods with the second method barely a few years old! This clearly signals the fact that there still remains a lot of work to be done in devising new numerical 
+the thought of attempting numerical solutions. Unfortunately, even here, there are not many methods that one can use. In fact, there are only two methods to our knowledge with the second method barely a few years old! This clearly signals the fact that there still remains a lot of work to be done in devising new numerical 
 methods to solve matrix models. The most frequently used method is Monte Carlo (MC)\footnote{
 It is not widely known that Monte Carlo methods were central to the work required for the Manhattan Project
 and first introduced in the 1940s by Stanislaw Ulam and recognized first by von Neumann. 
@@ -447,7 +447,7 @@ suggested using the name Monte Carlo based on the casino in
 Monaco where Ulam's uncle would borrow money from relatives to gamble. Ulam and Metropolis
 published the first paper on MC in September 1949 titled `The Monte Carlo Method'.} 
 and it is quite effective but is not a panacea and has its own shortcomings. 
-The recently introduced numerical bootstrap method has already been used to study several matrix models \cite{Anderson:2016rcw,Lin:2020mme,Han:2020bkb,Kazakov:2021lel} but the extension to matrix models with more than two matrices i.e., 3-matrix commutator type models or models relevant for superstrings (ten matrix model) seems non-trivial at the moment. This is related to the fact that with more matrices, the loop equations which become highly non-linear are difficult to handle. In these notes, we will mostly focus on MC method. However, we want to explain the bootstrap solution for the case of one matrix model as first shown by \cite{Lin:2020mme} for the interested reader. For a detailed exposition, please see the references above. We hope that this yet small section on bootstrap methods would be extended in later versions of these notes as more results accumulate in coming years. 
+The recently introduced numerical bootstrap method has already been used to study several matrix models \cite{Anderson:2016rcw,Lin:2020mme,Han:2020bkb,Kazakov:2021lel} but the extension to matrix models with more than two matrices i.e., 3-matrix commutator type models or models relevant for superstrings (ten matrix model) seems non-trivial at the moment. This is related to the fact that with more matrices, the loop equations which become highly non-linear are difficult to handle. In these notes, we will mostly focus on MC method. However, we want to explain the bootstrap solution for the case of one matrix model as first shown by \cite{Lin:2020mme} for the interested reader. For a detailed exposition, please see the references above. We hope that this yet small subsection on bootstrap methods would be extended in later versions of these notes as more results accumulate in coming years. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Matrix bootstrap method}
 The basic idea of bootstrapping matrix models rests on the 
@@ -533,7 +533,7 @@ at the start of each trajectory (time unit) since
 this is necessary to ensure that we converge to the 
 correct answer using Monte Carlo methods. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Random number generator}  
+\subsubsection{Random generator}  
 It is essential during HMC algorithm that we correctly generate $ N \times N$ momentum matrices at the start of the leapfrog method whose elements are taken from a Gaussian distribution. In this part, we will sketch this process. The part of code that implements this can be found in one of the sub-routines in Appendix \ref{sec:1MMPYC}. Suppose we have two numbers $U$ and $V$ taken from uniform distribution i.e., (0,1) and we want two random numbers with probability density function $p(X)$ and $p(Y)$ given by:
 \begin{equation}
 	p(X) = \frac{1}{\sqrt{2\pi}} e^{-X^2/2}, 
@@ -601,7 +601,8 @@ where $N$ is the size of the matrix and $V$ is the potential of the model. The b
 \vspace{7mm} 
     \begin{mdframed}[backgroundcolor=blue!3] 
     $\bullet$ Exercise 5: Show that a consequence of phase space conservation i.e., $dPdX = dP^{\prime}dX^{\prime}$ is that $ \langle e^{-\Delta H(\boldsymbol{\cdot})} \rangle = 1$, where $\boldsymbol{\cdot}$ denote the fields and $ \Delta H  = H^{\prime} - H $. Using Jensen's inequality this implies that $\langle H^{\prime} - H \rangle  \ge 0$. Check these hold in any given MC simulation of multi-matrix model within errors using leapfrog algorithm after ignoring some data for thermalization cut.
-    \end{mdframed} 
+    \end{mdframed}
+\vspace{4mm} 
 In the last step of HMC, a Metropolis test is carried out to accept or reject the proposed
 configuration. Suppose we start from the configuration $X$ of a one matrix model 
 which is a $N \times N$ matrix and carry out the leapfrog part with some parameters and obtain a new configuration 
@@ -696,16 +697,16 @@ was first introduced by Hoppe \cite{Hoppe:1982en} and solved later by different 
 Refs.~\cite{Kazakov:1998ji,Berenstein:2008eg}.
 The partition function is given by:
 \begin{equation}
-Z = \int \mathcal{D}X \mathcal{D}Y \exp \Big[-N ~ \mbox{Tr} (X^2 + Y^2 - g^2 [X,Y]^2) \Big]. 
+Z = \int \mathcal{D}X \mathcal{D}Y \exp \Big[-N ~ \mbox{Tr} (X^2 + Y^2 - h^2 [X,Y]^2) \Big]. 
 \end{equation}
-At large values of commutator coupling i.e., $ g \to \infty$, this model becomes commuting with 
+At large values of commutator coupling i.e., $ h \to \infty$, this model becomes commuting with 
 $ [X,Y] \to 0$. The presence of commutator term in matrix models is common especially in 
 models which have a dual gravity interpretation of emergent geometry behaviour. 
 The exact result for average action is:
 \begin{equation}
 	2 \langle S_{c} \rangle + \langle S_{q}  \rangle = N^2 - 1, 
 \end{equation}
-where $ S_{c} = -Ng^2 \mbox{Tr}[X,Y]^2$  and 
+where $ S_{c} = -Nh^2 \mbox{Tr}[X,Y]^2$  and 
 $ S_{q} = N~\mbox{Tr} (X^2 + Y^2)$.
 This average action serves as a good check of the code. We can alternatively also consider a slightly more general two-matrix model which reduces to Hoppe's model mentioned above in a special limit. 
 Such a matrix model is generally not solvable. This model was considered in Ref.~\cite{Kazakov:2021lel} and 
@@ -723,11 +724,11 @@ Z = \int \mathcal{D}X \mathcal{D}Y \exp \Big[-N ~ \mbox{Tr} (X^2 + Y^2 - h^2 [X,
 \end{figure} 
 
 The action in (\ref{eq:GHM1}) has $\mathbb{Z}_{2}^{\otimes 3}$ symmetry 
-(i.e., $X \to Y$, $X \to -X$, and $Y \to -Y$). For $h = 0$, it can be reduced to a
+(i.e., $X \to Y$, $X \to -X$, and $Y \to -Y$). For $g = 0$, it can be reduced to a
 matrix model which can be solved via saddle-point analysis or through the reduction 
 to a Kadomtsev-Petviashvili (KP) type equation. 
-For $g = 0$ it reduces to two decoupled one-matrix models 
-and for $g = \infty$, we have $[X, Y] = 0$ and it becomes an eigenvalue problem. 
+For $h = 0$ it reduces to two decoupled one-matrix models 
+and for $h = \infty$ as mentioned above, we have $[X, Y] = 0$ and it becomes similar to an eigenvalue problem. 
 We considered this model with $g=h=1$ using MC methods and show in Fig. \ref{fig:2MM_match} that the results obtained are consistent with Ref.~\cite{Kazakov:2021lel}. 
 This result is for $N = 300$ and took about \texttt{5500} seconds on a 2.4 GHz i5 A1989 MacBook Pro. We also show the eigenvalue distribution for this case in the left panel of Fig.~\ref{fig:2MM_match1}. The code for this model is available at:  
 \begin{center} 
@@ -1141,11 +1142,11 @@ The size of this file can vary from a few MB up to 50 MB or more depending on
 $\texttt{NMAT}$ and $\texttt{N}$ (which we call $\texttt{NCOL}$ in the code). If we are not doing the run for the first time, it is better to read-in the configuration file since this will save the thermalization time as it will pick up from where it left last time.  
 Note that this can only be done if $\texttt{NMAT}$ and $\texttt{NC}$ are the same or else
 it will throw some error. This can be modified easily to suit users' requirements. 
-\item The code produces output files with name starting with $\texttt{t2*.txt}$ and $\texttt{t4*.txt}$
+\item The code produces output files ending with $\texttt{.txt}$ and $\texttt{.txt}$
 which are moments of the matrices. The number of columns in these files will be equal to 
 the number of different matrices we considered in the potential i.e., $\texttt{NMAT}$. 
 If we consider a matrix model with ten matrices (the maximum we have used in these notes),
-these files will have ten corresponding columns. 
+these files will have ten corresponding columns. it might however be true that they are all very similar to each other if the problem has some specific symmetry such as the one we discussed in \ref{subsec:Hoppe}.
 \item It is common practice among those who use Monte Carlo to never measure an 
 observable every time unit (because of autocorrelation\footnote{See 
 \texttt{\href{https://emcee.readthedocs.io/en/stable/user/autocorr/}{https://emcee.readthedocs.io/en/stable/user/autocorr/}}
