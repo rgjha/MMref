@@ -5,6 +5,7 @@ import numpy as np
 from numpy import linalg as LA
 from numpy.linalg import matrix_power
 import time 
+import os 
 import datetime 
 import sys
 import random
@@ -19,9 +20,11 @@ from matplotlib import pyplot
 
 startTime = time.time()
 print ("STARTED:" , datetime.datetime.now().strftime("%d %B %Y %H:%M:%S"))
+
 if len(sys.argv) < 7:
   print("Usage: python", str(sys.argv[0]), "READ-IN? " "SAVE-or-NOT? " "NCOL " "NITERS " "D " "LAMBDA ")
   sys.exit(1)
+
 READIN = int(sys.argv[1])
 SAVE = int(sys.argv[2])
 NCOL = int(sys.argv[3]) 
@@ -29,8 +32,14 @@ Niters_sim = int(sys.argv[4])
 NMAT = int(sys.argv[5])
 LAMBDA = float(sys.argv[6])
 if NMAT < 2:
-    print ("Number of scalars must be at least two")
+    print ("NMAT must be at least two")
     sys.exit(1) 
+if READIN not in [0,1]:
+    print ("Wrong input for READIN")
+    sys.exit(1)
+if SAVE not in [0,1]:
+    print ("Wrong input for SAVE")
+    sys.exit(1)
 
 COUPLING = float(NCOL/(4.0*LAMBDA))
 GENS = NCOL**2 - 1
@@ -45,7 +54,7 @@ f_X = np.zeros((NMAT, NCOL, NCOL), dtype=complex)
 X_bak = np.zeros((NMAT, NCOL, NCOL), dtype=complex)
 HAM, expDH, ACT, scalar = [],[],[],[]
 
-print ("Yang-Mills type matrix model simulation with %2.0f matrices" % (NMAT)) 
+print ("Yang-Mills type matrix model with %2.0f matrices" % (NMAT)) 
 print ("NCOL = " "%3.0f " ","  " and coupling = " " %4.2f" % (NCOL, COUPLING)) 
 print ("--------------------------------------------")
 
@@ -171,9 +180,9 @@ def update(X):
 
     if np.exp(-change) < random.uniform(0,1):
         X = rejected_go_back_old_fields(X_bak)
-        print(("REJECT: deltaH = " "%8.7f " " startH = " "%8.7f" " endH = " "%8.7f" % (change, start_act, end_act)))
-    else:   
-        print(("ACCEPT: deltaH = " "%8.7f " "startH = " "%8.7f" " endH = " "%8.7f" % (change, start_act, end_act)))
+        print(("REJECT: deltaH = " "%10.7f " " startH = " "%10.7f" " endH = " "%10.7f" % (change, start_act, end_act)))
+    else:
+        print(("ACCEPT: deltaH = " "%10.7f " "startH = " "%10.7f" " endH = " "%10.7f" % (change, start_act, end_act)))
 
     ACT.append(s2)
     tmp = 0.0 
