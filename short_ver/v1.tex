@@ -232,8 +232,8 @@ In these cases, one evaluates integrals of the form:
 Z = \int dM_{i} \cdots dM_{j} \exp\Bigg[-N \mathrm{Tr} \sum V(M_{i})\Bigg] ,
 \end{equation}
 where $M_{i}$ are $N \times N$ matrices which can be Hermitian or unitary.  
-In the study of zero-dimensional gauge theories, we encounter these types of matrix models where the integral is over some well-defined measure. These models often have interesting features in the large $N$ limit such as finite-volume phase transitions, volume reductions etc. In the following subsection, we discuss two matrix models and solve them using two different methods. 
-
+In the study of zero-dimensional gauge theories, we encounter these types of matrix models where the integral is over some well-defined measure. These models often have interesting features in the large $N$ limit such as finite-volume phase transitions, volume reductions etc. In the following subsection, we discuss solution of 
+matrix models using two different methods. 
 
 \subsection{Hermitian one-matrix model - Saddle point analysis}
 Before we delve into the details of how to solve the one matrix model using the saddle point (or `stationary phase') method, we discuss the basics of this in a simple setting where we deal with integrals over a large number $N$ of variables. Suppose we want to evaluate the integral given by:
@@ -353,8 +353,10 @@ This one-cut solution is not valid for $g < -\mu^2/12$ and reduces to famous Wig
 \vspace{4mm} 
 
 \subsection{\label{subsec:OP}Method of orthogonal polynomials}
-The saddle-point analysis is useful to solve matrix models in the planar limit, but, it is not very useful to study $1/N$ corrections. The preferred method for this is that of orthogonal polynomials (OP). This was introduced by Bessis et al. in Ref.~\cite{Bessis:1980ss} and can be used to study matrix models with one and more matrices. 
-These polynomials are defined as:
+In the last section, we discussed saddle-point methods to solve matrix models in the planar limit. 
+But, this method is not very useful to study $1/N$ corrections. The preferred method for this purpose is based on orthogonal polynomials (OP). 
+This was introduced by Bessis et al. in Ref.~\cite{Bessis:1980ss} and can be used to study matrix models with one and more matrices. 
+The set of polynomials orthogonal with respect to the measure are defined as:
 \begin{equation}
 	\label{eq:ortho_nn} 
 	\int d\lambda e^{-V(\lambda)} P_{n}(\lambda)
@@ -366,13 +368,26 @@ The basic idea is to rewrite the Vandermonde determinant appearing after we chan
 \begin{equation}
 	\Delta(\lambda) = \det(\lambda_{i}^{j-1})_{1 \le i, j \le N} = \det(P_{j-1}(\lambda_i))_{1 \le i, j \le N}. 
 \end{equation}
-In order to illustrate how we can solve matrix models using this method, we use OP to study the Ising model on random graph in Appendix~\ref{sec:Ortho_pol1}. One can also use this method to study unitary matrix models like the Gross-Witten-Wadia (GWW) model \cite{Gross:1980he,Wadia:2012fr}
-as was done in Ref.~\cite{Goldschmidt:1979hq}. In addition to this model, there are other unitary models which are interesting for lattice gauge theory in lower dimensions. 
-One such model is the external field problem which was considered in \cite{Brezin:1980rk} and consists of a model of unitary links in external source field. It was solved with a fixed external field in the large $N$ limit and found to have a third-order phase transition. This model reduces to the GWW model when the external source is set to unit matrix.  These developments in large $N$ $\rm{QCD}_{2}$ models also lead (after a few years) to the idea of volume reduction in large $N$ limit known as Eguchi-Kawai reduction \cite{Eguchi:1982nm} in which it was shown that in the planar limit, the lattice gauge theory for an infinite lattice and unit cube are identical. The space-time seems incorporated in the large $N$ limit as an internal degree of freedom. There are some subtle requirements for this idea to work and are technical but this has led to lot of interesting work, see for instance Ref.~\cite{Kovtun:2007py}. 
+In order to illustrate how we can solve matrix models using this method, we use OP to study the Ising model on random graph in 
+Appendix~\ref{sec:Ortho_pol1}. One can also use this method to study unitary matrix models like the 
+Gross-Witten-Wadia (GWW) model \cite{Gross:1980he,Wadia:2012fr}
+as was done in Ref.~\cite{Goldschmidt:1979hq}. In addition to this model, 
+there are other unitary models which are interesting 
+for lattice gauge theory in lower dimensions. 
+One such model is the external field problem which was considered in \cite{Brezin:1980rk} and consists of a model of 
+unitary links in external source field. It was solved with a fixed external field in the large $N$ limit and found to have a 
+third-order phase transition. This model reduces to the GWW model when the external source is set to unit matrix. 
+These developments in large $N$ $\rm{QCD}_{2}$ models also lead (after a few years) to the idea of volume reduction 
+in large $N$ limit known as Eguchi-Kawai reduction \cite{Eguchi:1982nm} in which it was shown that in the planar limit, 
+the lattice gauge theory for an infinite lattice and unit cube are identical. The space-time seems incorporated in the large 
+$N$ limit as an internal degree of freedom. There are some subtle requirements for this idea to work and are technical 
+but this has led to lot of interesting work, see for instance Ref.~\cite{Kovtun:2007py}. 
  
 \section{\label{sec:NSOL}Numerical solutions} 
 There is only a selected list of analytically solvable matrix models in the planar limit. This inevitably brings 
-the thought of attempting numerical solutions. Unfortunately, even here, there are not many methods that one can use. In fact, there are only two methods to our knowledge with the second method barely a few years old! This clearly signals the fact that there still remains a lot of work to be done in devising new numerical 
+the thought of attempting numerical solutions. Unfortunately, even here, there are not many methods that one can use. 
+In fact, there are only two methods to our knowledge with the second method barely a few years old! This clearly signals 
+the fact that there still remains a lot of work to be done in devising new numerical 
 methods to solve matrix models. The most frequently used method is Monte Carlo (MC)\footnote{
 It is not widely known that Monte Carlo methods were central to the work required for the Manhattan Project
 and first introduced in the 1940s by Stanislaw Ulam and recognized first by von Neumann. 
@@ -425,7 +440,7 @@ In this work, the Hamiltonian considered was given by:
 \begin{equation}
 H = \mbox{Tr} \Big( P^2 + X^2 + \frac{g}{N} X^4 \Big),
 \end{equation}
-and corresponding to the trial operators up to length (L) = 2, 
+and corresponding to the trial operators up to length, $L = 2$, 
 they considered $ \mathbb{I}, X, X^{2}$ and $P$. The bootstrap matrix
 of size $2^L \times 2^L$ which should be positive definite is constructed as:
 
@@ -445,7 +460,7 @@ was slow but consistent with results expected using Monte Carlo results and boun
 In this work, the authors used relaxation bootstrap methods (which takes us 
 from non-linear semi-definite programming (SDP) problem to linear SDP) with
 $\Lambda=11$ (which determines the size of the minor of the full bootstrap matrix) 
-to constrain the moments of matrices such as $\mathrm{Tr}X^2/N = t_{2}$ and $t_{4}$ 
+to constrain the moments of matrices such as $t_{2} = \mathrm{Tr}X^2/N$ and $t_{4}$ 
 to six decimal places of precision for the symmetric case. We will come back to 
 discuss this model for both symmetric and symmetry broken cases 
 and its corresponding solution using MC methods in Sec.~\ref{subsec:Hoppe} 
@@ -456,7 +471,7 @@ The numerical method which is state-of-the-art in computations of matrix models 
 gauge theory like $\mathbb{Z}_{2}$ in four dimensions, this is not practical to evaluate. 
 The fact that we need to do so many integrals suggests that may be some statistical 
 interpretation and this is where the basic idea of Monte Carlo comes in. We make use of
-importance sampling (we sample states which are more relevant for the partition function more often compared to states which are not so relevant ) in the Monte Carlo
+importance sampling (we sample states which are more relevant for the partition function more often compared to states which are not so relevant) in the Monte Carlo
 method. Using this sampling, one constructs a chain of configurations that approximately leads to the required distribution. Metropolis-Hastings algorithm and Hamiltonian/Hybrid Monte Carlo (HMC) 
 are two frequently used methods that can generate a Markov chain using Monte Carlo (sometimes called Markov chain Monte Carlo) and lead to a unique stationary distribution. We will here focus on the latter since that has now become the preferred method in various numerical computations. This method was introduced in 1987 by Duane, Kennedy, Pendleton, and Roweth \cite{Duane:1987de} who put together the ideas from Markov chain Monte Carlo (MCMC)\footnote{MCMC originated in the seminal paper of Metropolis et al.~\cite{Metropolis:1953am}, where it was used to simulate the state distribution for a system of ideal molecules.} 
 and molecular dynamics (MD) methods. 
@@ -524,9 +539,11 @@ Consider a region of area $dA$ as shown below in Fig.~\ref{fig:PSP1}. The four c
 Another important property that must be satisfied by our integrator is \emph{reversibility}. Suppose we start with a field configuration $X$ and momentum taken from Gaussian distribution $P$ and evolve this for some time $t$ to a new set of field and momentum i.e., $X_{1},P_{1}$. If we now reverse the momentum sign and evolve 
 $X_{1},-P_{1} $ for the same time $t$, then we will end up at $X_{2},P_{2} = (X,P)$. The reversibility ensures that our implementation will have the desired stationary distribution. It is left as an exercise for the reader to check that this is true in our programs. There are other integrators that are more efficient and lead to improvement such as Omelyan integrator but for the purpose of the models we study, leapfrog is more than sufficient. Let us now describe this algorithm satisfying these properties. We will use the following definition of forces:
 \begin{equation}
-	f = -\frac{\partial S}{\partial X} = -N\frac{\partial \mbox{Tr} V}{\partial X} ~~,~~~ P = \frac{\partial X}{\partial \tau}
+	f_{i} = -\frac{\partial S}{\partial X_i} = -N\frac{\partial \mbox{Tr} V}{\partial X_i} ~~,~~~ P_i = \frac{\partial X_i}{\partial \tau}
 \end{equation} 
-where $N$ is the size of the matrix and $V$ is the potential of the model. The basic steps of the leapfrog algorithm which is time-interleaved is given below: 
+where $N$ is the size of the matrix, $V$ is the potential of the model, $i$ is the number of 
+matrices in the model, and $X_{i}$ are the Hermitian matrices. 
+The basic steps of the leapfrog algorithm is given as: 
 % Goodstein, States of Matter is good for these! 
 % See P 87 
 \vspace{7mm} 
@@ -582,8 +599,8 @@ In the previous subsection, we provided a very quick introduction of the basic e
 	V(M) = \frac{M^2}{2} + \frac{gM^4}{4}.  
 \end{equation}
 This has an exact solution and all moments, $t_{n}$, can be obtained using the \MA~code given in  Appendix~\ref{sec:math_code}. We show that the exact result and the Monte Carlo results agree for $g=1$ in 
-Fig.~\ref{fig:1MM_res}. The \PY~code which was used for this can be found in Appendix~\ref{sec:1MMPYC}. Before the program, we also discuss how to run the code on your laptop and the estimated time to completion in the appendix. The latest version of this 
-code\footnote{Please email the author for any bug report or additional requests} is available at:
+Fig.~\ref{fig:1MM_res}. The \PY~code which was used to study this model can be found in Appendix~\ref{sec:1MMPYC}. 
+We discuss how to run the code on your laptop and the estimated time to completion in Appendix~\ref{sec:BEOC}. The latest version of this code\footnote{Please email the author for any bug report or additional requests} is available at:
 \begin{center} \texttt{\href{https://github.com/rgjha/MMMC/blob/main/1MM.py}{https://github.com/rgjha/MMMC/1MM.py}} \end{center} 
 The quartic potential one-matrix model has a well-known critical coupling i.e., $ g_{c} = -1/12$ below which solutions cease to exist. One natural question that comes to mind is: How well can MC capture this critical coupling?. We explored this question with our MC code and find that it is very effective in detecting the critical $g$ for this one matrix model and other multi-matrix models. 
 For example, we obtained correct results for $t_{2}$ given by (\ref{eq:exact1MM}) 
@@ -719,7 +736,7 @@ Ref.~\cite{Kazakov:2021lel} but compared to the symmetric case, it was tough to 
 and see how it performs against MC and bootstrap methods.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{\label{subsection:Mchain}Closed and open chain models with three and four matrices}
-The matrix chain is a complicated $p$ matrices model which was first considered in \cite{Chadha:1980ri}. We will not mention details of the analytical solution here but instead show the results we obtain for both open and closed versions from numerics later in Fig. \ref{fig:3MM_open}. This model was also studied in context 
+The matrix chain is a complicated $p$ matrices model which was first considered in \cite{Chadha:1980ri}. We will not mention details of the analytical solution here but instead show the results we obtain for both open and closed versions from numerics later in Fig.~\ref{fig:3MM_open} and Fig.~\ref{fig:3MM_closed}. This model was also studied in the context 
 of $q$-state Potts model in Refs.~\cite{KAZAKOV198893, KOSTOV1989295, Daul:1994qy}. We define this model in the same way as the original reference: 
 \begin{equation}
 	\label{eq:Mehta1} 
@@ -743,7 +760,7 @@ Though exact results are available for any $p$ with $\kappa=0$, not much has bee
 		for $g=2, c=\kappa=1.35$, $t_{2} = 0.775(2)$ and $t_{4} = 0.887(3)$. It is straightforward to understand the behaviour as a function of $g$ at fixed $c, \kappa$ if that is of interest to the reader by using the codes we have provided.}
 \end{figure}
 
-We use Monte Carlo methods to study the open and closed cases of the model with $p = 3,4$ with $N = 300$. It would be good if this four matrix model can be \textit{bootstrapped} in the coming years. The $p$ matrix MC code to solve these models (well-tested and currently with for $p = 3,4$) is available at: 
+We use Monte Carlo methods to study the open and closed cases of the model with $p = 3,4$ with $N = 300$. It would be interesting if this four matrix model can be \textit{bootstrapped} in the coming years. The $p$-matrices MC code to solve these models (well-tested and currently with for $p = 3,4$) is available at: 
 \begin{center} \texttt{\href{https://github.com/rgjha/MMMC/blob/main/3_4MMC.py}{https://github.com/rgjha/MMMC/3\_4MC.py}} \end{center}
 It is left as an exercise for the reader to extend this for any $p$. 
 \begin{figure}[htbp] 
@@ -753,7 +770,7 @@ It is left as an exercise for the reader to extend this for any $p$.
 		which is understood by noting that the traces are non-zero at the first time unit. See Appendix~\ref{sec:BEOC} for details. The data is given in Table~\ref{table:4mchain_data}}
 \end{figure}
 In order to study the model with four matrices and periodic (closed) boundary conditions 
-as defined in (\ref{eq:Mehta1}), we can simply modify $\texttt{NMAT = 3}$ to  $\texttt{NMAT = 4}$ to go from $p=3$ to $p=4$ model.  Note that setting $\kappa=0$ reduces to the open chain case. The broken symmetry correspond to $ c \neq \kappa$ but we have not considered it here. The results for $p=4$ closed symmetric case is given in Table \ref{table:4mchain_data}. 
+as defined in (\ref{eq:Mehta1}), we can simply modify $\texttt{NMAT = 3}$ to $\texttt{NMAT = 4}$. Note that setting $\kappa=0$ reduces to the open chain case. The broken symmetry correspond to $ c \neq \kappa$ but we have not considered it here. The results for $p=4$ closed symmetric case is given in Table \ref{table:4mchain_data}. 
 \begin{table}[h!]
 	\centering
 	\begin{tabular}{||c c c||} 
@@ -765,7 +782,7 @@ as defined in (\ref{eq:Mehta1}), we can simply modify $\texttt{NMAT = 3}$ to  $\
 		\\ [1ex] 
 		\hline 
 	\end{tabular}
-	\caption{The results obtained for closed chain model with four matrices for $g=1,2$ and $N=300, c=\kappa=1.35$.}
+	\caption{The results obtained for closed chain model with four matrices with $g=1,2$ and $N=300$ at fixed $c=\kappa=1.35$.}
 	\label{table:4mchain_data}
 \end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -816,15 +833,16 @@ to understand how one can apply bootstrap methods away from the planar limit whe
 In previous Sec.~\ref{subsec:ext_Hoppe}, we discussed the generalization of Hoppe type matrix models to $D$ matrices with mass terms. It is also interesting to consider these models without mass terms (i.e., $h=0$) with $D$ matrices. We refer to these models as ~`Yang-Mills' type models following Refs.~\cite{Krauth:1998yu,Krauth:1999qw} and refer the reader to these for more details. The action is given by: 
 \begin{equation}
 	\label{eq:CTmodel} 
-S = \frac{N}{4\lambda} \int \mbox{Tr} \Bigg( \sum_{i < j}[X_i, X_j]^{2}\Bigg) 
+S = \frac{N}{4\lambda} \int \mbox{Tr} \Bigg( \sum_{i < j}[X_i, X_j]^{2}\Bigg), 
 \end{equation}
 where $i, j = 1 \cdots D$. The MC code to solve this model is available at:
 \begin{center} \texttt{\href{https://github.com/rgjha/MMMC/blob/main/YMtype.py}{https://github.com/rgjha/MMMC/YMtype.py}} \end{center}
 This model is just the general version of the well-known bosonic part of the IKKT model where $D=10$. But, this model can be studied for general $D$ and has interesting features, see Ref. \cite{Hotta:1998en}. 
 Shortly after the BFSS matrix model\footnote{This matrix model was proposed in Ref.~\cite{Banks:1996vh} and the proposal related the uncompactified eleven-dimensional $M$-theory in light cone frame to the planar limit of the supersymmetric matrix quantum mechanics describing $D0$-branes. This model has been well-studied using MC methods~\cite{Catterall:2007fp,Hanada:2008ez,Filev:2015hia,Berkowitz:2016tyy}. 
-The publicly available code (by some groups) to study these models and their mass deformation (BMN matrix model) and higher-dimensional systems which describes $D1/D2$ branes~\cite{Catterall:2017lub,Jha:2017zad,Catterall:2020nmn}
+The publicly available code by different groups 
+to study these models and their mass deformation (BMN matrix model) and higher-dimensional systems which describes $D1/D2$ branes~\cite{Catterall:2017lub,Jha:2017zad,Catterall:2020nmn}
 is available at \texttt{\href{https://github.com/daschaich/susy}{https://github.com/daschaich/susy}},while the
-highly efficient parallelized code (over $N$) for only BFSS and BMN is available at
+highly efficient parallelized code (over $N$) for only BFSS and BMN models is available at
 \texttt{\href{https://sites.google.com/site/hanadamasanori/home/mmmm}
 {https://sites.google.com/site/hanadamasanori/home/mmmm}}.
 The discussion of these models is not the goal of this article. 
@@ -834,12 +852,12 @@ was proposed as a description of M-theory, the authors of
 dimensions and conjectured it to describe the Type IIB superstrings. Though a complete large $N$ solution of even this model is out of reach, there are a lot of numerical results available which were all inspired by the seminal work of applying Monte Carlo approach to M-theory \cite{Krauth:1998xh}. There has been some recent work which takes the master-field approach to the IKKT model \cite{Klinkhamer:2021wrv} and is a promising direction but it is not fully clear how well it works. The action of IKKT model is schematically written as:
 \begin{equation}
 	\label{eq:IKKT} 
-S = \frac{N}{4\lambda} \int \mbox{Tr} \Big( \frac{1}{4} [X_\mu, X_\nu]^{2} + \overline{\psi} \Gamma^{\mu} [X_{\mu},\psi] \Big) 
+S = \frac{N}{4\lambda} \int \mbox{Tr} \Big( \frac{1}{4} [X_\mu, X_\nu]^{2} + \overline{\psi} \Gamma^{\mu} [X_{\mu},\psi] \Big), 
 \end{equation}
 where $X_{\mu}$ and $\psi$ are $N \times N$ Hermitian matrices and $\psi$ is ten-dimensional Majorana-Weyl spinor field and the indices run from $ 1 \cdots D$ with $D=10$. This model in zero dimensions possesses no usual space-time supersymmetry and is the dimensional reduction of $\mathcal{N}=1$ super Yang-Mills (SYM) theory in ten dimensions. It is expected that in this model both space and time should be generated from the dynamics of large matrices. This model has no free parameters since $\lambda$ can be absorbed in the field redefinitions. It is also possible to consider variants of this model where $D < 10$. One might worry whether the partition function is convergent at all because of the integral measure being over non-compact $X$. These convergence issues of the partition function of these models for different $D$ were studied by Refs.~\cite{Krauth:1998yu,Krauth:1999qw} and we
 refer the reader to those for additional details.  In what follows, we will ignore the fermionic 
-term and only focus on the commutator/bosonic term. One of the observables (also known as `size' or i.e., the extent of scalars) which we compute in these models is already defined in (\ref{eq:R2R4}). It is known that $R^2$ behaves as $\sqrt{\lambda}$ in the large $N$ limit as discussed in Ref.~\cite{Hotta:1998en} but we have not found any previous study
-which computes the coefficient. In supersymmetric matrix models like BFSS/BMN, this extent of scalars has a dual interpretation in terms of the radius of 
+term and only focus on the commutator/bosonic term. One of the observables (also known as `size' or i.e., the extent of scalars) which we compute in these models is already defined in (\ref{eq:R2R4}). It is known that $R^2$ behaves as $\sqrt{\lambda}$ in the large $N$ limit as discussed in Ref.~\cite{Hotta:1998en} but we have not found any previous work which computes the coefficient. In supersymmetric matrix models like BFSS/BMN, this extent of scalars has a dual interpretation in 
+terms of the radius of 
 the dual black hole horizon topology.  Our numerical results suggests 
 that $R^2 = 0.361(2) \sqrt{\lambda}$ 
 and $R^4 = 0.266(3) \lambda$ with $N = 300$ for a wide range of couplings i.e., 
@@ -848,25 +866,26 @@ We also note that we find the $\sqrt{\lambda}$ and $\lambda$ behaviour for
 $R^2$ and $R^4$ valid down to $D=3$. 
 One of the standard tests we do for the reliability of our numerical results is 
 computing the average action. It can be shown that under a 
-change: $X \to e^{\epsilon} X$ if we demand that $Z$ is invariant, 
+change: $X \to e^{\epsilon} X$, if we demand that $Z$ is invariant, 
 then we find:
 \begin{equation}
-\label{eq:SD_IKKT1} 
-	\frac{\langle S \rangle}{N^2 - 1} = \frac{D}{4} 
+\label{eq:SD_YMD} 
+	\frac{\langle S \rangle}{N^2 - 1} = \frac{D}{4}. 
 \end{equation}
 \begin{figure}[htbp] 
 	\centering 
 	\includegraphics[width=0.75\textwidth]{figs/act_allD_YM.pdf}
-	\caption{\label{fig:IKKT_2}The average action (normalized) for the $D=10$ bosonic sector of IKKT model.}
+	\caption{\label{fig:YM_allD}The average action (normalized) for the YM type model with various $D$.}
 \end{figure}
 
 \begin{mdframed}[backgroundcolor=blue!3] 
-	$\bullet$ Exercise 9: Derive (\ref{eq:SD_IKKT1}) by doing the change: $X_{\mu} \mapsto e^{\epsilon}X_{\mu}$ in (\ref{eq:IKKT}) and ignoring 
+	$\bullet$ Exercise 9: Derive (\ref{eq:SD_YMD}) by doing the change: $X_{\mu} \mapsto e^{\epsilon}X_{\mu}$ in (\ref{eq:CTmodel}) and ignoring 
 	$\mathcal{O}(\epsilon^{2})$ terms.
 \end{mdframed}
-This is an exact result and must be satisfied during the simulation. We show in Fig.~\ref{fig:IKKT_2} that for $D=3,5,10$ we get this expected result and hence the \PY~code above can be fully trusted. The timings for generating 500 time units or trajectories 
+This is an exact result and must be satisfied during the simulation. We show in Fig.~\ref{fig:YM_allD} that for 
+$D=3,5,10$ we get this expected result and hence the MC results are correct. The timings for generating 500 time units or trajectories 
 with $N=300$ is about \texttt{50000,2300,2000} seconds for $D = 10, 5, 3$ respectively on 
-a 2.4 GHz i5 A1989 MacBook Pro. The results are collected in Table~\ref{table:D_IKKT_data}. 
+a 2.4 GHz i5 A1989 MacBook Pro. The results are collected in Table~\ref{table:D_YM_data}. 
 \begin{table}[h!]
 	\centering
 	\begin{tabular}{||c c c||} 
@@ -879,11 +898,11 @@ a 2.4 GHz i5 A1989 MacBook Pro. The results are collected in Table~\ref{table:D_
 		 \\ [1ex] 
 		\hline 
 	\end{tabular}
-\caption{The results obtained for various $D$ YM matrix models are given for $\lambda=1$ with $N=300$.}
-\label{table:D_IKKT_data}
+\caption{The results obtained for various $D$ matrices YM models are given for $\lambda=1$ with $N=300$.}
+\label{table:D_YM_data}
 \end{table}
 \begin{mdframed}[backgroundcolor=blue!3] 
-	$\bullet$ Exercise 10: Carry out the MC computation for the Yang-Mills type matrix model with $D=6$. After sufficient thermalization cut, check that the result for average action is consistent with that obtained using Schwinger-Dyson equations within errors. Refer to Appendix~\ref{sec:YMC} for the \PY~code. Compute $R^4, R^2$ for fixed $\lambda=1$. 
+	$\bullet$ Exercise 10: Carry out the MC computation for the Yang-Mills type matrix model with $D=6$. After sufficient thermalization cut, check that the result for average action is consistent with that obtained using Schwinger-Dyson equations within errors. Refer to Appendix~\ref{sec:YMC} for the \PY~code.
 \end{mdframed} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Summary}
@@ -899,8 +918,10 @@ allowing us to use a figure from their paper.
 We also thank Nikhil Kalyanapuram for general discussions. 
 The author is supported by a 
 postdoctoral fellowship at the Perimeter Institute for Theoretical Physics. 
-Research at Perimeter Institute is supported in part by the Government of Canada through the Department of Innovation, 
-Science and Economic Development Canada and by the Province of Ontario through the Ministry of Economic Development, Job Creation and Trade. 
+Research at Perimeter Institute is supported in part by the Government of Canada 
+through the Department of Innovation, Science and Economic Development Canada 
+and by the Province of Ontario through the Ministry of Economic Development, Job Creation 
+and Trade. 
 %The author would like to acknowledge support in the past from 
 %the Department of Science \& Technology, Government of India's KVPY
 %(Kishore Vaigyanik Protsahan Yojana) Scholarship during 2008-2010, 
@@ -914,22 +935,21 @@ Science and Economic Development Canada and by the Province of Ontario through t
 \appendix
 \begin{center} \large{\textsc{Appendices}}\end{center}
 \section{\label{sec:Ortho_pol1}Ising model on a random graph}
-
-We mentioned in Sec.~\ref{subsec:OP} that the method of polynomials can be used to solve the Ising model on random graph. We sketch the solution for the interested reader. One can show that the partition function written in the usual form: 
+We mentioned in Sec.~\ref{subsec:OP} that the method of polynomials can be used to solve the Ising model on random graph. 
+One can show that the partition function written in the usual form: 
 \begin{equation}
-	Z = \int \prod d\lambda_{i} \Delta^2(\lambda)  e^{-N \sum V(\lambda_i)} 
+	Z = \int \prod d\lambda_{i} \Delta^2(\lambda)  e^{-N \sum V(\lambda_i)}, 
 \end{equation}
 can be written as (see Ref.~\cite{DiFrancesco:1993cyw} for details): 
 \begin{equation}
 \label{eq:ZOP} 
 	Z = N! ~ a_{0}^{N} \prod_{k=1}^{N-1} f_{k}^{N-k},
 \end{equation}
-where $f_{k} := a_{k}/a_{k-1}$. Hence, solving the matrix model is now equivalent to solving for the 
-normalization appearing in (\ref{eq:ortho_nn}). As we have shown in Sec.~\ref{sec:MMAres}, 
-this method was used to solve the unitary 
-matrix model. In fact, this method was also used to study the Ising Model on a random graph as two-matrix model 
-\cite{Kazakov:1986hu}
-and the partition function is given by:
+where $f_{k} := a_{k}/a_{k-1}$. Hence, solving the matrix model is mapped to an 
+equivalent problem of solving for the 
+normalizations appearing in (\ref{eq:ortho_nn}). This method was also used to study the 
+Ising Model on a random graph as two-matrix model 
+\cite{Kazakov:1986hu} where the partition function is given by:
 \begin{equation}
 	\label{eq:Kaz1} 
 	Z = \int \mathcal{D}A \mathcal{D}B \exp N \mbox{Tr} \Bigg(-A^2 -B^2 + 2c AB -g \frac{A^3}{3} - g\frac{B^3}{3}  \Bigg). 
@@ -941,14 +961,15 @@ the partition function being invariant under $A \mapsto B$. This is however brok
 	Z = \int \mathcal{D}A \mathcal{D}B \exp N \mbox{Tr} \Bigg(-A^2 -B^2 + 2c AB -g_{A}e^{h} \frac{A^3}{3} 
 	- g_{B}e^{-h} \frac{B^3}{3}  \Bigg). 
 \end{equation}
-After solution of the Ising model on a random graph, this was extended to admit magnetic fields
+Soon after the solution of the Ising model on a random graph, this was extended to admit magnetic fields
 \cite{Boulatov:1986sb} as well. We will not discuss the entire solution but will 
 sketch the solution. In this paper, the authors also computed the critical exponents 
 and found different results than Onsager's case for a regular square lattice. 
 The exponents satisfied the usual Rushbrooke's law ($\alpha + 2\beta+\gamma=2$) 
 and Widom's scaling law: $\gamma/\beta = \delta -1$. 
-These values coincide with the exponents obtained in a three-dimensional spherical model. 
-This is a striking correspondence between exponents of two different models in different dimensions! In fact, after few years, while discussing the Yang-Lee edge singularity on a dynamical graph, it was shown that an additional exponent $\sigma =1/2$ 
+These values coincide with the exponents obtained for a three-dimensional spherical model. 
+This is a striking correspondence between exponents of two different models in different dimensions! In fact, 
+after few years, while discussing the Yang-Lee edge singularity on a dynamical graph, it was shown that an additional exponent $\sigma =1/2$ 
 also behaved accordingly. We have listed the exponents in Table (\ref{table:crit_exp}) for the interested reader.
 \begin{table} 
 	\begin{center} 
@@ -963,10 +984,11 @@ also behaved accordingly. We have listed the exponents in Table (\ref{table:crit
 	\hline
 \end{tabular}
 \end{center} 
-	\caption{Summary of critical exponents obtained for two-dimensional Ising model on different graphs.} 
+	\caption{Summary of critical exponents obtained for two-dimensional Ising model.} 
 	\label{table:crit_exp}
 	\end{table} 
-By turning the partition function in terms of eigenvalues, we get:
+The solution proceeds as follows. We start by rewriting 
+the partition function in terms of eigenvalues as:
 \begin{equation}
 	Z = \int dX dY \Delta(X) \Delta(Y)
 	 \exp \Big[-N \sum_{i} (x_{i}^2 + y_{i}^{2} +2c x_{i}y_{i} + 4ge^{h}x_{i}^{4} + 4ge^{-h}y_{i}^4) \Big].
@@ -1026,20 +1048,23 @@ Then we follow the standard procedure described in Sec.~\ref{sec:MMAres} and mov
 	\end{footnotesize} 
 \end{mdframed}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{\label{sec:BEOC}Brief explanation and comments on 
-running the \PY~code}
-We provide programs which can deal with several different types of Hermitian matrix models. The instructions on how to use them can be found at:  
+\section{\label{sec:BEOC}Brief instructions and explanations to use the \PY~code}
+We provide programs which can be used to study several different types of Hermitian matrix models. 
+The instructions on how to use them with run time parameters 
+can be found at:  
 \begin{center} \texttt{\href{https://github.com/rgjha/MMMC\#readme}{https://github.com/rgjha/MMMC/README}} \end{center}
- The list of all programs are summarized below:
+The list of all programs which are available are also summarized below:
 \begin{enumerate}
 	\item One matrix model: \texttt{\href{https://github.com/rgjha/MMMC/blob/main/1MM.py}{https://github.com/rgjha/MMMC/1MM.py}}
 	\item Two matrix Hoppe-type models: \texttt{\href{https://github.com/rgjha/MMMC/blob/main/2MM.py}{https://github.com/rgjha/MMMC/2MM.py}}  
 	\item Three and four matrices chain models: \texttt{\href{https://github.com/rgjha/MMMC/blob/main/3_4MMC.py}{https://github.com/rgjha/MMMC/3\_4MMC.py}}
 	\item Yang-Mills type models: \texttt{\href{https://github.com/rgjha/MMMC/blob/main/YMtype.py}{https://github.com/rgjha/MMMC/YMtype.py}}
 \end{enumerate}
-In addition to this, we also give codes for one matrix model and $D$ matrices Yang-Mills models in Appendix~\ref{sec:1MMPYC}, and \ref{sec:YMC} respectively.
-These codes can also be modified to study other potentials as required. In general, only two routines need modifications. 
-One is $\texttt{def potential(X)}$ and other is the $\texttt{def force(X)}$. 
+In addition to the online access of the codes, we also give the programs 
+for one-matrix model and $D$ matrices Yang-Mills models in Appendix~\ref{sec:1MMPYC}, and \ref{sec:YMC} respectively.
+These codes can also be modified to study other potentials as required. 
+In general, only two sub-routines need to be changed. 
+The first is $\texttt{def potential(X)}$ and other is the $\texttt{def force(X)}$. 
 The first involves (mostly) trace of product of matrices and the second is the 
 derivative of those matrix traces. 
 These codes in \PY~are rather short
@@ -1086,7 +1111,8 @@ it will throw an error. The user can modify these choices easily to suit their r
 which are moments of the matrices. The number of columns in these files will be equal to 
 the number of different matrices we considered in the potential i.e., $\texttt{NMAT}$. 
 If we consider a matrix model with ten matrices (the maximum we have used in these notes),
-these files will have ten corresponding columns. it might however be true that they are all very similar to each other if the problem has some specific symmetry such as the one we discussed in \ref{subsec:Hoppe}.
+these files will have ten corresponding columns. it might however be true that they are all very similar to 
+each other if the problem has some specific symmetry such as the one we discussed in \ref{subsec:Hoppe}.
 \item It is common practice among those who use Monte Carlo to never measure an 
 observable every time unit (because of autocorrelation\footnote{See 
 \texttt{\href{https://emcee.readthedocs.io/en/stable/user/autocorr/}{https://emcee.readthedocs.io/en/stable/user/autocorr/}}
@@ -1120,7 +1146,7 @@ In this section, we provide the MC code which can be used to study a YM matrix m
 
 
 \section{\label{sec:jk_code}Computing error using Jackknife method}
-We give a sample code for computing statistical errors of output data files in \PY~and refer the reader to Ref.~\cite{2012arXiv1210.3781Y} for more details. The program can be used from a terminal as follows: 
+We give a sample code for computing statistical errors of output data files in \PY~and refer the reader to Ref.~\cite{2012arXiv1210.3781Y} for more details. The program can be used from the terminal as follows: 
 $\texttt{python jk\_error.py t2.txt 200 20 0}$. 
 This means that we ask the code to take out the first $\texttt{200}$ time units data for thermalization cut and we set the size of the block to be $\texttt{20}$. The last argument tells the program which column to consider for averaging with $\texttt{0}$ meaning the first column. To ensure that we have used a reasonable thermalization cut, one can check for different cuts and see if the results 
 are same within errors. One can do the same for the block size. 
@@ -1166,7 +1192,7 @@ By using Laplace Expansion formula for determinants, along the first row we find
 		 \lambda_2 - \lambda_1 & \cdots & \cdots & \lambda_2^{N-2}(\lambda_2 - \lambda_1) \\ 
 		\vdots  & \vdots  & \ddots & \vdots  \\
 		\lambda_N - \lambda_1 &  & \cdots &  \lambda_N^{N-2}(\lambda_N - \lambda_1) \\
-	\end{vmatrix}
+	\end{vmatrix}.
 \end{equation}
 Taking the factors common in each row, we get:
 \begin{equation}
@@ -1176,13 +1202,13 @@ Taking the factors common in each row, we get:
 		1 & \cdots & \cdots & \lambda_2^{N-2} \\ 
 		\vdots  & \vdots  & \ddots & \vdots  \\
 		1 &  & \cdots &  \lambda_N^{N-2} \\
-	\end{vmatrix}
+	\end{vmatrix}.
 \end{equation}
 If we iterate this with the smaller matrix, it is easy to see that we obtain:
 \begin{equation}
 	\det(V) = \prod_{i<j} (\lambda_j - \lambda_i).
 \end{equation}
-To define a Vandermonde matrix and compute determinant of a $ 5 \times 5$ matrix, we can execute following command in \MA~:
+To define a Vandermonde matrix and compute determinant of a $ 5 \times 5$ matrix, we can execute following command in \MA:
 \begin{mdframed}[backgroundcolor=magenta!2]
 	\begin{footnotesize} 
 		\verb"V = Table[Subscript[\[Alpha], i]^j, {i, 1, 5}, {j, 0, 4}];"\\ 
@@ -1199,38 +1225,38 @@ The basic idea of the loop equations of matrix models is to capture the invarian
 \end{equation}
 By computing the derivatives and using large $N$ factorization, we obtain:
 \begin{equation}
-	\Big< \mathrm{Tr} M^{k} V^{\prime}(M) \Big> = \sum_{l=0}^{k-1} \langle \mathrm{Tr} M^{l} \rangle  \langle \mathrm{Tr} M^{k-l-1} \rangle
+	\Big< \mathrm{Tr} M^{k} V^{\prime}(M) \Big> = \sum_{l=0}^{k-1} \langle \mathrm{Tr} M^{l} \rangle  \langle \mathrm{Tr} M^{k-l-1} \rangle. 
 \end{equation}
 In the steps above, we have used two identities:
 \begin{equation}
-	\frac{\partial}{\partial M_{ij}} (M^{k})_{ij} = \sum_{l=0}^{k-1} (M^{l})_{ii} (M^{k-l-1})_{jj}
+	\frac{\partial}{\partial M_{ij}} (M^{k})_{ij} = \sum_{l=0}^{k-1} (M^{l})_{ii} (M^{k-l-1})_{jj},
 \end{equation}
 and, 
 \begin{equation}
-	\frac{\partial}{\partial M_{ij}} e^{-N\mathrm{Tr} V(M)} = -N V^{\prime}(M)_{ji}~e^{-N\mathrm{Tr} V(M)}
+	\frac{\partial}{\partial M_{ij}} e^{-N\mathrm{Tr} V(M)} = -N V^{\prime}(M)_{ji}~e^{-N\mathrm{Tr} V(M)},
 \end{equation}
 where $V^{\prime}$ denotes the derivative with respect to the matrix. 
-However, these loop equations are not valid when the integration is over some other matrix ensembles (such as orthogonal/symplectic). It is better to start from the eigenvalue integral representation to consider general $\beta \in \mathbb{C}$. We can write moments as:
+However, these loop equations are not valid when the integration is over some other matrix ensembles (such as orthogonal/symplectic). It is better to start from the eigenvalue integral representation to consider general $\beta$. We can write moments as:
 
 \begin{equation} 
 \langle \mbox{Tr} M^k  \rangle = \frac{1}{Z} \int \Delta(\lambda)^{\beta} 
-	d\lambda_1 \cdots d\lambda_{N~} \exp\Bigg(-\frac{N\beta}{2} \sum_{i} V(\lambda_{i})\Bigg)  \sum_{i=1}^{N} \lambda_{i}^k
+	d\lambda_1 \cdots d\lambda_{N~} \exp\Bigg(-\frac{N\beta}{2} \sum_{i} V(\lambda_{i})\Bigg)  \sum_{i=1}^{N} \lambda_{i}^k.
 \end{equation}
 It is easy to derive `generalized loop equations' from here using the fact that integral 
 of total derivative vanishes. We obtain:
 
 \begin{equation}
-		\Big< \mathrm{Tr} M^{k} V^{\prime}(M) \Big> +  \underbrace{k \Bigg(\frac{2}{\beta} - 1 \Bigg) \mathrm{Tr} M^{k-1}}_{\text{zero for $\beta=2$}} = \sum_{l=0}^{k-1} \langle \mathrm{Tr} M^{l} \rangle  \langle \mathrm{Tr} M^{k-l-1} \rangle
+		\Big< \mathrm{Tr} M^{k} V^{\prime}(M) \Big> +  \underbrace{k \Bigg(\frac{2}{\beta} - 1 \Bigg) \mathrm{Tr} M^{k-1}}_{\text{zero for $\beta=2$}} = \sum_{l=0}^{k-1} \langle \mathrm{Tr} M^{l} \rangle  \langle \mathrm{Tr} M^{k-l-1} \rangle. 
 \end{equation}
  
 \noindent $\star$ \ul{Solution to Exercise 4}:
 \\ \\ Considering (\ref{eq:LE1}) with $k=1$ and quartic potential, we get: 
     \begin{equation}
-    \Big< \mathrm{Tr}\Big(M^{2} + g M^{4}\Big) \Big> = 1 
+    \Big< \mathrm{Tr}\Big(M^{2} + g M^{4}\Big) \Big> = 1. 
     \end{equation}
     This then implies, 
      \begin{equation}
-     \frac{1}{N} \mathrm{Tr} M^{4} \equiv t_{4} =  \frac{1 - t_2}{g} 
+     \frac{1}{N} \mathrm{Tr} M^{4} \equiv t_{4} =  \frac{1 - t_2}{g}. 
      \end{equation}
      We can extend this to $\mathrm{Tr} M^{6}/N \equiv t_{6}$ which can be obtained in terms of 
      $t_2$ as:  
@@ -1248,11 +1274,11 @@ where $X$ will be set of matrices involved in the model. If we assume that the a
 \begin{align}
 	\label{eq:ps1} 
 	Z &= \int dP^{\prime} dX^{\prime} e^{-H^{\prime} \nonumber }  \\
-	&=  \int dP dX e^{-H} e^{H-H^{\prime}}
+	&=  \int dP dX e^{-H} e^{H-H^{\prime}},
 \end{align}
 Dividing (\ref{eq:ps1}) by $Z$ we get, 
 \begin{equation}
-	\langle e^{H-H^{\prime}} \rangle = 	\langle e^{-\Delta H} \rangle = 1
+	\langle e^{H-H^{\prime}} \rangle = \langle e^{-\Delta H} \rangle = 1.
 \end{equation}
 
 \noindent $\star$ \ul{Solution to Exercise 8}:
@@ -1281,16 +1307,16 @@ We consider $ X_{\mu} \to (1 + \epsilon) X_{\mu} + \mathcal{O}(\epsilon^2)$
 and $\mathcal{D}X \to (1 + \epsilon D (N^2-1))\mathcal{D}X$ with the path integral:
 
 \begin{equation}
-	Z = \int \mathcal{D}X e^{-S} = \int \mathcal{D}X \exp\Big[-\frac{1}{4g^2} \mbox{Tr} [X_\mu,X_\nu]^2\Big]
+	Z = \int \mathcal{D}X e^{-S} = \int \mathcal{D}X \exp\Big[-\frac{1}{4g^2} \mbox{Tr} [X_\mu,X_\nu]^2\Big].
 \end{equation}
 The transformation changes $Z$ by:
 \begin{equation}
-	Z = Z + \epsilon \Big\{ D(N^2 -1)Z - 4\langle S \rangle Z  \Big\} = Z ( 1 + \epsilon \Big\{ D(N^2 -1) - 4\langle S \rangle   \Big\})
+	Z = Z + \epsilon \Big\{ D(N^2 -1)Z - 4\langle S \rangle Z  \Big\} = Z ( 1 + \epsilon \Big\{ D(N^2 -1) - 4\langle S \rangle   \Big\}).
 \end{equation}
 If we demand that $Z$ remains invariant, term in the parenthesis should vanish and we get the desired result:
 
 \begin{equation}
-	\frac{D}{4} = \frac{\langle S \rangle}{N^2 - 1 }
+	\frac{D}{4} = \frac{\langle S \rangle}{N^2 - 1}. 
 \end{equation}  
       
 \vspace{3mm}     
@@ -1299,7 +1325,6 @@ If we demand that $Z$ remains invariant, term in the parenthesis should vanish a
 Executing following command in \MA~will check that Wigner distribution is 
 observed. The deviation from the semi-circle distribution cane be seen for small 
 $n$.\footnote{Please see \texttt{\href{https://www.wolfram.com/language/11/random-matrices}{https://www.wolfram.com/language/11/random-matrices}} for further details}
-
 
 \vspace{3mm} 
 \begin{mdframed}[backgroundcolor=magenta!3]
