@@ -39,7 +39,7 @@ innerrightmargin=4pt,innertopmargin=2pt,innerbottommargin=4pt]{mybox}
 \usepackage{bm}
 \usepackage[framemethod=tikz]{mdframed}
 %\usepackage{draftwatermark}
-\newcommand{\TODO}[1]{\textcolor{red}{{\bf #1}}}
+%\newcommand{\TODO}[1]{\textcolor{red}{{\bf #1}}}
 \newcommand{\Tr}[1]{\ensuremath{\text{Tr}\left[ #1 \right]} }
 
 \renewcommand{\baselinestretch}{1.15}	
@@ -372,7 +372,7 @@ The basic idea is to rewrite the Vandermonde determinant appearing after we chan
 \end{equation}
 In order to illustrate how we can solve matrix models using this method, we use OP to study the Ising model on random graph in 
 Appendix~\ref{sec:Ortho_pol1}. One can also use this method to study unitary matrix models like the 
-Gross-Witten-Wadia (GWW) model \cite{Gross:1980he,Wadia:2012fr}
+famous one-plaquette model \cite{Gross:1980he,Wadia:2012fr}
 as was done in Ref.~\cite{Goldschmidt:1979hq}. In addition to this model, 
 there are other unitary models which are interesting 
 for lattice gauge theory in lower dimensions. 
@@ -420,8 +420,8 @@ Repeat this exercise for cubic potential where higher moments can be written in 
 \end{mdframed} 
 If we consider positive constraints that can be derived from $\langle \mbox{Tr}(\Phi^{\dagger}\Phi) \rangle \ge 0 $
 where $\Phi$ is a superposition of matrices which for one matrix model is 
-$ \Phi = \sum_{k} \alpha_{k} M^{k}$. This condition is equivalent to the positive definite nature of
-$\mathcal{M} \succeq 0 $ where $ \mathcal{M}_{ij} = \langle \mbox{Tr} M^{i+j} \rangle$. 
+$ \Phi = \sum_{k} \alpha_{k} X^{k}$. This condition is equivalent to the positive definite nature of
+$\mathcal{M} \succeq 0 $ where $ \mathcal{M}_{ij} = \langle \mbox{Tr} X^{i+j} \rangle$. 
 We can only enforce a subset of these constraints. For example, it was sufficient to 
 access the positive definite nature of $\mathcal{M}_{6 \times 6} \succeq 0 $ 
 and sub-matrices to get to the exact solution in Ref.~\cite{Lin:2020mme}. 
@@ -431,21 +431,22 @@ For example, $\mathcal{M}_{2 \times 2}$ is given by:
 	\begin{pmatrix}
 		t_{2j} & t_{j+k}  \\
 		t_{j+k} & t_{2k}  
-	\end{pmatrix}  \succeq 0
+	\end{pmatrix}  \succeq 0. 
 \end{equation}
 In this case, solving the model just means finding the bounds on $t_{2}$ 
 since all others can then be calculated in terms of it (see the exercise above). 
 Following this work, a quantum-mechanical 
-model (in 0+1-dimensions) with two matrices was solved using similar techniques. 
-The results obtained were shown to be consistent with MC results. 
-In this work, the Hamiltonian considered was given by:
+model (in 0+1-dimensions) with up to two matrices was solved using similar techniques \cite{Han:2020bkb}.  
+For the case of one-matrix model in this work, the Hamiltonian considered was given by:
 \begin{equation}
 H = \mbox{Tr} \Big( P^2 + X^2 + \frac{g}{N} X^4 \Big),
 \end{equation}
-and corresponding to the trial operators up to length, $L = 2$, 
-they considered $ \mathbb{I}, X, X^{2}$ and $P$. The bootstrap matrix
-of size $2^L \times 2^L$ which should be positive definite is constructed as:
-
+and the authors considered trial operators up to length, $L = 4$ in this case 
+and observed convergence to the expected result. 
+Let us consider $L=2$ as an example and consider operators like 
+i.e., $\mathbb{I}, X, X^{2}$ and $P$. The bootstrap matrix
+of size $2^L \times 2^L$ 
+which should be positive definite is constructed as:
 \begin{equation}
 	\mathcal{M} = 
 	\begin{pmatrix}
@@ -453,10 +454,8 @@ of size $2^L \times 2^L$ which should be positive definite is constructed as:
 		\langle \mbox{Tr} X^2 \rangle & \langle \mbox{Tr} X^4 \rangle  & 0 & 0 \\ 
 		0 & 0 & \langle \mbox{Tr} X^2 \rangle & \langle \mbox{Tr} XP \rangle \\
 		0 & 0  & \langle \mbox{Tr} PX \rangle & \langle \mbox{Tr} P^2 \rangle
-	\end{pmatrix}  \succeq 0
+	\end{pmatrix}  \succeq 0. 
 \end{equation}
-They considered bootstrap matrices up to $L=4$ and observed
-convergence to the expected result. 
 For the case of two-matrix quantum mechanics, it was observed that the convergence
 was slow but consistent with results expected using Monte Carlo results and bounds from the Born-Oppenheimer approximation method. Recently, another two-matrix integral given by the action (\ref{eq:GHM1}) was recently solved in Ref.~\cite{Kazakov:2021lel}. 
 In this work, the authors used relaxation bootstrap methods (which takes us 
@@ -527,8 +526,7 @@ It is straightforward to check that it indeed generates a Gaussian distribution 
 shown in Fig.~\ref{fig:RN}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Leapfrog integrator and accept/reject step}
-The leapfrog method (also sometimes known as the `hopscotch' method) 
-is used to numerically integrate differential equations. This is a second-order 
+The leapfrog method is used to numerically integrate differential equations. This is a second-order 
 method and the energy non-conservation depends on the square of step-size used. 
 This integrator is \emph{symplectic}, i.e., it preserves the 
 area of the phase space. 
@@ -737,11 +735,12 @@ Z = \int \mathcal{D}X \mathcal{D}Y \exp \Big[-N ~ \mbox{Tr} (-X^2  -Y^2 - h^2 [X
 	These correspond to green (top left), magenta (top right), red (bottom) data points respectively of Fig.~\ref{fig:2MM_comp1}. Note that blue and orange distribution overlaps and means that we have $X \to Y$ symmetry as expected.}
 \end{figure}
 This corresponds to breaking the $\mathbb{Z}_{2}^{\otimes 2}$ symmetry and just keeping the $X \to Y$ symmetry. This model was studied using bootstrap methods in 
-Ref.~\cite{Kazakov:2021lel} but compared to the symmetric case, it was tough to get the same level of accuracy in the bootstrap results for this case. To understand how well MC works for this case, we explored this and see good agreement where applicable. The results are shown in Fig.~\ref{fig:2MM_comp1}. The bootstrap method has the advantage that the entire boundary line can be obtained at once while we need to do multiple streams of runs in Monte Carlo to get all points. It seems likely that one can produce the entire set of solutions by starting MC from different initial matrices at the start of MC process.  It will be interesting to apply any other method in the future to this case.
+Ref.~\cite{Kazakov:2021lel} but compared to the symmetric case, it was tough to get the same level of accuracy in the bootstrap results for this case. To understand how well MC works for this case, we explored this and see good agreement where applicable. The results are shown in Fig.~\ref{fig:2MM_comp1}. The bootstrap method has the advantage that the entire boundary line can be obtained at once while we need to do multiple streams of runs in Monte Carlo to get all points. It seems likely that one can produce the entire set of solutions by starting from 
+different initial matrices at the start of MC process. It will be interesting to apply any other method in the future to this case
 and see how it performs against MC and bootstrap methods.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{\label{subsection:Mchain}Closed and open chain models with three and four matrices}
-The matrix chain is a complicated $p$ matrices model which was first considered in \cite{Chadha:1980ri}. We will not mention details of the analytical solution here but instead show the results we obtain for both open and closed versions using MC in Fig.~\ref{fig:3MM_open} and Fig.~\ref{fig:3MM_closed}. This model was also studied in the context 
+The matrix chain is a $p$ matrices model which was first considered in \cite{Chadha:1980ri}. We will not mention details of the analytical solution here but instead show the results we obtain for both open and closed versions using MC in Fig.~\ref{fig:3MM_open} and Fig.~\ref{fig:3MM_closed}. This model was also studied in the context 
 of $q$-state Potts model in Refs.~\cite{KAZAKOV198893, KOSTOV1989295, Daul:1994qy}. We define this model as: 
 \begin{equation}
 	\label{eq:Mehta1} 
@@ -834,12 +833,12 @@ If this can be done, then it will be very interesting to compare finite $N$ MC r
 \end{mdframed}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Multi-matrix Yang-Mills models}
-In previous Sec.~\ref{subsec:ext_Hoppe}, we discussed the generalization of Hoppe type matrix models to $D$ matrices with mass terms. It is also interesting to consider these models without mass terms (i.e., $h=0$) with $D$ matrices. We refer to these models as ~`Yang-Mills' type models following Refs.~\cite{Krauth:1998yu,Krauth:1999qw} and refer the reader to these for more details. The action is given by: 
+In previous Sec.~\ref{subsec:ext_Hoppe}, we discussed the generalization of Hoppe type matrix models to $D$ matrices with mass terms. It is also interesting to consider these models without mass terms i.e., $h=0$ in (\ref{eq:HoppeD}) with $D$ matrices. We refer to these models as ~`Yang-Mills' type models following Refs.~\cite{Krauth:1998yu,Krauth:1999qw} and refer the reader to these for more details. The action is given by: 
 \begin{equation}
 	\label{eq:CTmodel} 
-S = \frac{N}{4\lambda} \int \mbox{Tr} \Bigg( \sum_{i < j}[X_i, X_j]^{2}\Bigg), 
+S = -\frac{N}{4\lambda} \int \mbox{Tr} \Bigg( \sum_{i < j}[X_i, X_j]^{2}\Bigg), 
 \end{equation}
-where $i, j = 1 \cdots D$. The MC code to solve this model is available at:
+where $i, j = 1 \cdots D$. The MC code to study this model is available at:
 \begin{center} \texttt{\href{https://github.com/rgjha/MMMC/blob/main/YMtype.py}{https://github.com/rgjha/MMMC/YMtype.py}} \end{center}
 This model is just the general version of the well-known bosonic part of the IKKT model where $D=10$. But, this model can be studied for general $D$ and has interesting features, see Ref. \cite{Hotta:1998en}. 
 Shortly after the BFSS matrix model\footnote{This matrix model was proposed in Ref.~\cite{Banks:1996vh} and the proposal related the uncompactified eleven-dimensional $M$-theory in light cone frame to the planar limit of the supersymmetric matrix quantum mechanics describing $D0$-branes. This model has been well-studied using MC methods~\cite{Catterall:2007fp,Hanada:2008ez,Filev:2015hia,Berkowitz:2016tyy}. 
@@ -1076,11 +1075,11 @@ and are all individual programs are less than $\texttt{300}$ lines
 with lot of common parts like: Leapfrog integrator, Metropolis step, generating random matrices, saving/reading configuration file, and plotting the data. 
 This precise presentation and the choice of programming language are motivated by the fact that often pure theorists and non-MC practitioners think that 
 MC is some magic or is rather difficult to implement\footnote{I had a similar mindset when I started writing my first MC program for Witten's supersymmetric 
-quantum mechanics model. But, in few months, this disappeared. I would like to thank Simon Catterall for this exercise.} but this is not true. 
+quantum-mechanical model. But, in few weeks, this disappeared. I am grateful to Simon Catterall for this exercise.} but this is certainly not true. 
 Our goal is to explain and use MC for matrix models in the simplest possible manner such that it can be understood by anyone who even remotely wants to understand it. 
-We have not tried to do any optimizations to make programs more efficient and the only motivation is that someone who has never run a MC code can do so quickly 
-and use it as guidance for deriving exact results or for bootstrapping purposes. In order to run the code correctly, we need to take care of a few things which are 
-mentioned below.  
+We have not tried to do any optimizations to make the programs more efficient and the only motivation is that someone who has never run a MC code can do so quickly 
+and use it as guidance for deriving exact results or for bootstrapping purposes. In order to run the code correctly, we need to take care of a few things which we
+discuss below.  
 \begin{itemize} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \item The acceptance rate should always be more than $50\%$
