@@ -107,13 +107,6 @@ P.~Kovtun, M.~Unsal, and L.~G. Yaffe, ``{Volume independence in large N(c)
   06} (2007) 019}, \href{http://arxiv.org/abs/hep-th/0702021}{{\ttfamily
   arXiv:hep-th/0702021}}.
 
-\bibitem{Anderson:2016rcw}
-P.~D. Anderson and M.~Kruczenski, ``{Loop Equations and bootstrap methods in
-  the lattice},'' \href{http://dx.doi.org/10.1016/j.nuclphysb.2017.06.009}{{\em
-  Nucl. Phys. B} {\bfseries 921} (2017) 702--726},
-  \href{http://arxiv.org/abs/1612.08140}{{\ttfamily arXiv:1612.08140
-  [hep-th]}}.
-
 \bibitem{Lin:2020mme}
 H.~W. Lin, ``{Bootstraps to strings: solving random matrix models with
   positivite},'' \href{http://dx.doi.org/10.1007/JHEP06(2020)090}{{\em JHEP}
@@ -132,22 +125,6 @@ V.~Kazakov and Z.~Zheng, ``{Analytic and Numerical Bootstrap for One-Matrix
   Model and ''Unsolvable'' Two-Matrix Model},''
   \href{http://arxiv.org/abs/2108.04830}{{\ttfamily arXiv:2108.04830
   [hep-th]}}.
-
-\bibitem{Berenstein:2021dyf}
-D.~Berenstein and G.~Hulsey, ``{Bootstrapping Simple QM Systems},''
-  \href{http://arxiv.org/abs/2108.08757}{{\ttfamily arXiv:2108.08757
-  [hep-th]}}.
-
-\bibitem{Bhattacharya:2021btd}
-J.~Bhattacharya, D.~Das, S.~K. Das, A.~K. Jha, and M.~Kundu, ``{Numerical
-  Bootstrap in Quantum Mechanics},''
-  \href{http://arxiv.org/abs/2108.11416}{{\ttfamily arXiv:2108.11416
-  [hep-th]}}.
-
-\bibitem{Du:2021hfw}
-B.-n. Du, M.-x. Huang, and P.-x. Zeng, ``{Bootstrapping Calabi-Yau Quantum
-  Mechanics},'' \href{http://arxiv.org/abs/2111.08442}{{\ttfamily
-  arXiv:2111.08442 [hep-th]}}.
 
 \bibitem{Duane:1987de}
 S.~Duane, A.~D. Kennedy, B.~J. Pendleton, and D.~Roweth, ``{Hybrid Monte
@@ -254,13 +231,6 @@ M.~Hanada, J.~Nishimura, and S.~Takeuchi, ``{Non-lattice simulation for
   {\bfseries 99} (2007) 161602},
   \href{http://arxiv.org/abs/0706.1647}{{\ttfamily arXiv:0706.1647 [hep-lat]}}.
 
-\bibitem{Catterall:2007fp}
-S.~Catterall and T.~Wiseman, ``{Towards lattice simulation of the gauge theory
-  duals to black holes and hot strings},''
-  \href{http://dx.doi.org/10.1088/1126-6708/2007/12/104}{{\em JHEP} {\bfseries
-  0712} (2007) 104}, \href{http://arxiv.org/abs/0706.3518}{{\ttfamily
-  arXiv:0706.3518}}.
-
 \bibitem{Anagnostopoulos:2007fw}
 K.~N. Anagnostopoulos, M.~Hanada, J.~Nishimura, and S.~Takeuchi, ``{Monte Carlo
   studies of supersymmetric matrix quantum mechanics with sixteen supercharges
@@ -269,12 +239,25 @@ K.~N. Anagnostopoulos, M.~Hanada, J.~Nishimura, and S.~Takeuchi, ``{Monte Carlo
   Lett.} {\bfseries 100} (2008) 021601},
   \href{http://arxiv.org/abs/0707.4454}{{\ttfamily arXiv:0707.4454 [hep-th]}}.
 
+\bibitem{Catterall:2008yz}
+S.~Catterall and T.~Wiseman, ``{Black hole thermodynamics from simulations of
+  lattice Yang-Mills theory},''
+  \href{http://dx.doi.org/10.1103/PhysRevD.78.041502}{{\em Phys. Rev. D}
+  {\bfseries 78} (2008) 041502},
+  \href{http://arxiv.org/abs/0803.4273}{{\ttfamily arXiv:0803.4273 [hep-th]}}.
+
 \bibitem{Hanada:2008ez}
 M.~Hanada, Y.~Hyakutake, J.~Nishimura, and S.~Takeuchi, ``{Higher Derivative
   Corrections to Black Hole Thermodynamics from Supersymmetric Matrix Quantum
   Mechanics},'' \href{http://dx.doi.org/10.1103/PhysRevLett.102.191602}{{\em
   Phys. Rev. Lett.} {\bfseries 102} (2009) 191602},
   \href{http://arxiv.org/abs/0811.3102}{{\ttfamily arXiv:0811.3102}}.
+
+\bibitem{Kadoh:2015mka}
+D.~Kadoh and S.~Kamata, ``{Gauge/gravity duality and lattice simulations of one
+  dimensional SYM with sixteen supercharges},''
+  \href{http://arxiv.org/abs/1503.08499}{{\ttfamily arXiv:1503.08499
+  [hep-lat]}}.
 
 \bibitem{Filev:2015hia}
 V.~G. Filev and D.~O'Connor, ``{The BFSS model on the lattice},''
@@ -286,6 +269,26 @@ V.~G. Filev and D.~O'Connor, ``{The BFSS model on the lattice},''
 E.~Berkowitz, E.~Rinaldi, M.~Hanada, G.~Ishiki, S.~Shimasaki, and P.~Vranas,
   ``{Supergravity from D0-brane Quantum Mechanics},''
   \href{http://arxiv.org/abs/1606.04948}{{\ttfamily arXiv:1606.04948}}.
+
+\bibitem{Kabat:1999hp}
+D.~N. Kabat and G.~Lifschytz, ``{Approximations for strongly coupled
+  supersymmetric quantum mechanics},''
+  \href{http://dx.doi.org/10.1016/S0550-3213(99)00818-4}{{\em Nucl. Phys. B}
+  {\bfseries 571} (2000) 419--456},
+  \href{http://arxiv.org/abs/hep-th/9910001}{{\ttfamily arXiv:hep-th/9910001}}.
+
+\bibitem{Kabat:2000zv}
+D.~N. Kabat, G.~Lifschytz, and D.~A. Lowe, ``{Black hole thermodynamics from
+  calculations in strongly coupled gauge theory},''
+  \href{http://dx.doi.org/10.1103/PhysRevLett.86.1426}{{\em Int. J. Mod. Phys.
+  A} {\bfseries 16} (2001) 856--865},
+  \href{http://arxiv.org/abs/hep-th/0007051}{{\ttfamily arXiv:hep-th/0007051}}.
+
+\bibitem{Dhindsa:2022vch}
+N.~S. Dhindsa, R.~G. Jha, A.~Joseph, A.~Samlodia, and D.~Schaich,
+  ``{Non-perturbative phase structure of the bosonic BMN matrix model},''
+  \href{http://arxiv.org/abs/2201.08791}{{\ttfamily arXiv:2201.08791
+  [hep-lat]}}.
 
 \bibitem{Catterall:2017lub}
 S.~Catterall, R.~G. Jha, D.~Schaich, and T.~Wiseman, ``{Testing holography

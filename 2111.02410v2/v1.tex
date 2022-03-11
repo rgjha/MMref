@@ -116,7 +116,7 @@ innerrightmargin=4pt,innertopmargin=2pt,innerbottommargin=4pt]{mybox}
 %------------------------
 \abstract{\\ \\ ~{\textsc{Abstract:} We consider a wide range of matrix models and study them 
 using the Monte Carlo technique in the large $N$ limit. The results we obtain agree with exact analytic expressions and 
-recent numerical bootstrap methods for models with one and two matrices. We then present new results for several unsolved multi-matrix models where no other tool is yet available. In order to encourage an exchange of ideas between different numerical approaches to matrix models, we provide programs in \PY~that can be easily modified to study potentials other than the ones discussed. These programs were tested on a laptop and took between a few minutes to several hours to finish depending on the model, $N$, and the required precision. 
+recent numerical bootstrap methods for models with one and two matrices. We then present new results for several unsolved multi-matrix models where no other tool is yet available. In order to encourage an exchange of ideas between different numerical approaches to matrix models, we provide programs in \PY~that can be easily modified to study potentials other than the ones considered here. These programs were tested on a laptop and took between a few minutes to several hours to finish depending on the model, $N$, and the required precision. 
 }}
 %\toccontinuoustrue  % To get TOC on first page!
 \begin{document}
@@ -226,7 +226,7 @@ apart \cite{DiFrancesco:1993cyw,Eynard:2015aea} for detailed discussions.
 We now outline the content of this article. In Sec.~\ref{sec:MMAres}, we discuss saddle-point one-cut analysis of one matrix Hermitian model and provide a brief explanation about an alternative and equally effective method of orthogonal polynomials. We provide some additional details about the Ising model on a random graph which was solved using these polynomials in Appendix~\ref{sec:Ortho_pol1}. In Sec.~\ref{sec:NSOL}, we start by mentioning the recent numerical bootstrap results for matrix models and then focus for bulk of the remaining section on explaining basics of the MC method and using it to solve different models. We discuss the solution of one-matrix model using \MA~in  Appendix~\ref{sec:math_code} and explain how to run \PY~codes in Appendix~\ref{sec:BEOC}. Then  we provide three  \PY~programs used in the paper in Appendix~\ref{sec:1MMPYC}, \ref{sec:YMC}, and \ref{sec:jk_code} respectively. At last, in Appendix~\ref{sec:solutions}, we give solutions to some exercises. All the programs can be accessed at:  
 \begin{center} \texttt{\href{https://github.com/rgjha/MMMC}{https://github.com/rgjha/MMMC}} \end{center}
 
-\section{\label{sec:MMAres}Matrix models - Analytical results} 
+\section{\label{sec:MMAres}Matrix models - Analytical and Bootstrap methods} 
 Matrix models (or matrix integrals) are the simplest of models 
 defined as integration over matrices in zero dimensions. 
 In these cases, one evaluates integrals of the form:
@@ -385,27 +385,10 @@ in large $N$ limit known as Eguchi-Kawai reduction \cite{Eguchi:1982nm} in which
 the lattice gauge theory for an infinite lattice and unit cube are identical. The space-time seems incorporated in the large 
 $N$ limit as an internal degree of freedom. There are some subtle requirements for this idea to work and are technical 
 but this has led to lot of interesting work, see for instance Ref.~\cite{Kovtun:2007py}. 
- 
-\section{\label{sec:NSOL}Numerical solutions} 
-There is only a selected list of analytically solvable matrix models in the planar limit. This inevitably brings 
-the thought of attempting numerical solutions. Unfortunately, even here, there are not many methods that one can use. 
-In fact, there are only two methods to our knowledge with the second method barely a few years old! This clearly signals 
-the fact that there still remains a lot of work to be done in devising new numerical 
-methods to solve matrix models. The most frequently used method is Monte Carlo (MC)\footnote{
-It is not widely known that Monte Carlo methods were central to the work required for the Manhattan Project
-and first introduced in the 1940s by Stanislaw Ulam and recognized first by von Neumann. 
-He is often credited as the inventor of the modern version of the Markov Chain Monte Carlo 
-method. In fact, the earliest use of MC goes back to the solution of the Buffon needle problem when Fermi used it in the 
-1930s but never published it. 
-Since this work was part of the classified information, the work of von Neumann and Ulam required a code name. It was Metropolis who 
-suggested using the name Monte Carlo based on the casino in 
-Monaco where Ulam's uncle would borrow money from relatives to gamble. Ulam and Metropolis
-published the first paper on MC in September 1949 titled `The Monte Carlo Method'.} 
-and it is quite effective but is not a panacea and has its own shortcomings. 
-The recently introduced numerical bootstrap method has already been used to study several interesting models \cite{Anderson:2016rcw,Lin:2020mme,Han:2020bkb,Kazakov:2021lel,Berenstein:2021dyf,Bhattacharya:2021btd,Du:2021hfw} but the extension to matrix models with more than two matrices i.e., 3-matrix commutator type models or models relevant for superstrings (model with ten matrices) seems non-trivial at the moment. This is related to the fact that with more matrices, the loop equations which become highly non-linear are difficult to handle. In this article, we will focus on the MC method. However, we want to explain the bootstrap solution for the case of one matrix model as first shown by \cite{Lin:2020mme} for the interested reader. For a detailed exposition, please see the references above. We hope that this yet small subsection on bootstrap methods would be extended in later versions of this article as more results accumulate in coming years. 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection{Matrix bootstrap method}
-The basic idea of bootstrapping matrix models rests on the 
+
+The basic idea of bootstrapping matrix models as proposed in Ref.~\cite{Lin:2020mme} rests on the 
 positivity (positive-definiteness) of the bootstrap matrix which we refer to as $\mathcal{M}$. 
 For the case of one matrix model (1MM) with a potential $V(X)$ given by: 
 \begin{equation}
@@ -466,7 +449,29 @@ to constrain the moments of matrices such as $t_{2} = \mathrm{Tr}X^2/N$ and $t_{
 to six decimal places of precision for the symmetric case. We will come back to 
 discuss this model for both symmetric and symmetry broken cases 
 and its corresponding solution using MC methods in Sec.~\ref{subsec:Hoppe} 
-and show that they are in perfect agreement.  
+and show that they are in perfect agreement. 
+We hope that this yet small subsection on bootstrap methods would be extended in later 
+versions of this article as more results accumulate in coming years. 
+ 
+\section{\label{sec:NSOL}Numerical solutions} 
+There is only a selected list of analytically solvable matrix models in the planar limit. This inevitably brings 
+the thought of attempting numerical solutions. Unfortunately, even here, there are not many methods that one can use. 
+In fact, there are only two methods to our knowledge with the second method barely a few years old! This clearly signals 
+the fact that there still remains a lot of work to be done in devising new numerical 
+methods to solve matrix models. The most frequently used method is Monte Carlo (MC)\footnote{
+It is not widely known that Monte Carlo methods were central to the work required for the Manhattan Project
+and first introduced in the 1940s by Stanislaw Ulam and recognized first by von Neumann. 
+He is often credited as the inventor of the modern version of the Markov Chain Monte Carlo 
+method. In fact, the earliest use of MC goes back to the solution of the Buffon needle problem when Fermi used it in the 
+1930s but never published it. 
+Since this work was part of the classified information, the work of von Neumann and Ulam required a code name. It was Metropolis who 
+suggested using the name Monte Carlo based on the casino in 
+Monaco where Ulam's uncle would borrow money from relatives to gamble. Ulam and Metropolis
+published the first paper on MC in September 1949 titled `The Monte Carlo Method'.} 
+and it is quite effective but is not a panacea and has its own shortcomings. In this article, we will focus on the MC method while 
+having explained the bootstrap solution in the previous section for the interested reader. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
 
 \subsection{Basics of Monte Carlo method}
 The numerical method which is state-of-the-art in computations of matrix models and quantum field theories is the Monte Carlo approach. For higher-dimensional models, one starts with the lattice formulation which reduces the path-integral into many ordinary integrals. But even for a simple
@@ -476,18 +481,63 @@ interpretation and this is where the basic idea of Monte Carlo comes in. We make
 importance sampling (we sample states which are more relevant for the partition function more often compared to states which are not so relevant) in the Monte Carlo
 method. Using this sampling, one constructs a chain of configurations that approximately leads to the required distribution. Metropolis-Hastings algorithm and Hamiltonian/Hybrid Monte Carlo (HMC) 
 are two frequently used methods that can generate a Markov chain using Monte Carlo (sometimes called Markov chain Monte Carlo) and lead to a unique stationary distribution. We will here focus on the latter since that has now become the preferred method in various numerical computations. This method was introduced in 1987 by Duane, Kennedy, Pendleton, and Roweth \cite{Duane:1987de} who put together the ideas from Markov chain Monte Carlo (MCMC)\footnote{MCMC originated in the seminal paper of Metropolis et al.~\cite{Metropolis:1953am}, where it was used to simulate the state distribution for a system of ideal molecules.} 
-and molecular dynamics (MD) methods. 
+and molecular dynamics (MD) methods. Though we will mostly use HMC (discussed later) in this introduction, we present a
+simple example of Metropolis-Hastings (MH) algorithm to convince the reader that this sampling method 
+indeed leads to desired results. 
+
+The MH algorithm is the most basic MCMC method for obtaining a sequence
+of random samples from a probability distribution for which direct sampling is difficult. This
+sequence can be used to approximate the distribution (histogram), or to compute the value of an integral. 
+The MH algorithm works by simulating a Markov chain whose stationary distribution looks like the 
+target distribution $\pi$ if sufficient time is allowed. This means that even though we don't apriori know
+the $\pi$, it will look like the samples are drawn from it in the long run. For complicated problems,
+however, it might be a very long time until we approach $\pi$. The algorithm was first introduced by Metropolis 1953 \TODO{cite?} 
+and later generalized by Hastings [9] for asymmetric. As discussed, it draws sample from the proposal and accepts it with probability 
+$\alpha$. If the sample is rejected the drawn sample remains unchanged otherwise it moves to a new configuration. 
+The choice of good proposal distribution needs some thought, but a multivariate normal 
+distribution usually does the required job. To implement MH algorithm, we must provide the `transition kernel'. It is a simple
+update path of moving to a new position and we will denote this by $q(\textbf{X}_{t}\vert \textbf{Y})$. The steps of the 
+algorithm are then summarized as follows:
+
+\begin{itemize}
+\item Choose $\textbf{Y}$
+\item For $t=1,2 \cdots T$, we sample $\textbf{X}_{t}$ from $q(\textbf{X}_{t}\vert \textbf{Y})$ where we have $\textbf{Y} = \textbf{X}_{0}$. Then we compute:
+\begin{equation}
+\alpha = \text{min.} \Bigg(1, \frac{\pi(\textbf{X}_{t}) q(\textbf{Y} \vert \textbf{X}_{t})} {\pi(\textbf{Y}) q(\textbf{X}_{t}\vert \textbf{Y})} \Bigg) 
+\end{equation}
+and accept the new proposal with this probability. 
+\end{itemize}
+If $q(\textbf{X}_{t}\vert \textbf{Y})$ = $q(\textbf{Y} \vert \textbf{X}_{t})$ i.e., symmetric proposal then $\alpha$ simplifies and this was 
+the original proposal by Metropolis. This was generalized to asymmetric proposals by Hastings in 1970. To understand this, 
+we provide a code at: 
+\begin{center} \texttt{\href{https://github.com/rgjha/MMMC/blob/main/sampleMH.py}{https://github.com/rgjha/MMMC/sampleMH.py}} \end{center} 
+for the interested reader where one can check this for $\pi(x) = \exp(-x), x \ge 0$ and 
+$\pi(x) = \exp(-x^2)$ respectively. This is just an example since for these simple distributions 
+better options are available.  We obtain the results shown in Fig.~\ref{fig:MH11}.
+
+\begin{figure}[htbp] 
+	\centering 
+	\includegraphics[width=0.85\textwidth]{figs/sampleMH1.pdf}
+	\caption{\label{fig:MH11}The application of MH algorithm to sample some simple target distributions.See text for details.}
+\end{figure} 
+
+
+
 For a detailed review about HMC and its extension to rational 
-HMC which is required for fermions, the interested readers 
-can consult Ref. \cite{Hanada:2018fnp, Joseph:2019zer}.
-The two basic parts of HMC are, a) Use of integrator to evolve and propose a new configuration, b) accept or reject the proposed configuration. But before we discuss HMC, 
+HMC (RHMC) which is required for fermions, the interested readers 
+can consult Ref. \cite{Hanada:2018fnp, Joseph:2019zer}. 
+The two basic parts of HMC \footnote{
+For the bosonic fields as is the case in this article, it is certainly possible to also use 
+heat-bath algorithm but we introduce HMC since it is more natural when advancing to field theories with fermions where RHMC is extensively used}
+are, a) Use of integrator to evolve and propose a 
+new configuration, b) accept or reject the proposed configuration. But before we discuss HMC, 
 it is important to see how we generate random momentum 
 matrices for the leapfrog integrator 
 at the start of each trajectory (time unit) since 
 this is necessary to ensure that we converge to the 
 correct answer using Monte Carlo methods. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Random generator}  
+\subsubsection{Random generator - Box-Muller algorithm}  
 It is essential during HMC algorithm that we correctly generate random 
 $N \times N$ momentum matrices at the start of the leapfrog method whose elements are taken from a Gaussian distribution. 
 In this part, we will explain this procedure. The part of code that implements this can be found in one of the sub-routines in 
@@ -842,9 +892,10 @@ S = -\frac{N}{4\lambda} \int \mbox{Tr} \Bigg( \sum_{i < j}[X_i, X_j]^{2}\Bigg),
 where $i, j = 1 \cdots D$. The MC code to study this model is available at:
 \begin{center} \texttt{\href{https://github.com/rgjha/MMMC/blob/main/YMtype.py}{https://github.com/rgjha/MMMC/YMtype.py}} \end{center}
 This model is just the general version of the well-known bosonic part of the IKKT model where $D=10$. But, this model can be studied for general $D$ and has interesting features, see Ref. \cite{Hotta:1998en}. 
-Shortly after the BFSS matrix model\footnote{This matrix model was proposed in Ref.~\cite{Banks:1996vh} and the proposal related the uncompactified eleven-dimensional $M$-theory in light cone frame to the planar limit of the supersymmetric matrix quantum mechanics describing $D0$-branes. This model has been well-studied using MC methods~\cite{Hanada:2007ti, Catterall:2007fp, Anagnostopoulos:2007fw, Hanada:2008ez,Filev:2015hia,Berkowitz:2016tyy}. 
+Shortly after the BFSS matrix model\footnote{This matrix model was proposed in Ref.~\cite{Banks:1996vh} and the proposal related the uncompactified eleven-dimensional $M$-theory in light cone frame to the planar limit of the supersymmetric matrix quantum mechanics describing $D0$-branes. This model has been well-studied using MC methods~\cite{Hanada:2007ti, Anagnostopoulos:2007fw, Catterall:2008yz, Hanada:2008ez, Kadoh:2015mka, Filev:2015hia, Berkowitz:2016tyy} though the first explorations of these used a Gaussian approximation method \cite{Kabat:1999hp,Kabat:2000zv}
 The publicly available code by different groups 
-to study these models and their mass deformation (BMN matrix model) and higher-dimensional systems which describes $D1/D2$ branes~\cite{Catterall:2017lub,Jha:2017zad,Catterall:2020nmn}
+to study these models, their mass deformation (BMN matrix model) \cite{Dhindsa:2022vch}
+and higher-dimensional systems which describes $D1/D2$ branes~\cite{Catterall:2017lub,Jha:2017zad,Catterall:2020nmn}
 is available at \texttt{\href{https://github.com/daschaich/susy}{https://github.com/daschaich/susy}}, while the
 highly efficient code for only BFSS and BMN models is available at
 \texttt{\href{https://sites.google.com/site/hanadamasanori/home/mmmm}
@@ -911,10 +962,7 @@ a 2.4 GHz i5 A1989 MacBook Pro. The results are collected in Table~\ref{table:D_
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Summary and future directions}
 We have described the Monte Carlo method to study different matrix models in the large $N$ limit starting with the simplest one-matrix Hermitian matrix model and then considering models with two and three matrices before carrying on to Yang-Mills type models with up to ten matrices. We obtained new results and confirmed several known results from analytical and bootstrap methods. Though, matrix models play a very important role in different areas of Physics, most of them are analytically not solvable and resorting to numerical techniques also turn up only a handful of methods with their own merits and problems. The recent progress in bootstrap methods looks promising and one can hope that there might be interesting ways to combine these two numerical methods and understand the matrix models in more detail. The Monte Carlo approach
-to matrix models discussed in this review plays a fundamental role in the first-principle verification of holographic dualities. Though, we have restricted here to zero dimensional models, 
-\TODO{.??????????} 
-
-We hope this introduction will encourage interested readers to carry out these numerical computations using the programs provided and will eventually lead to new ways of solving matrix models and to bootstrap those not yet explored.
+to matrix models discussed in this review plays a fundamental role in the first-principle verification of holographic dualities. Though, we have restricted here to zero dimensional models, there are lot of numerical results for the matrix quantum mechanics as well. One of the future goals of these numerical methods is to obtain the master field configuration as proposed more than forty years ago \cite{}. Another direction which is promising and will be explored more in coming years is the application of hybrid quantum algorithms in the NISQ era to study these models \cite{2021, preskill}. We hope this introduction will encourage interested readers to carry out these numerical computations using the programs provided and will eventually lead to new ways of solving matrix models and to bootstrap those not yet explored.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{8mm}
 \subsection*{Acknowledgements}
