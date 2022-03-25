@@ -137,6 +137,14 @@ N.~Metropolis, A.~W. Rosenbluth, M.~N. Rosenbluth, A.~H. Teller, and E.~Teller,
   \href{http://dx.doi.org/10.1063/1.1699114}{{\em J. Chem. Phys.} {\bfseries
   21} (1953) 1087--1092}.
 
+\bibitem{10.1093/biomet/57.1.97}
+W.~K. Hastings, ``{Monte Carlo sampling methods using Markov chains and their
+  applications},'' \href{http://dx.doi.org/10.1093/biomet/57.1.97}{{\em
+  Biometrika} {\bfseries 57} no.~1, (04, 1970) 97--109},
+  \href{http://arxiv.org/abs/https://academic.oup.com/biomet/article-pdf/57/1/97/23940249/57-1-97.pdf}{{\ttfamily
+  https://academic.oup.com/biomet/article-pdf/57/1/97/23940249/57-1-97.pdf}}.
+  \url{https://doi.org/10.1093/biomet/57.1.97}.
+
 \bibitem{Hanada:2018fnp}
 M.~Hanada, ``{Markov Chain Monte Carlo for Dummies},''
   \href{http://arxiv.org/abs/1808.08490}{{\ttfamily arXiv:1808.08490
@@ -331,6 +339,23 @@ W.~Krauth, H.~Nicolai, and M.~Staudacher, ``{Monte Carlo approach to M
 F.~R. Klinkhamer, ``{A first look at the bosonic master-field equation of the
   IIB matrix model},'' \href{http://arxiv.org/abs/2105.05831}{{\ttfamily
   arXiv:2105.05831 [hep-th]}}.
+
+\bibitem{Coleman:1985rnk}
+S.~Coleman, ``{Aspects of Symmetry}: {Selected Erice Lectures},''.
+
+\bibitem{2018pres}
+J.~Preskill, ``Quantum computing in the nisq era and beyond,''
+  \href{http://dx.doi.org/10.22331/q-2018-08-06-79}{{\em Quantum} {\bfseries 2}
+  (Aug, 2018) 79}. \url{http://dx.doi.org/10.22331/q-2018-08-06-79}.
+
+\bibitem{Rinaldi:2021jbg}
+E.~Rinaldi, X.~Han, M.~Hassan, Y.~Feng, F.~Nori, M.~McGuigan, and M.~Hanada,
+  ``{Matrix-Model Simulations Using Quantum Computing, Deep Learning, and
+  Lattice Monte Carlo},''
+  \href{http://dx.doi.org/10.1103/PRXQuantum.3.010324}{{\em PRX Quantum}
+  {\bfseries 3} no.~1, (2022) 010324},
+  \href{http://arxiv.org/abs/2108.02942}{{\ttfamily arXiv:2108.02942
+  [quant-ph]}}.
 
 \bibitem{Kazakov:1986hu}
 V.~A. Kazakov, ``{Ising model on a dynamical planar random lattice: Exact
