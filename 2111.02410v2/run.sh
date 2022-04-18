@@ -6,10 +6,10 @@ rm ../full_ver/.DS_Store
 rm figs/.DS_Store
 rm figs/2MM/.DS_Store
 rm codes/.DS_Store 
-pdflatex v1.tex
-bibtex v1.bib
-bibtex v1.bib
-pdflatex v1.tex
+pdflatex v2.tex
+bibtex v2.bib
+bibtex v2.bib
+pdflatex v2.tex
 rm *.toc *.aux  *.log *.eps *Notes.bib *.blg *.out 
 clear
-open v1.pdf
+open v2.pdf
