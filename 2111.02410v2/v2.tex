@@ -790,18 +790,23 @@ Z = \int \mathcal{D}X \mathcal{D}Y \exp \Big[-N ~ \mbox{Tr} (-X^2  -Y^2 - h^2 [X
 \end{figure}
 This corresponds to breaking the $\mathbb{Z}_{2}^{\otimes 2}$ symmetry and just keeping the $X \to Y$ symmetry. This model was studied using bootstrap methods in 
 Ref.~\cite{Kazakov:2021lel} but compared to the symmetric case, it was tough to get the same level of accuracy in the bootstrap results for this case. To understand how well MC works for this case, we explored this and see good agreement where applicable. The results are shown in Fig.~\ref{fig:2MM_comp1}. The bootstrap method has the advantage that the entire boundary line can be obtained at once while we need to do multiple streams of runs in Monte Carlo to get all points. It seems likely that one can produce the entire set of solutions by starting from 
-different initial matrices at the start of MC process. It will be interesting to apply any other method in the future to this case
-and see how it performs against MC and bootstrap methods.  
+different initial matrices at the start of MC process. However, it is possible that some refined algorithms (see \cite{Kovacik:2022kfh} for example)
+can be developed where we do not need multiple streams of MC simulations. We are exploring this direction and will report on the results soon. 
+It will also be interesting to apply other methods in the future to this issue and see how it performs against MC and bootstrap methods.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{\label{subsection:Mchain}Closed and open chain models with three and four matrices}
-The matrix chain is a $p$ matrices model which was first considered in \cite{Chadha:1980ri}. We will not mention details of the analytical solution here but instead show the results we obtain for both open and closed versions using MC in Fig.~\ref{fig:3MM_open} and Fig.~\ref{fig:3MM_closed}. This model was also studied in the context 
+The matrix chain is a $p$ matrices model which was first considered in \cite{Chadha:1980ri}. We will not mention details of the analytical solution here but instead show the results we obtain 
+for both open and closed versions using MC in Fig.~\ref{fig:3MM_open} and Fig.~\ref{fig:3MM_closed}. This model was also studied in the context 
 of $q$-state Potts model in Refs.~\cite{KAZAKOV198893, KOSTOV1989295, Daul:1994qy}. We define this model as: 
 \begin{equation}
 	\label{eq:Mehta1} 
 	Z_{p}(g,c,\kappa) = \int \mathcal{D}M_{1} \cdots  \mathcal{D}M_{p} \exp \mathrm{Tr}\Bigg(\sum_{i=1}^{p} -M_{i}^2  - g M_{i}^{4} + c \sum_{i=1}^{p-1} M_{i}M_{i+1} 
 	+ \kappa M_{p}M_{1} \Bigg).
 \end{equation} 
-Though exact results are available for any $p$ with $\kappa=0$, not much has been explicitly done for $p > 3$ since algebra becomes rather involved. When the chain is connected ($\kappa \neq 0$), the model is \emph{not solvable} with $p \ge 4$. We use Monte Carlo methods to study the open and closed cases of the model with $p = 3,4$ with $N = 300$. It would be interesting if this four matrix model can be \textit{bootstrapped} in the coming years. The $p$-matrices MC code to solve these models (well-tested and currently with for $p = 3,4$) is available at: 
+Though exact results are available for any $p$ with $\kappa=0$, not much has been explicitly done for $p > 3$ since algebra becomes rather involved. When the chain is 
+connected ($\kappa \neq 0$), the model is \emph{not solvable} with $p \ge 4$. We use Monte Carlo methods to study the open and closed cases of the model with 
+$p = 3,4$ with $N = 300$. It would be interesting if this four matrix model can be \textit{bootstrapped} in the coming years. The $p$-matrices MC code to solve 
+these models (well-tested and currently with for $p = 3,4$) is available at: 
 \begin{center} \texttt{\href{https://github.com/rgjha/MMMC/blob/main/3_4MMC.py}{https://github.com/rgjha/MMMC/3\_4MC.py}} \end{center}
 It is left as an exercise for the reader to extend this for any $p$.
 \begin{figure}[htbp] 
@@ -1397,5 +1402,5 @@ $n$.\footnote{Please see \texttt{\href{https://www.wolfram.com/language/11/rando
 \end{mdframed} 
 
 \bibliographystyle{utphys}
-\bibliography{v1}
+\bibliography{v2}
 \end{document}
