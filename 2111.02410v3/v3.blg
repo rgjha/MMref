@@ -1,0 +1,55 @@
+This is BibTeX, Version 0.99d (TeX Live 2022)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: v3.aux
+The style file: utphys.bst
+Database file #1: v3.bib
+Repeated entry---line 227 of file v3.bib
+ : @article{Catterall:2008yz
+ :                          ,
+I'm skipping whatever remains of this entry
+Warning--empty booktitle in Wigner1951OnTS
+Warning--empty publisher in Meh2004
+Warning--empty booktitle in Marino:2004eq
+Warning--empty booktitle in Joseph:2019zer
+You've used 64 entries,
+            2328 wiz_defined-function locations,
+            1073 strings with 15997 characters,
+and the built_in function-call counts, 18990 in all, are:
+= -- 1916
+> -- 560
+< -- 0
++ -- 216
+- -- 152
+* -- 1794
+:= -- 2247
+add.period$ -- 81
+call.type$ -- 64
+change.case$ -- 81
+chr.to.int$ -- 0
+cite$ -- 68
+duplicate$ -- 1041
+empty$ -- 1903
+format.name$ -- 152
+if$ -- 4907
+int.to.chr$ -- 0
+int.to.str$ -- 64
+missing$ -- 231
+newline$ -- 206
+num.names$ -- 64
+pop$ -- 327
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 715
+stack$ -- 0
+substring$ -- 977
+swap$ -- 500
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 4
+while$ -- 155
+width$ -- 66
+write$ -- 498
+(There was 1 error message)

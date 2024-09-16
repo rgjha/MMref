@@ -1,0 +1,24 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
+\contentsline {section}{\numberline {2}Matrix models - Analytical and Bootstrap methods}{5}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Hermitian one-matrix model - Saddle point analysis}{5}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Method of orthogonal polynomials}{8}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Matrix bootstrap method}{9}{subsection.2.3}%
+\contentsline {section}{\numberline {3}Numerical solutions}{10}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Basics of Monte Carlo method}{11}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Random generator - Box-Muller algorithm}{12}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.2}Leapfrog integrator and accept/reject step}{14}{subsubsection.3.1.2}%
+\contentsline {subsubsection}{\numberline {3.1.3}Autocorrelation and error estimation}{15}{subsubsection.3.1.3}%
+\contentsline {subsection}{\numberline {3.2}One-matrix model: Confirming exact results}{16}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Hoppe-type matrix models: Confirming bootstrap results}{18}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Closed and open chain models with three and four matrices}{21}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Models with $D$ matrices including mass terms}{23}{subsection.3.5}%
+\contentsline {subsection}{\numberline {3.6}Multi-matrix Yang-Mills models}{25}{subsection.3.6}%
+\contentsline {section}{\numberline {4}Summary and future directions}{28}{section.4}%
+\contentsline {section}{\numberline {A}Ising model on a random graph}{29}{appendix.A}%
+\contentsline {section}{\numberline {B}\textsc {Mathematica}~code for one-matrix model solution}{31}{appendix.B}%
+\contentsline {section}{\numberline {C}Brief instructions and explanations to use the \textsc {Python}~code}{32}{appendix.C}%
+\contentsline {section}{\numberline {D}\textsc {Python}~code for Hermitian one matrix model}{34}{appendix.D}%
+\contentsline {section}{\numberline {E}Python code for YM matrix model with $D$ matrices}{39}{appendix.E}%
+\contentsline {section}{\numberline {F}Computing error using Jackknife method}{45}{appendix.F}%
+\contentsline {section}{\numberline {G}Solutions to selected Exercises}{46}{appendix.G}%
